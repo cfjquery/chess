@@ -1,0 +1,27 @@
+<cfquery name="qryVerify" datasource="userLogin">
+  SELECT userid, email, password
+  FROM chess_users
+  WHERE email = '#email#'
+  AND password = '#password#'
+</cfquery>
+<cfif qryVerify.recordcount neq 0>
+    <cfset session.allow = "True" />
+    <cfset session.userid = qryVerify.userid />
+    
+    <!--- Now welcome user and redirect to "<strong>members_only.cfm</strong>" --->
+    <script>
+    alert("Welcome user, you have been successfully logged in!");
+        self.location="/members_only.cfm";
+    </script>
+<cfelse>
+    <!--- this user did not log in correctly, alert and redirect to the login page --->
+    <script>
+    alert("Your credentials could not be verified, please try again!!!");
+        self.location="Javascript:history.go(-1)";
+    </script>
+</cfif>
+<form action="login_process.cfm" method="post">
+      Username: <input type="text" name="email" value=""><BR />
+      Password: <input type="password" name="password" value=""><BR />
+      <input type="submit" name="buttonLogin" value="Log In"><BR />
+</form>

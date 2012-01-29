@@ -1,0 +1,58 @@
+<cfset objChess = CreateObject('component', 'chess')>
+<cfparam name="fen" default="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR">
+<cfparam name="cFen" default="rnbqkbnr/pppppppp/11111111/11111111/11111111/11111111/PPPPPPPP/RNBQKBNR">
+<cfparam name="activeTab" default="0">
+<!--- POSITION OF THE TOP OF BOARD px --->
+<cfset posTop = 8>
+<!--- POSITION OF THE LEFT OF BOARD px --->
+<cfset posLeft = 8>
+<!--- SIZE OF A BOARD SQUARE px --->
+<cfset posSq = 80>
+<!--- GET THE STARTING POSITIONS ( IT'S AN ARRAY OF STRINGS - THE STRINGS ARE THE CLASSES OF THE BOARD ELEMENTS --->
+<cfset aryChessboard = objChess.getStartingPositons() />
+<!DOCTYPE html>
+<head>
+  <link rel="stylesheet" type="text/css" href="css/tabs.css" media="screen"/>
+  <link rel='stylesheet' type='text/css' href='css/default.css' media='screen'/>
+  <script src='scripts/jquery-1.7.1.min.js'></script>
+  <script src='scripts/jquery-ui-1.8.17.custom/js/jquery-ui-1.8.17.custom.min.js'></script>
+  <!--- <style>body{behavior:url("csshover3.htc");}</style> --->     
+  <!--- LOAD THE JQUERY/JAVASCRIPT --->
+  <cfinclude template="chessJS.cfm">
+</head>
+<body>
+<div id="content">
+  <ul class="tabs">
+      <li><a href="#tab1" id="1">Play Game</a></li>
+      <li><a href="#tab2" id="2">Control Panel</a></li>
+      <li><a href="#tab3" id="3">View Moves</a></li>
+      <li><a href="#tab4" id="4">Game Results</a></li>
+      <li><a href="#tab5" id="5">Debug</a></li>
+  </ul>
+  <form name="frmControls" action="index.cfm" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="fen" id="fen" value="<cfoutput>#fen#</cfoutput>">
+    <input type="hidden" name="cFen" id="cFen" value="<cfoutput>#cFen#</cfoutput>">
+    <input type="hidden" name="pieceMoved" id="pieceMoved" value="">
+    <input type="hidden" name="pMoved" id="pMoved" value="">
+    <input type="hidden" name="pFrom" id="pFrom" value="">
+    <div class="tab_container">
+      <div id="tab1" class="tab_content" style="height:700px">
+          <cfinclude template="chessPlay.cfm">
+      </div>
+      <div id="tab2" class="tab_content">
+          <cfinclude template="test.cfm">
+      </div>
+      <div id="tab3" class="tab_content">
+          <cfinclude template="test.cfm">
+      </div>
+      <div id="tab4" class="tab_content">
+          <cfinclude template="test.cfm">
+      </div>
+      <div id="tab5" class="tab_content">
+          <cfinclude template="debug.cfm">
+      </div>
+    </div>
+  </form>
+</div>
+</body>
+</html>

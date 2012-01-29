@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head>
+	<title>Chess Reader v.2</title>
+	<link rel="stylesheet" type="text/css" media="screen" href="css/chess.css"></link>
+	<script type="text/javascript" src="js/ChessFen.js"></script>
+
+</head>
+<body>
+<p>White to move and win:</p>
+<div id="board"></div>
+<p>White to move and win:</p>
+<div id="board2"></div>
+<p>White to move and win:</p>
+<div id="board3"></div>
+<p>White to move and win:</p>
+<div id="board4"></div>
+<p>White to move and win:</p>
+<div id="board5"></div>
+<script type="text/javascript">
+var chessObj = new DHTMLGoodies.ChessFen();
+chessObj.loadFen('r1bq4/1p4kp/3p1n2/5pB1/p1pQ4/8/1P4PP/4RRK1 w - - 0 1','board');
+chessObj.loadFen('r2k4/1pp2rpp/pn1b1p2/3n4/8/P4NB1/1PP3PP/2KRR3 w - - 0 1','board2');
+chessObj.loadFen('r4k1r/pp3ppp/1bppbq2/4n3/3pPB2/1B1P2Q1/PPPN2PP/R4RK1 w - - 0 1','board3');
+chessObj.loadFen('5rk1/ppp1qn1p/3pB1pr/3Pp3/2P1Pn2/PPB5/1Q4RP/5RK1 w - - 0 1','board4');
+chessObj.loadFen('5r1k/4R3/p1pp4/3p1bQ1/3q1P2/7P/P2B2P1/7K w - - 0 1','board5');
+
+</script>
+
+</body>
+</html>
+

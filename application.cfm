@@ -1,0 +1,6 @@
+<cfapplication name="MyApp" clientmanagement="Yes" sessionmanagement="Yes" sessiontimeout="#CreateTimeSpan(0,1,0,0)#" applicationtimeout="#CreateTimeSpan(0,1,0,0)#" />
+<cfparam name="session.allow" default="false" />
+<cfparam name="session.userid" default="0" />
+<cfif session.allowin neq "true">
+  <cflocation template="login.cfm?loginFailed=1">
+</cfif>

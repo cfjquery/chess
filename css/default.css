@@ -1,0 +1,93 @@
+/* THE CHESSBOARD */
+.chessboard{
+	position:absolute;
+	left:20px;
+	top:50px;
+	float:left;
+	width:640px;
+	height:640px;
+	border:1px solid grey;background-image:url("../images/cb160x160.png");
+	background_repeat:repeat;
+}
+
+.validMove{position: absolute;height: 60px;width: 60px;border:1px solid green;}
+
+/* THE CONTROLS */
+.controls{float:left;width:500px;height:500px;border:1px solid grey;}
+
+/* BLACK PIECES */
+.x00xrq{position: absolute;background-image:url("../images/rb.png");height: 60px;width: 60px;cursor: move;}
+.x01xnq{position: absolute;background-image:url("../images/nb.png");height: 60px;width: 60px;cursor: move;}
+.x02xbq{position: absolute;background-image:url("../images/bb.png");height: 60px;width: 60px;cursor: move;}
+.x03xq{position: absolute;background-image:url("../images/qb.png");height: 60px;width: 60px;cursor: move;}
+.x04xk{position: absolute;background-image:url("../images/kb.png");height: 60px;width: 60px;cursor: move;}
+.x05xbk{position: absolute;background-image:url("../images/bb.png");height: 60px;width: 60px;cursor: move;}
+.x06xnk{position: absolute;background-image:url("../images/nb.png");height: 60px;width: 60px;cursor: move;}
+.x07xrk{position: absolute;background-image:url("../images/rb.png");height: 60px;width: 60px;cursor: move;}
+.x10xp{position: absolute;background-image:url("../images/pb.png");height: 60px;width: 60px;cursor: move;}
+.x11xp{position: absolute;background-image:url("../images/pb.png");height: 60px;width: 60px;cursor: move;}
+.x12xp{position: absolute;background-image:url("../images/pb.png");height: 60px;width: 60px;cursor: move;}
+.x13xp{position: absolute;background-image:url("../images/pb.png");height: 60px;width: 60px;cursor: move;}
+.x14xp{position: absolute;background-image:url("../images/pb.png");height: 60px;width: 60px;cursor: move;}
+.x15xp{position: absolute;background-image:url("../images/pb.png");height: 60px;width: 60px;cursor: move;}
+.x16xp{position: absolute;background-image:url("../images/pb.png");height: 60px;width: 60px;cursor: move;}
+.x17xp{position: absolute;background-image:url("../images/pb.png");height: 60px;width: 60px;cursor: move;}
+
+/* EMPTY SQUARES ROW 2 */
+.x20x1{position: absolute;height: 60px;width: 60px;}
+.x21x1{position: absolute;height: 60px;width: 60px;}
+.x22x1{position: absolute;height: 60px;width: 60px;}
+.x23x1{position: absolute;height: 60px;width: 60px;}
+.x24x1{position: absolute;height: 60px;width: 60px;}
+.x25x1{position: absolute;height: 60px;width: 60px;}
+.x26x1{position: absolute;height: 60px;width: 60px;}
+.x27x1{position: absolute;height: 60px;width: 60px;}
+
+/* EMPTY SQUARES ROW 2 */
+.x30x1{position: absolute;height: 60px;width: 60px;}
+.x31x1{position: absolute;height: 60px;width: 60px;}
+.x32x1{position: absolute;height: 60px;width: 60px;}
+.x33x1{position: absolute;height: 60px;width: 60px;}
+.x34x1{position: absolute;height: 60px;width: 60px;}
+.x35x1{position: absolute;height: 60px;width: 60px;}
+.x36x1{position: absolute;height: 60px;width: 60px;}
+.x37x1{position: absolute;height: 60px;width: 60px;}
+
+/* EMPTY SQUARES ROW 2 */
+.x40x1{position: absolute;height: 60px;width: 60px;}
+.x41x1{position: absolute;height: 60px;width: 60px;}
+.x42x1{position: absolute;height: 60px;width: 60px;}
+.x43x1{position: absolute;height: 60px;width: 60px;}
+.x44x1{position: absolute;height: 60px;width: 60px;}
+.x45x1{position: absolute;height: 60px;width: 60px;}
+.x46x1{position: absolute;height: 60px;width: 60px;}
+.x47x1{position: absolute;height: 60px;width: 60px;}
+
+/* EMPTY SQUARES ROW 2 */
+.x50x1{position: absolute;height: 60px;width: 60px;}
+.x51x1{position: absolute;height: 60px;width: 60px;}
+.x52x1{position: absolute;height: 60px;width: 60px;}
+.x53x1{position: absolute;height: 60px;width: 60px;}
+.x54x1{position: absolute;height: 60px;width: 60px;}
+.x55x1{position: absolute;height: 60px;width: 60px;}
+.x56x1{position: absolute;height: 60px;width: 60px;}
+.x57x1{position: absolute;height: 60px;width: 60px;}
+
+/* WHITE PIECES */
+.x60xP{position: absolute;background-image:url("../images/pw.png");height: 60px;width: 60px;cursor: move;}
+.x61xP{position: absolute;background-image:url("../images/pw.png");height: 60px;width: 60px;cursor: move;}
+.x62xP{position: absolute;background-image:url("../images/pw.png");height: 60px;width: 60px;cursor: move;}
+.x63xP{position: absolute;background-image:url("../images/pw.png");height: 60px;width: 60px;cursor: move;}
+.x64xP{position: absolute;background-image:url("../images/pw.png");height: 60px;width: 60px;cursor: move;}
+.x65xP{position: absolute;background-image:url("../images/pw.png");height: 60px;width: 60px;cursor: move;}
+.x66xP{position: absolute;background-image:url("../images/pw.png");height: 60px;width: 60px;cursor: move;}
+.x67xP{position: absolute;background-image:url("../images/pw.png");height: 60px;width: 60px;cursor: move;}
+.x70xRQ{position: absolute;background-image:url("../images/rw.png");height: 60px;width: 60px;cursor: move;}
+.x71xNQ{position: absolute;background-image:url("../images/nw.png");height: 60px;width: 60px;cursor: move;}
+.x72xBQ{position: absolute;background-image:url("../images/bw.png");height: 60px;width: 60px;cursor: move;}
+.x73xQ{position: absolute;background-image:url("../images/qw.png");height: 60px;width: 60px;cursor: move;}
+.x74xK{position: absolute;background-image:url("../images/kw.png");height: 60px;width: 60px;cursor: move;}
+.x75xBK{position: absolute;background-image:url("../images/bw.png");height: 60px;width: 60px;cursor: move;}
+.x76xNK{position: absolute;background-image:url("../images/nw.png");height: 60px;width: 60px;cursor: move;}
+.x77xRK{position: absolute;background-image:url("../images/rw.png");height: 60px;width: 60px;cursor: move;}
+ 

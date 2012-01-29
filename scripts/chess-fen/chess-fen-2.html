@@ -1,0 +1,1128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head>
+	<title>Chess Fen Viewer - demo 2</title>
+
+	<link rel="stylesheet" type="text/css" media="screen" href="css/chess.css"></link>
+	<script type="text/javascript" src="js/ChessFen.js"></script>
+	<style type="text/css" media="screen">
+	body{
+		font-family:"Trebuchet MS";
+		font-size:0.9em;
+		margin:0px;
+	}
+	#mainContainer{
+		width:940px;
+	}
+	#boardContainer{
+		width:500px;
+		float:left;
+		padding:0px;
+		padding-left:5px;
+		
+	}
+	#descriptionContainer{
+		width:210px;
+		float:left;
+		height:480px;
+		overflow:auto;
+
+		border:1px solid #000;
+		background-color:#DDD;
+	}
+	pre{
+		font-family:Courier New, Courier New, Courier, monospace;
+		color: #000;	
+		font-size:0.75em;
+		border:1px solid #317082;
+		border-left:5px solid #317082;		
+		padding:2px;
+	}
+	img{
+		border:0px;
+	}
+	.activeEx{
+		font-weight:bold;
+		color:black;
+	}
+	a{
+		text-decoration:none;
+	}
+	#quizString{
+		font-weight:bold;
+		color:red;
+	}
+	p{
+		margin-bottom:0px;
+		margin-left:20px;
+	}
+	</style>
+	<script type="text/javascript">
+	var activeEx = false;
+	var currentFen;
+	function loadFenString(fenString,exersizeNo)
+	{
+		if(activeEx)activeEx.className = '';
+		activeEx = document.getElementById('ex' + exersizeNo);
+		activeEx.className = 'activeEx';
+		chessObj.loadFen(fenString,'chessBoardDiv');
+		document.getElementById('exersizeNo').innerHTML = exersizeNo;
+		if(chessObj.getWhoToMove()=='w'){
+			document.getElementById('quizString').innerHTML = 'White to move and win';
+		}else{
+			document.getElementById('quizString').innerHTML = 'Black to move and win';
+		}
+		currentFen= fenString;
+	}
+	
+	function switchPieceType(pieceType){
+		chessObj.setPieceType(pieceType);
+		chessObj.loadFen(currentFen,'chessBoardDiv');
+	}
+	
+	
+	</script>
+</head>
+<body>
+<div id="mainContainer">
+	<div id="header">
+		<a href="http://www.dhtmlgoodies.com"><img src="/images/heading3.gif"></a>
+	</div>
+	<div>
+		<p><b>Quiz <span id="exersizeNo"></span>: </b> <span id="quizString"></span></p>
+	</div>
+	<div id="boardContainer">
+		
+		<div id="chessBoardDiv"></div>
+	</div>
+	
+	<div id="descriptionContainer">
+		<table>
+		<tr><td><a id="ex1" href="#" onclick="loadFenString('3r2k1/1p5p/6p1/p2q1p2/P1Q5/1P5P/1P6/5RK1 w - - 0 1','1');return false;">Show quiz number 1</td></tr>
+<tr><td><a id="ex2" href="#" onclick="loadFenString('r1bq4/1p4kp/3p1n2/5pB1/p1pQ4/8/1P4PP/4RRK1 w - - 0 1','2');return false;">Show quiz number 2</td></tr>
+<tr><td><a id="ex3" href="#" onclick="loadFenString('r2k4/1pp2rpp/pn1b1p2/3n4/8/P4NB1/1PP3PP/2KRR3 w - - 0 1','3');return false;">Show quiz number 3</td></tr>
+<tr><td><a id="ex4" href="#" onclick="loadFenString('r4k1r/pp3ppp/1bppbq2/4n3/3pPB2/1B1P2Q1/PPPN2PP/R4RK1 w - - 0 1','4');return false;">Show quiz number 4</td></tr>
+<tr><td><a id="ex5" href="#" onclick="loadFenString('5rk1/ppp1qn1p/3pB1pr/3Pp3/2P1Pn2/PPB5/1Q4RP/5RK1 w - - 0 1','5');return false;">Show quiz number 5</td></tr>
+<tr><td><a id="ex6" href="#" onclick="loadFenString('5r1k/4R3/p1pp4/3p1bQ1/3q1P2/7P/P2B2P1/7K w - - 0 1','6');return false;">Show quiz number 6</td></tr>
+<tr><td><a id="ex7" href="#" onclick="loadFenString('r1b1rk2/pp3ppQ/1np5/4q3/2B4N/4P3/PP3PP1/2R2K1R w - - 0 1','7');return false;">Show quiz number 7</td></tr>
+<tr><td><a id="ex8" href="#" onclick="loadFenString('rn3b1r/pQpk2p1/2qnppB1/8/6PP/2N1B3/PPP2P2/2KR3R w - - 0 1','8');return false;">Show quiz number 8</td></tr>
+<tr><td><a id="ex9" href="#" onclick="loadFenString('2rr2k1/1pbb1ppp/4p3/pP1nN3/P7/1B2P3/1B2KPPP/2R4R w - - 0 1','9');return false;">Show quiz number 9</td></tr>
+<tr><td><a id="ex10" href="#" onclick="loadFenString('3nrrk1/2nb3p/1p5b/p1p1pp2/4N2N/P1PP2PP/1PB4K/4RRB1 w - - 0 1','10');return false;">Show quiz number 10</td></tr>
+<tr><td><a id="ex11" href="#" onclick="loadFenString('1n2kbnr/3q1ppp/2N1p3/2p5/Q1pP4/4P3/5PPP/1NB1KB1R w Kkq - 0 1','11');return false;">Show quiz number 11</td></tr>
+<tr><td><a id="ex12" href="#" onclick="loadFenString('3q2kr/1p3pnp/p5rQ/3N1p2/3P4/6R1/PP3P1P/4R1K1 w - - 0 1','12');return false;">Show quiz number 12</td></tr>
+<tr><td><a id="ex13" href="#" onclick="loadFenString('r5k1/p3qppn/2p1b2p/1p1r4/3N4/1PP4P/1P3BP1/R2QR1K1 w - - 0 1','13');return false;">Show quiz number 13</td></tr>
+<tr><td><a id="ex14" href="#" onclick="loadFenString('r4rk1/p2nqppp/Qpp5/3p4/3Pn3/2N1PN2/PP3PPP/2R2RK1 w - - 0 1','14');return false;">Show quiz number 14</td></tr>
+<tr><td><a id="ex15" href="#" onclick="loadFenString('3q1r1k/2r3np/p1p1P1b1/Pp1p1pN1/1P1Q1P2/3B3R/7P/6RK w - - 0 1','15');return false;">Show quiz number 15</td></tr>
+<tr><td><a id="ex16" href="#" onclick="loadFenString('r4rk1/pp1b2p1/2p4n/2Qp1p1R/3P4/3BP3/PP2NPq1/1K5R w - - 0 1','16');return false;">Show quiz number 16</td></tr>
+<tr><td><a id="ex17" href="#" onclick="loadFenString('rn3R2/pp4p1/2p3k1/8/8/2P1B3/PPP3PP/6K1 w - - 0 1','17');return false;">Show quiz number 17</td></tr>
+<tr><td><a id="ex18" href="#" onclick="loadFenString('rn3rk1/ppp3pp/4bq2/2b1Np2/2B2P2/8/PPP1Q1PP/R1B1K2R w KQ - 0 1','18');return false;">Show quiz number 18</td></tr>
+<tr><td><a id="ex19" href="#" onclick="loadFenString('r1r3k1/3R1p1p/p3p1qp/1p6/3R4/P1P3P1/1P3Q1P/6K1 w - - 0 1','19');return false;">Show quiz number 19</td></tr>
+<tr><td><a id="ex20" href="#" onclick="loadFenString('8/1p2r1kp/q1pRbpp1/2Pn4/r7/P3P1P1/1Q1N1PBP/1R4K1 w - - 0 1','20');return false;">Show quiz number 20</td></tr>
+<tr><td><a id="ex21" href="#" onclick="loadFenString('r5k1/pp1R2pp/2p5/4P3/1bP2P1P/1P2pPq1/P1Q1P3/5K1R w - - 0 1','21');return false;">Show quiz number 21</td></tr>
+<tr><td><a id="ex22" href="#" onclick="loadFenString('r3r3/5qpk/ppR2B1p/3p3P/n2P4/P2P2Q1/5PP1/2R3K1 w - - 0 1','22');return false;">Show quiz number 22</td></tr>
+<tr><td><a id="ex23" href="#" onclick="loadFenString('2n1r2k/ppp3pp/2n3q1/3Q2N1/3P1p2/2P4P/PP3PP1/R4NK1 w - - 0 1','23');return false;">Show quiz number 23</td></tr>
+<tr><td><a id="ex24" href="#" onclick="loadFenString('7k/pbp1r2p/1p3q2/4nP2/1PP1p2p/P3P3/4B1R1/B3Q2K w - - 0 1','24');return false;">Show quiz number 24</td></tr>
+<tr><td><a id="ex25" href="#" onclick="loadFenString('8/1bp4p/p2p4/1p3rbk/4p3/1BP5/PP3PP1/3RR1K1 w - - 0 1','25');return false;">Show quiz number 25</td></tr>
+<tr><td><a id="ex26" href="#" onclick="loadFenString('r4r1k/p6p/1pq2bb1/n2pB3/2pP2Q1/2P3N1/PP4PP/R4RK1 w - - 0 1','26');return false;">Show quiz number 26</td></tr>
+<tr><td><a id="ex27" href="#" onclick="loadFenString('2b5/1p3r2/p1p2rk1/P1Pp1pp1/3P2P1/4P2P/2B1K3/1R3R2 w - - 0 1','27');return false;">Show quiz number 27</td></tr>
+<tr><td><a id="ex28" href="#" onclick="loadFenString('r1q1b1k1/p3bppp/N1p1pn2/1r6/4P3/P3B1P1/4QPBP/R1R3K1 w - - 0 1','28');return false;">Show quiz number 28</td></tr>
+<tr><td><a id="ex29" href="#" onclick="loadFenString('r1b1kb1r/1p3ppp/p1q1pn2/8/P1B5/8/1PPNQPPP/R1B2RK1 w kq - 0 1','29');return false;">Show quiz number 29</td></tr>
+<tr><td><a id="ex30" href="#" onclick="loadFenString('2kr1r2/p6p/5Pp1/2p5/1qp2Q1P/7R/PP6/1KR5 w - - 0 1','30');return false;">Show quiz number 30</td></tr>
+<tr><td><a id="ex31" href="#" onclick="loadFenString('r2qkbnr/ppp1pppp/8/3Pn3/6b1/2N2N2/PPP2PPP/R1BQKB1R w KQkq - 0 1','31');return false;">Show quiz number 31</td></tr>
+<tr><td><a id="ex32" href="#" onclick="loadFenString('8/1bpk2b1/1p2p3/1qn3N1/1p1pPP2/3P3B/1PPKQ2R/r2N4 w - - 0 1','32');return false;">Show quiz number 32</td></tr>
+<tr><td><a id="ex33" href="#" onclick="loadFenString('r2qk2r/pp1bbp1p/2n1p3/1Bp2p1N/Q7/2P2N2/PP3PPP/2KR3R w kq - 0 1','33');return false;">Show quiz number 33</td></tr>
+<tr><td><a id="ex34" href="#" onclick="loadFenString('4kb1r/1b3p1p/p1qp1np1/B1n1p3/2N1P3/1PN3PB/2P2P1P/3QR1K1 w kq - 0 1','34');return false;">Show quiz number 34</td></tr>
+<tr><td><a id="ex35" href="#" onclick="loadFenString('r2r1k2/pb2qp2/1n2p2p/1p3pN1/3p3P/1B1P2Q1/PPP3P1/4RRK1 w - - 0 1','35');return false;">Show quiz number 35</td></tr>
+<tr><td><a id="ex36" href="#" onclick="loadFenString('Q1b3k1/pq3pp1/1pN1p2p/3n4/1P1PB2P/P7/5PP1/6K1 w - - 0 1','36');return false;">Show quiz number 36</td></tr>
+<tr><td><a id="ex37" href="#" onclick="loadFenString('4rrk1/ppp1qppp/5n2/2b1n1N1/2B3b1/1QN5/PB4PP/4RR1K w - - 0 1','37');return false;">Show quiz number 37</td></tr>
+<tr><td><a id="ex38" href="#" onclick="loadFenString('6r1/p3r2k/2p1q1pp/1pPnNp1b/1P1P1P2/P5RQ/7P/1B4RK w - - 0 1','38');return false;">Show quiz number 38</td></tr>
+<tr><td><a id="ex39" href="#" onclick="loadFenString('r1b1k2r/pp2qppp/2pb1n2/3p4/4P3/3B1N2/PPP2PPP/R1BQ1RK1 w kq - 0 1','39');return false;">Show quiz number 39</td></tr>
+<tr><td><a id="ex40" href="#" onclick="loadFenString('r2q1r2/pb2bpkp/1p2pnp1/nP2Q3/6N1/P2B2N1/1BP2PPP/R4RK1 w - - 0 1','40');return false;">Show quiz number 40</td></tr>
+<tr><td><a id="ex41" href="#" onclick="loadFenString('r1b2rk1/2q1bppp/p3pn2/1pn3B1/8/P1N1PN2/BPQ2PPP/3RK2R w K - 0 1','41');return false;">Show quiz number 41</td></tr>
+<tr><td><a id="ex42" href="#" onclick="loadFenString('4r2k/p6p/1p2q1p1/2pQnp2/2P2R2/2P5/6PP/4R1K1 w - - 0 1','42');return false;">Show quiz number 42</td></tr>
+<tr><td><a id="ex43" href="#" onclick="loadFenString('r2q1k1r/p1pbbp1p/3p1npN/2pN4/4P3/5Q2/PPP2PPP/R1B1K2R w KQ - 0 1','43');return false;">Show quiz number 43</td></tr>
+<tr><td><a id="ex44" href="#" onclick="loadFenString('3b1k1r/pp4p1/1qn1bpQp/1B2p3/8/2N2N2/PPP2PPP/5RK1 w - - 0 1','44');return false;">Show quiz number 44</td></tr>
+<tr><td><a id="ex45" href="#" onclick="loadFenString('1nb1rk2/p3q1pp/1n3p2/1p1p1N2/2pP1PQ1/1PP3P1/P5BP/R1B1rRK1 w - - 0 1','45');return false;">Show quiz number 45</td></tr>
+<tr><td><a id="ex46" href="#" onclick="loadFenString('8/p6r/k6P/P1P4R/K7/8/8/8 w - - 0 1','46');return false;">Show quiz number 46</td></tr>
+<tr><td><a id="ex47" href="#" onclick="loadFenString('r3k1nr/pb2qppp/2n1p3/4N3/Q1pP4/2B1P3/1P3PPP/R3K2R w KQkq - 0 1','47');return false;">Show quiz number 47</td></tr>
+<tr><td><a id="ex48" href="#" onclick="loadFenString('r2q1rk1/1bp2p2/1p1p1npp/3P4/PpP2P1B/3Q4/2B3PP/4RRK1 w - - 0 1','48');return false;">Show quiz number 48</td></tr>
+<tr><td><a id="ex49" href="#" onclick="loadFenString('3rkb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R w kq - 0 1','49');return false;">Show quiz number 49</td></tr>
+<tr><td><a id="ex50" href="#" onclick="loadFenString('r1bq1rk1/pp3pb1/2p1pnp1/4NnBp/2BPN3/2P2Q2/PP3PPP/R3K2R w KQ - 0 1','50');return false;">Show quiz number 50</td></tr>
+<tr><td><a id="ex51" href="#" onclick="loadFenString('r3r1k1/pp1Rbpnp/q1p1p1p1/4P3/1PP2QP1/P3B2P/4BP2/R5K1 w - - 0 1','51');return false;">Show quiz number 51</td></tr>
+<tr><td><a id="ex52" href="#" onclick="loadFenString('r3kb1r/pp2pppp/1q3n2/3p4/3n4/3BBQ1P/PPP2PP1/RN3RK1 w kq - 0 1','52');return false;">Show quiz number 52</td></tr>
+<tr><td><a id="ex53" href="#" onclick="loadFenString('3qk2r/1pp1nppp/1p6/r7/8/5Q2/PP3PPP/R1B1R1K1 w kq - 0 1','53');return false;">Show quiz number 53</td></tr>
+<tr><td><a id="ex54" href="#" onclick="loadFenString('r2q2k1/pp5p/4b1pQ/3Nn3/8/6PP/P5B1/3R2K1 w - - 0 1','54');return false;">Show quiz number 54</td></tr>
+<tr><td><a id="ex55" href="#" onclick="loadFenString('1q2kb1r/1r1n1ppp/2Qpp3/8/N7/8/1PP2PPP/R1BR2K1 w kq - 0 1','55');return false;">Show quiz number 55</td></tr>
+<tr><td><a id="ex56" href="#" onclick="loadFenString('r1b2rk1/ppp1qpp1/1bnp3p/5PNQ/2BPP3/4n3/PP4PP/RN3RK1 w - - 0 1','56');return false;">Show quiz number 56</td></tr>
+<tr><td><a id="ex57" href="#" onclick="loadFenString('2rq1rk1/pp2bppp/2n2n2/4NRB1/3P4/PB5Q/1P4PP/3R2K1 w - - 0 1','57');return false;">Show quiz number 57</td></tr>
+<tr><td><a id="ex58" href="#" onclick="loadFenString('4rrk1/p1p4p/1pnb3R/4p1P1/2PP1p2/5N2/PP1B4/2KR4 w - - 0 1','58');return false;">Show quiz number 58</td></tr>
+<tr><td><a id="ex59" href="#" onclick="loadFenString('r2qkbnr/pp2pppp/3p4/3Pn3/4P1b1/5N2/PP3PPP/RNBQKB1R w KQkq - 0 1','59');return false;">Show quiz number 59</td></tr>
+<tr><td><a id="ex60" href="#" onclick="loadFenString('4rkr1/1p1Rn1pp/p3p2B/4Qp2/8/8/PPq2PPP/3R2K1 w - - 0 1','60');return false;">Show quiz number 60</td></tr>
+<tr><td><a id="ex61" href="#" onclick="loadFenString('6rk/1p4q1/p3p3/3b4/4p3/1P2B2P/P4PP1/2QR2K1 w - - 0 1','61');return false;">Show quiz number 61</td></tr>
+<tr><td><a id="ex62" href="#" onclick="loadFenString('r1bq1rk1/pp2bp1p/2p2np1/3p2B1/3P4/2NQ2N1/PPP2PPP/4RRK1 w - - 0 1','62');return false;">Show quiz number 62</td></tr>
+<tr><td><a id="ex63" href="#" onclick="loadFenString('2q2b2/5k2/4bP1r/2pB1Q1p/pp6/8/PPP3PP/2K2R2 w - - 0 1','63');return false;">Show quiz number 63</td></tr>
+<tr><td><a id="ex64" href="#" onclick="loadFenString('6k1/6b1/1p1r3p/3q2pP/4Q3/8/4BPP1/1R4K1 w - - 0 1','64');return false;">Show quiz number 64</td></tr>
+<tr><td><a id="ex65" href="#" onclick="loadFenString('3rk2r/1pp1qppp/2n3n1/p3P3/2PN3P/P5P1/1P2PPB1/R2QK2R w KQkq - 0 1','65');return false;">Show quiz number 65</td></tr>
+<tr><td><a id="ex66" href="#" onclick="loadFenString('3r2rk/p4p1p/3p1Pp1/3R4/2p1B2Q/8/1q4PP/4R1K1 w - - 0 1','66');return false;">Show quiz number 66</td></tr>
+<tr><td><a id="ex67" href="#" onclick="loadFenString('1r3rn1/p5bk/b2pP2p/q2P1p2/1p2nP1N/3QB2P/PP4B1/3NRRK1 w - - 0 1','67');return false;">Show quiz number 67</td></tr>
+<tr><td><a id="ex68" href="#" onclick="loadFenString('6r1/R2b2qk/2p1p2p/1pPpPrp1/1P1Qp3/4P3/4N1PP/5RK1 w - - 0 1','68');return false;">Show quiz number 68</td></tr>
+<tr><td><a id="ex69" href="#" onclick="loadFenString('5rk1/1ppb4/p1pb4/6q1/3P1p1r/2P1R2P/PP1BQ1P1/5RKN w - - 0 1','69');return false;">Show quiz number 69</td></tr>
+<tr><td><a id="ex70" href="#" onclick="loadFenString('1r1r4/1b3pk1/5qp1/pP1p3p/2pN3P/3nP1P1/PQR2PB1/3R2K1 w - - 0 1','70');return false;">Show quiz number 70</td></tr>
+<tr><td><a id="ex71" href="#" onclick="loadFenString('6rk/1b4rp/2q2n2/p1n5/4p2Q/1PN2N2/PBP1R3/K3R3 w - - 0 1','71');return false;">Show quiz number 71</td></tr>
+<tr><td><a id="ex72" href="#" onclick="loadFenString('1r2bqk1/2p1rpbn/3p3p/1p4n1/3PP2N/1BP1B2P/1P1N1R1K/3Q1R2 w - - 0 1','72');return false;">Show quiz number 72</td></tr>
+<tr><td><a id="ex73" href="#" onclick="loadFenString('4r3/1p4pk/2b2pq1/7p/3B1P2/7P/4RQP1/7K b - - 0 1','73');return false;">Show quiz number 73</td></tr>
+<tr><td><a id="ex74" href="#" onclick="loadFenString('r3r1k1/5pp1/p1p4p/2Pp4/8/q1NQP1BP/5PP1/4K2R b K - 0 1','74');return false;">Show quiz number 74</td></tr>
+<tr><td><a id="ex75" href="#" onclick="loadFenString('8/1p3k2/8/p2qp1QP/P1Bpb3/1P3r2/2P5/1K6 b - - 0 1','75');return false;">Show quiz number 75</td></tr>
+<tr><td><a id="ex76" href="#" onclick="loadFenString('1rr3k1/p3ppbp/3pbnp1/7P/qP1BP1P1/5P2/1PPQ4/1NKR1B1R b - - 0 1','76');return false;">Show quiz number 76</td></tr>
+<tr><td><a id="ex77" href="#" onclick="loadFenString('5rk1/1bpq1ppp/p7/4P3/3bnP2/4B3/PPP1Q1PP/R4R1K b - - 0 1','77');return false;">Show quiz number 77</td></tr>
+<tr><td><a id="ex78" href="#" onclick="loadFenString('2rq2k1/1p1npp1p/p2p2p1/3P4/bP2PP2/r2BB2P/P2R1QPK/5R2 b - - 0 1','78');return false;">Show quiz number 78</td></tr>
+<tr><td><a id="ex79" href="#" onclick="loadFenString('r1bq1rk1/1p2bppp/p1nppn2/5P2/3NP3/1BN5/PPP3PP/R1BQ1RK1 b - - 0 1','79');return false;">Show quiz number 79</td></tr>
+<tr><td><a id="ex80" href="#" onclick="loadFenString('rnbqk2r/pppp1ppp/5n2/2bPp1B1/2P5/8/PP2PPPP/RN1QKBNR b KQkq - 0 1','80');return false;">Show quiz number 80</td></tr>
+<tr><td><a id="ex81" href="#" onclick="loadFenString('r4rk1/pb3ppp/1p3q2/1Nb5/2p1BP2/P5P1/1PQ4P/R1B2R1K b - - 0 1','81');return false;">Show quiz number 81</td></tr>
+<tr><td><a id="ex82" href="#" onclick="loadFenString('4r1k1/3br1bp/p2p3q/P1pP1p2/2P1nP2/3Q3P/4N1B1/2B1RRK1 b - - 0 1','82');return false;">Show quiz number 82</td></tr>
+<tr><td><a id="ex83" href="#" onclick="loadFenString('r1b1r1k1/ppp2ppp/2n2n2/8/1bq5/1PN2NP1/P1QBPPBP/R3K2R b KQ - 0 1','83');return false;">Show quiz number 83</td></tr>
+<tr><td><a id="ex84" href="#" onclick="loadFenString('2r3k1/2rb1pp1/5n1p/q1BPp3/p3Pn2/2R4P/2Q2PPK/1NR2B2 b - - 0 1','84');return false;">Show quiz number 84</td></tr>
+<tr><td><a id="ex85" href="#" onclick="loadFenString('4r1k1/ppp2pPp/3b1q2/4Nn2/Q1pPrpb1/2P5/PP4PP/R1B2RNK b - - 0 1','85');return false;">Show quiz number 85</td></tr>
+<tr><td><a id="ex86" href="#" onclick="loadFenString('r1b2rk1/pp2q1bp/5np1/4p3/4P1P1/2N1BB2/PPP4P/R2QK2R b KQ - 0 1','86');return false;">Show quiz number 86</td></tr>
+<tr><td><a id="ex87" href="#" onclick="loadFenString('4rrk1/ppp2qpp/3b4/3p4/6b1/2P1B3/PP1Q1PPP/R3KN1R b KQ - 0 1','87');return false;">Show quiz number 87</td></tr>
+<tr><td><a id="ex88" href="#" onclick="loadFenString('5rk1/p1p1p1bp/2Q1p1p1/8/4r2P/3qN3/PP1PNPP1/R1B2K2 b - - 0 1','88');return false;">Show quiz number 88</td></tr>
+<tr><td><a id="ex89" href="#" onclick="loadFenString('r4rk1/4q1pp/3p4/p1p1n3/4Q3/1P4P1/PNP4P/3RR1K1 b - - 0 1','89');return false;">Show quiz number 89</td></tr>
+<tr><td><a id="ex90" href="#" onclick="loadFenString('6k1/6p1/p7/3Pn3/5p2/4rBqP/P4RP1/5QK1 b - - 0 1','90');return false;">Show quiz number 90</td></tr>
+<tr><td><a id="ex91" href="#" onclick="loadFenString('2q3k1/pbR1bppp/4r3/1Q2p3/8/4P1P1/P4PPK/1BBR4 b - - 0 1','91');return false;">Show quiz number 91</td></tr>
+<tr><td><a id="ex92" href="#" onclick="loadFenString('7k/pp2q3/2p2n2/4pr1p/1P1B2pQ/P2R2P1/5r1P/4R1K1 b - - 0 1','92');return false;">Show quiz number 92</td></tr>
+<tr><td><a id="ex93" href="#" onclick="loadFenString('4r3/1p4pk/2b2pqp/8/8/P6P/3BRQP1/6K1 b - - 0 1','93');return false;">Show quiz number 93</td></tr>
+<tr><td><a id="ex94" href="#" onclick="loadFenString('6k1/b4pp1/q1pp1nr1/1p5p/1P1BP2P/3P1P2/4N1PQ/5RK1 b - - 0 1','94');return false;">Show quiz number 94</td></tr>
+<tr><td><a id="ex95" href="#" onclick="loadFenString('3r3k/pp3rp1/1bp4p/4Q3/4PqP1/2PP1N2/P4PP1/R3R1K1 b - - 0 1','95');return false;">Show quiz number 95</td></tr>
+<tr><td><a id="ex96" href="#" onclick="loadFenString('2k5/ppp2pp1/1b5p/1P6/R2PP3/7P/1P3RP1/2rr1NK1 b - - 0 1','96');return false;">Show quiz number 96</td></tr>
+<tr><td><a id="ex97" href="#" onclick="loadFenString('6k1/p4p2/1p2p1p1/4P3/PP2bP2/2B1b2p/6PP/6RK b - - 0 1','97');return false;">Show quiz number 97</td></tr>
+<tr><td><a id="ex98" href="#" onclick="loadFenString('6k1/6p1/p4Q1p/1p1P1b2/8/1P4RP/PBr3PK/4q3 b - - 0 1','98');return false;">Show quiz number 98</td></tr>
+<tr><td><a id="ex99" href="#" onclick="loadFenString('1r4k1/p3bppp/1qp1b3/8/4P3/P1NP4/1P1Q1PPP/2KR3R b - - 0 1','99');return false;">Show quiz number 99</td></tr>
+<tr><td><a id="ex100" href="#" onclick="loadFenString('2rr2k1/5pp1/p1q2n1p/4pP2/2p1P1P1/2P5/2PNQ2P/R5RK b - - 0 1','100');return false;">Show quiz number 100</td></tr>
+<tr><td><a id="ex101" href="#" onclick="loadFenString('3r2k1/p3q2p/4n1p1/3BR3/3p2P1/8/P2Q3P/7K b - - 0 1','101');return false;">Show quiz number 101</td></tr>
+<tr><td><a id="ex102" href="#" onclick="loadFenString('k4rr1/pp5p/2b5/2P2p1Q/2pp1B2/2P2R1B/2P1q2P/5R1K b - - 0 1','102');return false;">Show quiz number 102</td></tr>
+<tr><td><a id="ex103" href="#" onclick="loadFenString('r2qk2r/pp3ppp/4p3/5b2/1Pp1n3/1P1pPQ2/5PPP/RN1K1B1R b kq - 0 1','103');return false;">Show quiz number 103</td></tr>
+<tr><td><a id="ex104" href="#" onclick="loadFenString('8/pp4pk/6qp/1P1p4/r2N2r1/1RP1R3/P1Q4K/8 b - - 0 1','104');return false;">Show quiz number 104</td></tr>
+<tr><td><a id="ex105" href="#" onclick="loadFenString('r5k1/pp1b1rp1/2p2n2/3p2qp/3P4/1P1QPPN1/P3R1BP/R5K1 b - - 0 1','105');return false;">Show quiz number 105</td></tr>
+<tr><td><a id="ex106" href="#" onclick="loadFenString('2r3k1/1p3pp1/4p2p/3nP3/8/2PQ4/qP4PP/rNKRR3 b - - 0 1','106');return false;">Show quiz number 106</td></tr>
+<tr><td><a id="ex107" href="#" onclick="loadFenString('r5k1/pp4p1/6r1/3p4/2nPNpPq/2P4P/P3Q2K/1R4R1 b - - 0 1','107');return false;">Show quiz number 107</td></tr>
+<tr><td><a id="ex108" href="#" onclick="loadFenString('7r/2pR1bkp/1r6/p1N2qp1/P1QP4/2P5/5PPP/4R1K1 b - - 0 1','108');return false;">Show quiz number 108</td></tr>
+<tr><td><a id="ex109" href="#" onclick="loadFenString('r4rk1/1q2bppp/p1n5/1p1NP3/8/2Q5/PP3PPP/R1BR2K1 w - - 0 1','109');return false;">Show quiz number 109</td></tr>
+<tr><td><a id="ex110" href="#" onclick="loadFenString('r2qk2r/1b1nbppp/p3p3/1p1nP1B1/3pN3/3B1N2/PP3PPP/R2Q1RK1 w kq - 0 1','110');return false;">Show quiz number 110</td></tr>
+<tr><td><a id="ex111" href="#" onclick="loadFenString('2r1kb2/pNn2n1p/2p4B/3p1p1B/P7/1P2P3/4KP1P/6R1 w - - 0 1','111');return false;">Show quiz number 111</td></tr>
+<tr><td><a id="ex112" href="#" onclick="loadFenString('2kr1b1r/pp1b1ppp/n1n1p3/1N6/4N3/P5P1/1P1BPP1P/R3KB1R w KQ - 0 1','112');return false;">Show quiz number 112</td></tr>
+<tr><td><a id="ex113" href="#" onclick="loadFenString('3r1r1k/pp2N1qp/3p2p1/2n1b3/8/4BR1Q/PPP4P/5R1K w - - 0 1','113');return false;">Show quiz number 113</td></tr>
+<tr><td><a id="ex114" href="#" onclick="loadFenString('2rrk3/6p1/p4pp1/P1bN4/3R4/4P2P/5KP1/3R4 w - - 0 1','114');return false;">Show quiz number 114</td></tr>
+<tr><td><a id="ex115" href="#" onclick="loadFenString('1k3r1r/pp2Rppp/2pp1q2/5Pp1/2QP4/2N5/PP4PP/6K1 w - - 0 1','115');return false;">Show quiz number 115</td></tr>
+<tr><td><a id="ex116" href="#" onclick="loadFenString('4b3/5Nk1/7p/3p3P/3r4/4R3/5PPK/8 w - - 0 1','116');return false;">Show quiz number 116</td></tr>
+<tr><td><a id="ex117" href="#" onclick="loadFenString('6k1/2p2pp1/1p3n2/6rp/3P3q/P3PQ1P/6PN/5R1K w - - 0 1','117');return false;">Show quiz number 117</td></tr>
+<tr><td><a id="ex118" href="#" onclick="loadFenString('3rrb1k/pq5p/Q5p1/2pbN3/4NP2/8/PP4PP/3R1R1K w - - 0 1','118');return false;">Show quiz number 118</td></tr>
+<tr><td><a id="ex119" href="#" onclick="loadFenString('r3rk2/5ppQ/np1bbq1p/p1ppN3/3P4/P1N1P3/1P3PPP/1BR2RK1 w - - 0 1','119');return false;">Show quiz number 119</td></tr>
+<tr><td><a id="ex120" href="#" onclick="loadFenString('r1b2rk1/pp4p1/2p4n/2Qp1pq1/3P1N1n/3BP1N1/PP3PP1/1K1R3R w - - 0 1','120');return false;">Show quiz number 120</td></tr>
+<tr><td><a id="ex121" href="#" onclick="loadFenString('5rr1/pp1b1P1p/5Q2/3p3k/5K2/8/2P3P1/8 w - - 0 1','121');return false;">Show quiz number 121</td></tr>
+<tr><td><a id="ex122" href="#" onclick="loadFenString('1rb2rk1/p2n4/1p2pqp1/2p3Np/3P1P2/P2B2P1/1P3P2/2RQK2R w K - 0 1','122');return false;">Show quiz number 122</td></tr>
+<tr><td><a id="ex123" href="#" onclick="loadFenString('7r/1bk2q2/2p2p2/p1Q1pP1p/4P2P/2N3r1/PPPR4/2K5 w - - 0 1','123');return false;">Show quiz number 123</td></tr>
+<tr><td><a id="ex124" href="#" onclick="loadFenString('2k4r/1bpq2b1/p1np2p1/1p1N4/4QP1p/1B5P/PPP2BP1/2KR4 w - - 0 1','124');return false;">Show quiz number 124</td></tr>
+<tr><td><a id="ex125" href="#" onclick="loadFenString('5r2/2q2b2/2p5/1pPp1pk1/1P1P1NnR/3BPK2/3Q2P1/8 w - - 0 1','125');return false;">Show quiz number 125</td></tr>
+<tr><td><a id="ex126" href="#" onclick="loadFenString('8/p1r3n1/R1p2k2/4p3/8/1P2NPP1/P6P/6K1 w - - 0 1','126');return false;">Show quiz number 126</td></tr>
+<tr><td><a id="ex127" href="#" onclick="loadFenString('4nk2/1p3rb1/2qp2Rp/3Np3/p1r1Pp1P/3N1P2/PP2Q3/1K4R1 w - - 0 1','127');return false;">Show quiz number 127</td></tr>
+<tr><td><a id="ex128" href="#" onclick="loadFenString('4r3/1qrnpk2/p1Np1pp1/1p6/1P2Q3/2P4P/P5PK/3RR3 w - - 0 1','128');return false;">Show quiz number 128</td></tr>
+<tr><td><a id="ex129" href="#" onclick="loadFenString('r1bn1k1r/4bppp/pq6/1ppBNQ2/5B2/8/PP3PPP/R2R2K1 w - - 0 1','129');return false;">Show quiz number 129</td></tr>
+<tr><td><a id="ex130" href="#" onclick="loadFenString('1r3rk1/p1pb1pp1/2pp3p/q1n2N2/3NP3/1P2Q3/P1P2PPP/3RR1K1 w - - 0 1','130');return false;">Show quiz number 130</td></tr>
+<tr><td><a id="ex131" href="#" onclick="loadFenString('2kr3r/ppp2pp1/2np2qp/2bNp3/2B1P1b1/2PP1N2/PP2QPPP/R3K2R w KQ - 0 1','131');return false;">Show quiz number 131</td></tr>
+<tr><td><a id="ex132" href="#" onclick="loadFenString('7k/6pp/2p5/4Nr2/pp2pPQb/4q2P/1P1R2K1/8 w - - 0 1','132');return false;">Show quiz number 132</td></tr>
+<tr><td><a id="ex133" href="#" onclick="loadFenString('r4b1r/pp1k1ppp/5p2/3N4/3pq3/8/PPP2QPP/2KR3R w - - 0 1','133');return false;">Show quiz number 133</td></tr>
+<tr><td><a id="ex134" href="#" onclick="loadFenString('2k5/r2n3p/1Rp1qpp1/2pN4/4P3/1P1P3P/2P2QP1/6K1 w - - 0 1','134');return false;">Show quiz number 134</td></tr>
+<tr><td><a id="ex135" href="#" onclick="loadFenString('5rk1/pb1qrpb1/1pn3pn/2p1p1Np/2B1NP1P/PP2P1P1/1BQP1K2/1R2R3 w - - 0 1','135');return false;">Show quiz number 135</td></tr>
+<tr><td><a id="ex136" href="#" onclick="loadFenString('4rbk1/pppqrppp/1n1p4/3P4/2PBN3/3Q3P/PP3PP1/R4RK1 w - - 0 1','136');return false;">Show quiz number 136</td></tr>
+<tr><td><a id="ex137" href="#" onclick="loadFenString('1r6/RN1nbkpp/5p2/3p4/3N4/4P3/1P2KPPP/8 w - - 0 1','137');return false;">Show quiz number 137</td></tr>
+<tr><td><a id="ex138" href="#" onclick="loadFenString('R4n2/pp2qpp1/2p3pk/6N1/7P/2P2P2/P5P1/3R2K1 w - - 0 1','138');return false;">Show quiz number 138</td></tr>
+<tr><td><a id="ex139" href="#" onclick="loadFenString('5r2/6p1/PNk5/2N1p2p/1PP5/6P1/6K1/8 w - - 0 1','139');return false;">Show quiz number 139</td></tr>
+<tr><td><a id="ex140" href="#" onclick="loadFenString('2brk1r1/p3bp1q/2p4p/1p2PP2/2p1N3/5Q1B/PP6/2KR3R w - - 0 1','140');return false;">Show quiz number 140</td></tr>
+<tr><td><a id="ex141" href="#" onclick="loadFenString('1k3rr1/1pp2p2/p6p/b3q2P/3pN2R/PB1P1Q2/1PP1RP1n/1K6 w - - 0 1','141');return false;">Show quiz number 141</td></tr>
+<tr><td><a id="ex142" href="#" onclick="loadFenString('3qnk2/pp3pb1/6p1/8/3pN3/1P5Q/1Pr3PP/4RRK1 w - - 0 1','142');return false;">Show quiz number 142</td></tr>
+<tr><td><a id="ex143" href="#" onclick="loadFenString('r2qn2k/pp3p1p/3p1nr1/2pP2N1/2P5/P1P4P/2Q5/R1B2RK1 w - - 0 1','143');return false;">Show quiz number 143</td></tr>
+<tr><td><a id="ex144" href="#" onclick="loadFenString('r1bnkbnr/pp1q1p1p/2pp4/3N4/2BPP3/6Q1/PPP3PP/R1B2RK1 w kq - 0 1','144');return false;">Show quiz number 144</td></tr>
+<tr><td><a id="ex145" href="#" onclick="loadFenString('rrq1k3/2p2p2/3pb1p1/3N2Pp/p1PpPR2/P2P3P/1P6/K2Q1R2 w - - 0 1','145');return false;">Show quiz number 145</td></tr>
+<tr><td><a id="ex146" href="#" onclick="loadFenString('2r2k2/1pr3q1/p2pQ3/3PpPN1/8/1P2P3/1P6/6RK w - - 0 1','146');return false;">Show quiz number 146</td></tr>
+<tr><td><a id="ex147" href="#" onclick="loadFenString('r1bq1n1r/pp4k1/2p3pp/5p2/2BP1N2/6Q1/PP3PPP/R3R1K1 w - - 0 1','147');return false;">Show quiz number 147</td></tr>
+<tr><td><a id="ex148" href="#" onclick="loadFenString('2r2rk1/pb1nq1pp/1p2p3/2ppN2P/2PPpPP1/4P3/PPQ5/2KR1B1R w - - 0 1','148');return false;">Show quiz number 148</td></tr>
+<tr><td><a id="ex149" href="#" onclick="loadFenString('1r2r1k1/2q2p1p/b2p1npB/2pP4/3bNP2/1P4PB/3Q3P/1R2R1K1 w - - 0 1','149');return false;">Show quiz number 149</td></tr>
+<tr><td><a id="ex150" href="#" onclick="loadFenString('4rn2/pp4k1/5qp1/4pp1P/P1Pb3N/6Q1/1B3PP1/3R2K1 w - - 0 1','150');return false;">Show quiz number 150</td></tr>
+<tr><td><a id="ex151" href="#" onclick="loadFenString('8/1b2k2p/p3npp1/1pp1p3/4P2P/2P2KP1/PPBNnP2/5N2 b - - 0 1','151');return false;">Show quiz number 151</td></tr>
+<tr><td><a id="ex152" href="#" onclick="loadFenString('5rk1/4q1pp/3p4/R2Ppr2/1p2Qn2/5BP1/1P1R1P1P/6K1 b - - 0 1','152');return false;">Show quiz number 152</td></tr>
+<tr><td><a id="ex153" href="#" onclick="loadFenString('N1b2r1k/pp4bp/6p1/3Q3n/3P4/2N1P1qP/PP2KnP1/R1B2R2 b - - 0 1','153');return false;">Show quiz number 153</td></tr>
+<tr><td><a id="ex154" href="#" onclick="loadFenString('r2rb1k1/pp3pp1/4p1p1/1P2B3/2PnR2q/2Q3NP/P4PP1/R5K1 b - - 0 1','154');return false;">Show quiz number 154</td></tr>
+<tr><td><a id="ex155" href="#" onclick="loadFenString('r3r1k1/1p1q1pp1/p2p1b1p/2pP2n1/3nPP2/6QP/PP4P1/RBB1RNK1 b - - 0 1','155');return false;">Show quiz number 155</td></tr>
+<tr><td><a id="ex156" href="#" onclick="loadFenString('2k1r3/p1q3pp/2R2p2/3pP3/1b1N1n2/6Q1/PP3PPP/6K1 b - - 0 1','156');return false;">Show quiz number 156</td></tr>
+<tr><td><a id="ex157" href="#" onclick="loadFenString('8/p2r2pk/2q2p1p/2P1p1n1/4P3/6P1/PBQ4P/1R4K1 b - - 0 1','157');return false;">Show quiz number 157</td></tr>
+<tr><td><a id="ex158" href="#" onclick="loadFenString('r1b1r1k1/ppp2ppp/3B4/8/2P1N1P1/P1np3P/1P3P2/R3KB1R b KQ - 0 1','158');return false;">Show quiz number 158</td></tr>
+<tr><td><a id="ex159" href="#" onclick="loadFenString('2r2rk1/1pq1pp1p/6p1/1n1N4/p2RP3/2P5/P4PPP/2Q2RK1 b - - 0 1','159');return false;">Show quiz number 159</td></tr>
+<tr><td><a id="ex160" href="#" onclick="loadFenString('6k1/1p3p1p/2n1p1p1/p4n2/2B1pP2/7P/P1N1K1P1/8 b - - 0 1','160');return false;">Show quiz number 160</td></tr>
+<tr><td><a id="ex161" href="#" onclick="loadFenString('8/3n2kp/p3p1p1/4P1P1/4Nr2/PK6/2B5/8 b - - 0 1','161');return false;">Show quiz number 161</td></tr>
+<tr><td><a id="ex162" href="#" onclick="loadFenString('2r3k1/1p3pBp/8/qN1p4/3Qn3/P3PB2/2rnRPPb/R2K4 b - - 0 1','162');return false;">Show quiz number 162</td></tr>
+<tr><td><a id="ex163" href="#" onclick="loadFenString('r4rk1/4ppbp/1pPq2p1/p3n3/3BP3/2N3P1/PP3P1P/R2Q1RK1 b - - 0 1','163');return false;">Show quiz number 163</td></tr>
+<tr><td><a id="ex164" href="#" onclick="loadFenString('r4rk1/pb3ppp/4p3/qBn5/1p2P3/5P2/PP2Q1PP/R1B2RK1 b - - 0 1','164');return false;">Show quiz number 164</td></tr>
+<tr><td><a id="ex165" href="#" onclick="loadFenString('8/8/8/1p3B1p/p6k/P3p2P/1P1n4/4K3 b - - 0 1','165');return false;">Show quiz number 165</td></tr>
+<tr><td><a id="ex166" href="#" onclick="loadFenString('r7/pp1n1k2/2pbpp2/3n4/P1BP4/5NNr/1P3PK1/R2R4 b - - 0 1','166');return false;">Show quiz number 166</td></tr>
+<tr><td><a id="ex167" href="#" onclick="loadFenString('2r2r2/p6k/1p4pb/2p1pp2/3n2p1/P1BPN1P1/1P2PPKP/3RR3 b - - 0 1','167');return false;">Show quiz number 167</td></tr>
+<tr><td><a id="ex168" href="#" onclick="loadFenString('r1r3k1/1R3ppp/p3pb2/8/2P1nB2/5N2/P4PPP/2R3K1 b - - 0 1','168');return false;">Show quiz number 168</td></tr>
+<tr><td><a id="ex169" href="#" onclick="loadFenString('2r2rk1/pp1b2pp/4pb2/q1np4/7P/P1NB1N2/1PPQ1PP1/2K1R2R b - - 0 1','169');return false;">Show quiz number 169</td></tr>
+<tr><td><a id="ex170" href="#" onclick="loadFenString('1r4k1/p1p2ppp/2p5/Pn1p4/1BbP4/2P1PP2/1r2NKPP/1R2R3 b - - 0 1','170');return false;">Show quiz number 170</td></tr>
+<tr><td><a id="ex171" href="#" onclick="loadFenString('5r2/2p4p/1p1p1k1r/p2Pn1p1/P1P1PpP1/1P3P2/3R2KP/2RN4 b - - 0 1','171');return false;">Show quiz number 171</td></tr>
+<tr><td><a id="ex172" href="#" onclick="loadFenString('2rr2k1/1b3p1p/pq2pp1Q/1p2n3/1P2P2N/P2nN1P1/3p1PBP/R4RK1 b - - 0 1','172');return false;">Show quiz number 172</td></tr>
+<tr><td><a id="ex173" href="#" onclick="loadFenString('rn2k2r/pp6/4pQp1/qb1pP2p/3P4/P1n1BP2/2P2KPP/R5NR b kq - 0 1','173');return false;">Show quiz number 173</td></tr>
+<tr><td><a id="ex174" href="#" onclick="loadFenString('4r1k1/p2b1p2/1p1q1n1p/3p2p1/P1pP2P1/2P1rPNP/3Q1K2/R3RB2 b - - 0 1','174');return false;">Show quiz number 174</td></tr>
+<tr><td><a id="ex175" href="#" onclick="loadFenString('r1b2rk1/pp3ppp/2p2q2/2Ppn3/B2Qn3/4B3/PPP2PPP/RN2R1K1 b - - 0 1','175');return false;">Show quiz number 175</td></tr>
+<tr><td><a id="ex176" href="#" onclick="loadFenString('r3kb1r/ppp3pp/2n5/4PQ2/3P4/2p5/P1P1N1qP/R1B1KR2 b Qkq - 0 1','176');return false;">Show quiz number 176</td></tr>
+<tr><td><a id="ex177" href="#" onclick="loadFenString('8/6pk/7p/2r2p2/5Pqn/1P6/P2Q2PP/2B2RK1 b - - 0 1','177');return false;">Show quiz number 177</td></tr>
+<tr><td><a id="ex178" href="#" onclick="loadFenString('r1r3k1/1b3ppp/1p2p3/8/2NQPn2/1q3B2/1P3PPP/2R2RK1 b - - 0 1','178');return false;">Show quiz number 178</td></tr>
+<tr><td><a id="ex179" href="#" onclick="loadFenString('r5k1/pp1B2b1/8/3p3p/3Pq3/BP1n1R2/P6P/3Q1N1K b - - 0 1','179');return false;">Show quiz number 179</td></tr>
+<tr><td><a id="ex180" href="#" onclick="loadFenString('8/1Q2ppk1/6p1/2qN4/p1r3n1/6P1/P5KP/5R2 b - - 0 1','180');return false;">Show quiz number 180</td></tr>
+<tr><td><a id="ex181" href="#" onclick="loadFenString('2r2rk1/n2b1p2/p2Pp2p/3n2p1/1P6/8/P4PPP/B2QR1K1 w - - 0 1','181');return false;">Show quiz number 181</td></tr>
+<tr><td><a id="ex182" href="#" onclick="loadFenString('3r2k1/5ppp/bn6/ppp2N2/3Pq3/P1P5/1B1Q2PP/2R3K1 w - - 0 1','182');return false;">Show quiz number 182</td></tr>
+<tr><td><a id="ex183" href="#" onclick="loadFenString('r3r1k1/1q1b1ppp/pnn1p3/1p6/1b1NP3/1P1QBN2/P3BPPP/2R2RK1 w - - 0 1','183');return false;">Show quiz number 183</td></tr>
+<tr><td><a id="ex184" href="#" onclick="loadFenString('rn2k2r/2q2ppp/bn1p4/2p5/4P3/1Q3N2/1P1N1PPP/R3KB1R w KQkq - 0 1','184');return false;">Show quiz number 184</td></tr>
+<tr><td><a id="ex185" href="#" onclick="loadFenString('3r1k2/2rP1ppp/5b2/pp6/n7/P1NR1P2/1PK2P1P/4RB2 w - - 0 1','185');return false;">Show quiz number 185</td></tr>
+<tr><td><a id="ex186" href="#" onclick="loadFenString('2r2rnk/2q1bppp/p2pp3/1b4P1/4PP1P/2B1n1N1/1P2N1B1/2RQ1R1K w - - 0 1','186');return false;">Show quiz number 186</td></tr>
+<tr><td><a id="ex187" href="#" onclick="loadFenString('r7/pp4k1/2p1b1p1/8/7r/1P1Q4/P5PP/5R1K w - - 0 1','187');return false;">Show quiz number 187</td></tr>
+<tr><td><a id="ex188" href="#" onclick="loadFenString('r1bq1rk1/ppp2ppp/4p3/8/3b4/3B1N2/PPP1QPPP/R3K2R w KQ - 0 1','188');return false;">Show quiz number 188</td></tr>
+<tr><td><a id="ex189" href="#" onclick="loadFenString('2b4R/4rkp1/1p1Q3p/p1p2q2/2P1p1p1/1P2P1P1/PB3P1P/6K1 w - - 0 1','189');return false;">Show quiz number 189</td></tr>
+<tr><td><a id="ex190" href="#" onclick="loadFenString('r1bnr2k/4q1pp/p2Rp3/1p2Qp2/1P5P/P3P3/1B3PP1/1BR3K1 w - - 0 1','190');return false;">Show quiz number 190</td></tr>
+<tr><td><a id="ex191" href="#" onclick="loadFenString('r1b2rk1/ppppbppp/8/2q5/8/2PB1Q2/PPP2PPP/R1B1R1K1 w - - 0 1','191');return false;">Show quiz number 191</td></tr>
+<tr><td><a id="ex192" href="#" onclick="loadFenString('2r3k1/4bppp/1q6/1p1Pp3/nP1p4/3B1Q1P/5PP1/R4NK1 w - - 0 1','192');return false;">Show quiz number 192</td></tr>
+<tr><td><a id="ex193" href="#" onclick="loadFenString('3r2k1/R4pp1/1p5p/4p3/6b1/1P1n2P1/P4PBP/4N1K1 w - - 0 1','193');return false;">Show quiz number 193</td></tr>
+<tr><td><a id="ex194" href="#" onclick="loadFenString('r3r1k1/pppn1ppp/2b2n2/q7/4PP2/2NBB2P/PP2Q1P1/1K1R3R w - - 0 1','194');return false;">Show quiz number 194</td></tr>
+<tr><td><a id="ex195" href="#" onclick="loadFenString('r3rbk1/3n1pp1/2N4p/2pP4/qpN2B2/5Q2/1P3PPP/2RR2K1 w - - 0 1','195');return false;">Show quiz number 195</td></tr>
+<tr><td><a id="ex196" href="#" onclick="loadFenString('4k2r/2pq1p1p/3p1np1/8/2Q1P3/7P/PrP2PP1/RN3RK1 w kq - 0 1','196');return false;">Show quiz number 196</td></tr>
+<tr><td><a id="ex197" href="#" onclick="loadFenString('r4rk1/ppp2ppp/7q/4P3/1bB3b1/2NQ4/PPP3PP/4RR1K w - - 0 1','197');return false;">Show quiz number 197</td></tr>
+<tr><td><a id="ex198" href="#" onclick="loadFenString('r1bbr1k1/p2n1ppp/1p1Bp3/3q3Q/3PNP2/3B4/PP4PP/2R2R1K w - - 0 1','198');return false;">Show quiz number 198</td></tr>
+<tr><td><a id="ex199" href="#" onclick="loadFenString('r2q4/1bp1p1k1/1pn1pbB1/4N1B1/p2p3P/7R/PP2QPP1/1K6 w - - 0 1','199');return false;">Show quiz number 199</td></tr>
+<tr><td><a id="ex200" href="#" onclick="loadFenString('r1q2r1k/p1pp1pbp/6p1/2P5/4P3/4B3/PnBQ1PPP/4RRK1 w - - 0 1','200');return false;">Show quiz number 200</td></tr>
+<tr><td><a id="ex201" href="#" onclick="loadFenString('r5k1/1p1P1p1p/p1q2bp1/1N3n2/8/1P4PB/P2Q1P2/4R1K1 w - - 0 1','201');return false;">Show quiz number 201</td></tr>
+<tr><td><a id="ex202" href="#" onclick="loadFenString('6k1/3nrppp/2B5/p1b2P2/5Q2/1P5P/Pr6/5R1K w - - 0 1','202');return false;">Show quiz number 202</td></tr>
+<tr><td><a id="ex203" href="#" onclick="loadFenString('1n6/2pq1kp1/p2pNpp1/b2r4/2R1Q3/7P/1B3PP1/6K1 w - - 0 1','203');return false;">Show quiz number 203</td></tr>
+<tr><td><a id="ex204" href="#" onclick="loadFenString('r2b1r1k/p4bR1/1p3P2/n2p3p/2pP1Bp1/2Pq2N1/PP2Q1PP/R5K1 w - - 0 1','204');return false;">Show quiz number 204</td></tr>
+<tr><td><a id="ex205" href="#" onclick="loadFenString('r1bqk2r/2pp1ppp/p4n2/1p2b3/4P3/1B6/PPP2PPP/RNBQ1RK1 w kq - 0 1','205');return false;">Show quiz number 205</td></tr>
+<tr><td><a id="ex206" href="#" onclick="loadFenString('6k1/p1pr2p1/1p3p1q/4b3/4Q3/3N1P2/PPP3PP/4R2K w - - 0 1','206');return false;">Show quiz number 206</td></tr>
+<tr><td><a id="ex207" href="#" onclick="loadFenString('r7/3p4/2n1k3/4q3/4p3/4N1P1/2R2P2/2Q3K1 w - - 0 1','207');return false;">Show quiz number 207</td></tr>
+<tr><td><a id="ex208" href="#" onclick="loadFenString('8/r4pbk/4p2p/8/p5R1/Pq3N1P/1P1Q1PP1/6K1 w - - 0 1','208');return false;">Show quiz number 208</td></tr>
+<tr><td><a id="ex209" href="#" onclick="loadFenString('r3rqk1/3n1pbp/b2p2p1/p1pP4/1p2PP1N/6nP/PPQB3N/R3RBK1 w - - 0 1','209');return false;">Show quiz number 209</td></tr>
+<tr><td><a id="ex210" href="#" onclick="loadFenString('rn2kb1r/p3pppp/b4n2/3qN3/2pP4/4P3/5PPP/RNBQKB1R w KQkq - 0 1','210');return false;">Show quiz number 210</td></tr>
+<tr><td><a id="ex211" href="#" onclick="loadFenString('r6k/6p1/7p/4p3/3rb3/1P5P/6PK/2Q1R3 w - - 0 1','211');return false;">Show quiz number 211</td></tr>
+<tr><td><a id="ex212" href="#" onclick="loadFenString('5rk1/p1p2ppp/2r1b3/4P1Nq/3Q2n1/1P3N2/P5PP/R4RK1 w - - 0 1','212');return false;">Show quiz number 212</td></tr>
+<tr><td><a id="ex213" href="#" onclick="loadFenString('r1r2nk1/7p/p2p1Q2/3p1R2/1PpP4/P1P4P/4b1P1/6K1 w - - 0 1','213');return false;">Show quiz number 213</td></tr>
+<tr><td><a id="ex214" href="#" onclick="loadFenString('r4rk1/2p1q1pp/p2p1n2/n3p1B1/Pp2P3/5N2/1PP2PPP/R2Q1RK1 w - - 0 1','214');return false;">Show quiz number 214</td></tr>
+<tr><td><a id="ex215" href="#" onclick="loadFenString('3r2k1/pq1n1p1p/1r5p/8/4bQ2/5NP1/P4PBP/R4RK1 w - - 0 1','215');return false;">Show quiz number 215</td></tr>
+<tr><td><a id="ex216" href="#" onclick="loadFenString('8/3qNrpk/1bpnRpNp/pp1p1P2/3P2P1/P1P4P/1P2Q1K1/8 w - - 0 1','216');return false;">Show quiz number 216</td></tr>
+<tr><td><a id="ex217" href="#" onclick="loadFenString('r1bqkbnr/2pp2pp/p1n5/4p3/N3p3/1B3N2/PPPP1PPP/R1BQK2R w KQkq - 0 1','217');return false;">Show quiz number 217</td></tr>
+<tr><td><a id="ex218" href="#" onclick="loadFenString('r5k1/1p3pbp/p1q3p1/3n4/2N5/1PB2P2/P5PP/3RQ2K w - - 0 1','218');return false;">Show quiz number 218</td></tr>
+<tr><td><a id="ex219" href="#" onclick="loadFenString('1r4k1/p4p1p/1p1r1n2/4p1B1/8/1P3P1P/P1Q3PK/8 w - - 0 1','219');return false;">Show quiz number 219</td></tr>
+<tr><td><a id="ex220" href="#" onclick="loadFenString('r4rk1/2qn2pp/p3b3/1pp1pn2/7N/2P1B3/PPB2PPP/3QR1KR w - - 0 1','220');return false;">Show quiz number 220</td></tr>
+<tr><td><a id="ex221" href="#" onclick="loadFenString('r1b4r/p1ppkppp/2n3q1/bp1B4/4P3/1QP2N2/P4PPP/RN3RK1 w - - 0 1','221');return false;">Show quiz number 221</td></tr>
+<tr><td><a id="ex222" href="#" onclick="loadFenString('r1bqkb1r/ppp2ppp/2np4/4p3/3Pn3/2P2N2/PP2BPPP/RNBQK2R w KQkq - 0 1','222');return false;">Show quiz number 222</td></tr>
+<tr><td><a id="ex223" href="#" onclick="loadFenString('r4nk1/1b3qpp/p4p2/np1p4/2pP1PNQ/2P5/PPBNr1PP/R4RK1 w - - 0 1','223');return false;">Show quiz number 223</td></tr>
+<tr><td><a id="ex224" href="#" onclick="loadFenString('r1q3rk/1ppbb1pp/4Np2/p4P2/P3P3/2N2R2/1PP1Q1PP/3R2K1 w - - 0 1','224');return false;">Show quiz number 224</td></tr>
+<tr><td><a id="ex225" href="#" onclick="loadFenString('4rk2/ppp3pp/8/4b1n1/6N1/2N4P/PPP2PP1/3R2K1 w - - 0 1','225');return false;">Show quiz number 225</td></tr>
+<tr><td><a id="ex226" href="#" onclick="loadFenString('r1bq1rk1/pppn1ppp/5n2/4p3/1bBP4/2N1P3/PP2NPPP/R1BQ1RK1 w - - 0 1','226');return false;">Show quiz number 226</td></tr>
+<tr><td><a id="ex227" href="#" onclick="loadFenString('r1bqk2r/pppp1ppp/8/3Pp3/1b1n4/6P1/PP1PPPBP/R1BQK1NR w KQkq - 0 1','227');return false;">Show quiz number 227</td></tr>
+<tr><td><a id="ex228" href="#" onclick="loadFenString('5k2/1r3p2/1P4p1/2P2q2/8/5N1P/3Q2PK/8 w - - 0 1','228');return false;">Show quiz number 228</td></tr>
+<tr><td><a id="ex229" href="#" onclick="loadFenString('r4r2/p1p3Qp/4kp2/2pp1N1q/5P2/7P/PPP3P1/5RK1 w - - 0 1','229');return false;">Show quiz number 229</td></tr>
+<tr><td><a id="ex230" href="#" onclick="loadFenString('8/1p2r1k1/1p1rPp2/P1pPnP1p/1PP2Kp1/1B2R3/8/3R4 w - - 0 1','230');return false;">Show quiz number 230</td></tr>
+<tr><td><a id="ex231" href="#" onclick="loadFenString('3rbr2/pp2ppkp/2q1P1p1/5P2/6PP/2N2R2/PPP2Q2/2K2R2 w - - 0 1','231');return false;">Show quiz number 231</td></tr>
+<tr><td><a id="ex232" href="#" onclick="loadFenString('r5k1/3rbpnp/p3q1pB/1pp1P3/3p1PP1/3P2NP/PP2Q3/R1R3K1 w - - 0 1','232');return false;">Show quiz number 232</td></tr>
+<tr><td><a id="ex233" href="#" onclick="loadFenString('r3r3/pp3k1p/2p1p3/3n1bp1/P1BPq3/4P1Q1/1P1B1PP1/R1R3K1 w - - 0 1','233');return false;">Show quiz number 233</td></tr>
+<tr><td><a id="ex234" href="#" onclick="loadFenString('1rq2n2/1pp2kbr/p1n1p1pp/2N1P3/5P2/1Q2B2B/PP3P1P/2RR2K1 w - - 0 1','234');return false;">Show quiz number 234</td></tr>
+<tr><td><a id="ex235" href="#" onclick="loadFenString('4r2k/6np/3P2q1/1b4p1/6p1/8/1B1Q1PBP/5RK1 w - - 0 1','235');return false;">Show quiz number 235</td></tr>
+<tr><td><a id="ex236" href="#" onclick="loadFenString('2b1rn1k/p4Rbp/1p6/3p2B1/8/P5N1/1q2B1PP/5Q1K w - - 0 1','236');return false;">Show quiz number 236</td></tr>
+<tr><td><a id="ex237" href="#" onclick="loadFenString('1rb2nk1/p1q2ppp/1p1Np3/8/4B3/4Q3/PP3PPP/3R2K1 w - - 0 1','237');return false;">Show quiz number 237</td></tr>
+<tr><td><a id="ex238" href="#" onclick="loadFenString('r1b2k1r/pp4pp/1b1p1q1n/4n3/8/BBPN4/P4PPP/RN1Q1RK1 w - - 0 1','238');return false;">Show quiz number 238</td></tr>
+<tr><td><a id="ex239" href="#" onclick="loadFenString('8/pb1q3k/1p1r3p/8/8/1P2Q1N1/P5PP/3R2K1 w - - 0 1','239');return false;">Show quiz number 239</td></tr>
+<tr><td><a id="ex240" href="#" onclick="loadFenString('5qk1/pr6/1p1n1rpp/2p1p3/2P3P1/2NRP2Q/PP3P1P/3R2K1 w - - 0 1','240');return false;">Show quiz number 240</td></tr>
+<tr><td><a id="ex241" href="#" onclick="loadFenString('1r2r1k1/p4p1p/6pB/q7/8/3Q2P1/PbP2PKP/1R3R2 w - - 0 1','241');return false;">Show quiz number 241</td></tr>
+<tr><td><a id="ex242" href="#" onclick="loadFenString('1rr3k1/4qppp/pn6/1pp1n2b/4P3/P1PP2QP/2B3PN/R1B2RK1 w - - 0 1','242');return false;">Show quiz number 242</td></tr>
+<tr><td><a id="ex243" href="#" onclick="loadFenString('3r4/2q3k1/rp3bpp/2pBp3/2P1Q3/P4RP1/P2R1P1P/6K1 w - - 0 1','243');return false;">Show quiz number 243</td></tr>
+<tr><td><a id="ex244" href="#" onclick="loadFenString('4Q3/8/2r3pk/3b4/1PpP2P1/8/7P/6K1 w - - 0 1','244');return false;">Show quiz number 244</td></tr>
+<tr><td><a id="ex245" href="#" onclick="loadFenString('r3k2r/pp2qppp/2p3b1/3pP3/Pb6/2N1P3/1P1BQPPP/R4RK1 w kq - 0 1','245');return false;">Show quiz number 245</td></tr>
+<tr><td><a id="ex246" href="#" onclick="loadFenString('r4b1k/ppp3pp/2n1b2r/2P2p2/3PpP1q/2Q3NP/PP2N1P1/R1B2R1K w - - 0 1','246');return false;">Show quiz number 246</td></tr>
+<tr><td><a id="ex247" href="#" onclick="loadFenString('2r1r1k1/1p1qbp1p/3p1p2/p2P4/3Q4/5N2/PP2RPPP/4R1K1 w - - 0 1','247');return false;">Show quiz number 247</td></tr>
+<tr><td><a id="ex248" href="#" onclick="loadFenString('rn3rk1/pbppq1pp/1p3b2/3Ppp2/2P5/1Q3NP1/PP2PPBP/R1BR2K1 w - - 0 1','248');return false;">Show quiz number 248</td></tr>
+<tr><td><a id="ex249" href="#" onclick="loadFenString('3rrnk1/pp3ppp/q1pbp3/8/2P1Q1NP/2B5/PP3PP1/3RR1K1 w - - 0 1','249');return false;">Show quiz number 249</td></tr>
+<tr><td><a id="ex250" href="#" onclick="loadFenString('r3rnk1/1p3ppp/p7/1q1P4/4b3/P4RN1/1B1Q2PP/R6K w - - 0 1','250');return false;">Show quiz number 250</td></tr>
+<tr><td><a id="ex251" href="#" onclick="loadFenString('r1b2r1k/1q1nbppp/pp2p3/4Q1B1/3N4/2N3R1/PPP2PPP/3R2K1 w - - 0 1','251');return false;">Show quiz number 251</td></tr>
+<tr><td><a id="ex252" href="#" onclick="loadFenString('r2r2k1/pq3ppp/1p1bpn2/8/2PN3Q/1P6/PB3PPP/3RR1K1 w - - 0 1','252');return false;">Show quiz number 252</td></tr>
+<tr><td><a id="ex253" href="#" onclick="loadFenString('r2r2k1/ppb1qpp1/2n2n1p/2P1p3/1P1p4/P3PN2/1BQ1NPPP/3RK2R b K - 0 1','253');return false;">Show quiz number 253</td></tr>
+<tr><td><a id="ex254" href="#" onclick="loadFenString('r6r/pN1bkppp/n3p3/4n3/8/P5P1/1P1BPP1P/1R2KB1R b K - 0 1','254');return false;">Show quiz number 254</td></tr>
+<tr><td><a id="ex255" href="#" onclick="loadFenString('r1r3k1/p3bp1p/1n4p1/N2bp3/3P4/4P3/1BqQBPPP/R2R2K1 b - - 0 1','255');return false;">Show quiz number 255</td></tr>
+<tr><td><a id="ex256" href="#" onclick="loadFenString('r2q1rk1/pb1nbn1p/1pp1p1p1/3p1p2/2PP1B2/2N2NPB/PPQ1PP1P/2RR2K1 b - - 0 1','256');return false;">Show quiz number 256</td></tr>
+<tr><td><a id="ex257" href="#" onclick="loadFenString('1r3r2/1b4kp/1q1p2p1/p1n1P1p1/1p2P3/7P/PPPQNNBK/R4R2 b - - 0 1','257');return false;">Show quiz number 257</td></tr>
+<tr><td><a id="ex258" href="#" onclick="loadFenString('6k1/p2q2pp/2bb3r/1pp2p2/3p1P2/3P2PP/PPPNN2K/5RQ1 b - - 0 1','258');return false;">Show quiz number 258</td></tr>
+<tr><td><a id="ex259" href="#" onclick="loadFenString('r3qrk1/p4pbp/B4np1/2p1p3/2Pp4/PP1P2Pb/1N1BPP1P/R1Q1K2R b KQ - 0 1','259');return false;">Show quiz number 259</td></tr>
+<tr><td><a id="ex260" href="#" onclick="loadFenString('r3k3/1p1b1p2/8/p1b1P1N1/5p2/P6r/1PP2P2/1RBR2K1 b - - 0 1','260');return false;">Show quiz number 260</td></tr>
+<tr><td><a id="ex261" href="#" onclick="loadFenString('1r1r2k1/3q1pbp/1n4p1/2R5/p3Q3/4NP1P/P2N2P1/3R3K b - - 0 1','261');return false;">Show quiz number 261</td></tr>
+<tr><td><a id="ex262" href="#" onclick="loadFenString('r1bq1rk1/1pp2pbp/3p1npB/p1nPp3/2P1P1P1/2N2P2/PP1Q3P/R3KBNR b KQ - 0 1','262');return false;">Show quiz number 262</td></tr>
+<tr><td><a id="ex263" href="#" onclick="loadFenString('3r1k2/1p6/p4P2/2pP2Qb/8/1P1KB3/P6r/8 b - - 0 1','263');return false;">Show quiz number 263</td></tr>
+<tr><td><a id="ex264" href="#" onclick="loadFenString('4R3/5ppk/2p2bq1/pp1p4/3P2bp/1PP4B/P4R1K/2B4N b - - 0 1','264');return false;">Show quiz number 264</td></tr>
+<tr><td><a id="ex265" href="#" onclick="loadFenString('r1r3k1/1p1bqppp/5n2/pP1Pp2N/4n3/P2QP3/1B2BPPP/R3K2R b KQ - 0 1','265');return false;">Show quiz number 265</td></tr>
+<tr><td><a id="ex266" href="#" onclick="loadFenString('1k1r1q2/pnp2p1p/1p2pp2/r7/2PP1P2/3R2P1/PKP1Q1NP/7R b - - 0 1','266');return false;">Show quiz number 266</td></tr>
+<tr><td><a id="ex267" href="#" onclick="loadFenString('4q1k1/pb3pp1/7p/Q7/3nN3/P2r1P1B/6PP/1R5K b - - 0 1','267');return false;">Show quiz number 267</td></tr>
+<tr><td><a id="ex268" href="#" onclick="loadFenString('3r2k1/pp4p1/7p/2b2p1P/8/P1Nr1Q2/1Pq1RPP1/1R4K1 b - - 0 1','268');return false;">Show quiz number 268</td></tr>
+<tr><td><a id="ex269" href="#" onclick="loadFenString('r1bqkb1r/ppppnppp/5n2/1B2N3/4P3/3P4/PPP2PPP/RNBQK2R b KQkq - 0 1','269');return false;">Show quiz number 269</td></tr>
+<tr><td><a id="ex270" href="#" onclick="loadFenString('5n1k/5pp1/1qb4p/1p1p3Q/2pP4/R1P2P1P/1RB3PK/4r3 b - - 0 1','270');return false;">Show quiz number 270</td></tr>
+<tr><td><a id="ex271" href="#" onclick="loadFenString('rn1q1rk1/ppp3pp/3b4/3P1p2/3Pn1b1/3B1N2/PP3PPP/RNBQR1K1 b - - 0 1','271');return false;">Show quiz number 271</td></tr>
+<tr><td><a id="ex272" href="#" onclick="loadFenString('3R4/pkp4p/8/4p3/1q1n4/3R2P1/1N5P/2K5 b - - 0 1','272');return false;">Show quiz number 272</td></tr>
+<tr><td><a id="ex273" href="#" onclick="loadFenString('r4rk1/ppp2ppp/2b1p3/3n2q1/1b1P4/1QNBP1B1/PP3PPP/R4RK1 b - - 0 1','273');return false;">Show quiz number 273</td></tr>
+<tr><td><a id="ex274" href="#" onclick="loadFenString('Q7/ppp2kpp/8/2b5/4RP1q/7b/PPP3PP/3R2BK b - - 0 1','274');return false;">Show quiz number 274</td></tr>
+<tr><td><a id="ex275" href="#" onclick="loadFenString('7k/p1p1r1p1/1b5p/4B2q/5P2/6P1/P1Q4P/R3K3 b Q - 0 1','275');return false;">Show quiz number 275</td></tr>
+<tr><td><a id="ex276" href="#" onclick="loadFenString('r1br2k1/ppb1qppp/1np2n2/8/P2NP3/2N4P/1PQ2PP1/R1BR1BK1 b - - 0 1','276');return false;">Show quiz number 276</td></tr>
+<tr><td><a id="ex277" href="#" onclick="loadFenString('5rk1/R4ppp/5b2/8/8/1N3P2/Pr4PP/5RK1 b - - 0 1','277');return false;">Show quiz number 277</td></tr>
+<tr><td><a id="ex278" href="#" onclick="loadFenString('r4k1r/1pp1qpp1/p2p1n1p/3Pp3/B3P3/P1PP1Q2/1P4PP/R3K2R b KQ - 0 1','278');return false;">Show quiz number 278</td></tr>
+<tr><td><a id="ex279" href="#" onclick="loadFenString('3r2k1/1p2q1pp/4bp2/pB6/Q7/P3P3/1r3PPP/R4RK1 b - - 0 1','279');return false;">Show quiz number 279</td></tr>
+<tr><td><a id="ex280" href="#" onclick="loadFenString('3r1rk1/p1p2ppp/1bp2n2/8/1P2p3/N1Pq1P2/P2P2PP/R1BQ1R1K b - - 0 1','280');return false;">Show quiz number 280</td></tr>
+<tr><td><a id="ex281" href="#" onclick="loadFenString('8/6pk/7p/3p1p1Q/3PbPP1/2p3KP/2P2B2/1rb5 b - - 0 1','281');return false;">Show quiz number 281</td></tr>
+<tr><td><a id="ex282" href="#" onclick="loadFenString('rn1qk2r/pbpp1pp1/1p2pn1p/8/1bPP3B/4PN2/PP1N1PPP/R2QKB1R b KQkq - 0 1','282');return false;">Show quiz number 282</td></tr>
+<tr><td><a id="ex283" href="#" onclick="loadFenString('5rk1/1p4pp/2p5/3p4/4p3/3q4/r1N1Q1PP/2R1K2R b K - 0 1','283');return false;">Show quiz number 283</td></tr>
+<tr><td><a id="ex284" href="#" onclick="loadFenString('1r3rk1/p5p1/5p1p/4p3/2qnN3/5P2/PR4PP/1Q2R1K1 b - - 0 1','284');return false;">Show quiz number 284</td></tr>
+<tr><td><a id="ex285" href="#" onclick="loadFenString('2k1n3/1pb2p2/p1p4p/8/2P2P1P/2N2RB1/PPP3r1/2K5 b - - 0 1','285');return false;">Show quiz number 285</td></tr>
+<tr><td><a id="ex286" href="#" onclick="loadFenString('4r1k1/1pp3p1/p3q2p/4p1b1/1P5N/6QP/1PP3P1/5R1K b - - 0 1','286');return false;">Show quiz number 286</td></tr>
+<tr><td><a id="ex287" href="#" onclick="loadFenString('1r3rk1/p1p4p/3q2pb/3Ppb2/2Q2n2/P1N1BN2/1P4PP/2KR1R2 b - - 0 1','287');return false;">Show quiz number 287</td></tr>
+<tr><td><a id="ex288" href="#" onclick="loadFenString('r2qr1k1/pp3p1p/2p1bnp1/2P1p3/3nPP2/1PNQ4/P2NB1PP/R4RK1 b - - 0 1','288');return false;">Show quiz number 288</td></tr>
+<tr><td><a id="ex289" href="#" onclick="loadFenString('6k1/1bp3pp/1p1p4/p3p2r/P1P2r2/1P1Q1PqP/2P3P1/3R1RBK b - - 0 1','289');return false;">Show quiz number 289</td></tr>
+<tr><td><a id="ex290" href="#" onclick="loadFenString('r3r1k1/1b1q1p2/3p2pB/p3p3/4n3/2P5/PP2N1PP/R2Q1R1K b - - 0 1','290');return false;">Show quiz number 290</td></tr>
+<tr><td><a id="ex291" href="#" onclick="loadFenString('3r2k1/5ppp/pb2p3/1p2P3/1P2bPP1/P1B5/6P1/R4R1K b - - 0 1','291');return false;">Show quiz number 291</td></tr>
+<tr><td><a id="ex292" href="#" onclick="loadFenString('3b4/5pk1/4p1p1/1p6/5P1p/1r4PK/1PR4P/3B4 b - - 0 1','292');return false;">Show quiz number 292</td></tr>
+<tr><td><a id="ex293" href="#" onclick="loadFenString('5k2/pb1q1p1p/1p6/6R1/3p4/8/PP4PP/R2N3K b - - 0 1','293');return false;">Show quiz number 293</td></tr>
+<tr><td><a id="ex294" href="#" onclick="loadFenString('r2q1rk1/pp1bbppp/1np2n2/8/3N4/1N1Q2PP/PP2PPB1/R1B2RK1 b - - 0 1','294');return false;">Show quiz number 294</td></tr>
+<tr><td><a id="ex295" href="#" onclick="loadFenString('r2r1k2/p1p1qp2/1p2pN1p/4Q3/2P5/P6P/1B4P1/5R1K w - - 0 1','295');return false;">Show quiz number 295</td></tr>
+<tr><td><a id="ex296" href="#" onclick="loadFenString('r1b1k2r/pp1nppbp/1qnp2p1/4P3/3N1P2/2N1B3/PPP1B1PP/R2QK2R w KQkq - 0 1','296');return false;">Show quiz number 296</td></tr>
+<tr><td><a id="ex297" href="#" onclick="loadFenString('r3k2r/1p1b1ppp/p3p3/4R3/3q1P2/3B4/PPP3PP/R2Q3K w kq - 0 1','297');return false;">Show quiz number 297</td></tr>
+<tr><td><a id="ex298" href="#" onclick="loadFenString('rnb2rk1/ppp2ppp/1b6/q2P2B1/4R3/2N2N1P/PP3PP1/R2Q2K1 w - - 0 1','298');return false;">Show quiz number 298</td></tr>
+<tr><td><a id="ex299" href="#" onclick="loadFenString('2q2r2/R1P4k/6pp/1pQ5/1P3P2/7P/6P1/6K1 w - - 0 1','299');return false;">Show quiz number 299</td></tr>
+<tr><td><a id="ex300" href="#" onclick="loadFenString('4n1k1/rrp1q1pp/5p2/R3pb2/1P6/2Q1PP2/1B2B1PP/2R3K1 w - - 0 1','300');return false;">Show quiz number 300</td></tr>
+<tr><td><a id="ex301" href="#" onclick="loadFenString('r1b3k1/ppp1n2p/2n2qpB/6N1/3NP3/2QP2P1/P1P3BP/6K1 w - - 0 1','301');return false;">Show quiz number 301</td></tr>
+<tr><td><a id="ex302" href="#" onclick="loadFenString('3rrbk1/p2b3p/5qp1/2ppN3/5P2/8/PP1NQ1PP/4RR1K w - - 0 1','302');return false;">Show quiz number 302</td></tr>
+<tr><td><a id="ex303" href="#" onclick="loadFenString('rn1q1rk1/pbp3pp/1p1pp3/8/2P5/5NP1/PPQ1PPBP/3R1RK1 w - - 0 1','303');return false;">Show quiz number 303</td></tr>
+<tr><td><a id="ex304" href="#" onclick="loadFenString('r3r1k1/ppqn1ppp/2p2n2/4pN2/2P5/Q4PPB/PP1R1P1P/3R2K1 w - - 0 1','304');return false;">Show quiz number 304</td></tr>
+<tr><td><a id="ex305" href="#" onclick="loadFenString('rn3rk1/1bB1bppp/p7/1p1P4/P1p5/3N2P1/1P3PBP/R4RK1 w - - 0 1','305');return false;">Show quiz number 305</td></tr>
+<tr><td><a id="ex306" href="#" onclick="loadFenString('r4rk1/p2q1ppp/bp1p4/n1pPpN2/2P1PP2/P1PB4/6PP/R2Q1RK1 w - - 0 1','306');return false;">Show quiz number 306</td></tr>
+<tr><td><a id="ex307" href="#" onclick="loadFenString('r4rk1/6pp/p1Qp1q2/1p2ppn1/6b1/8/PPPNBPPP/3RR1K1 w - - 0 1','307');return false;">Show quiz number 307</td></tr>
+<tr><td><a id="ex308" href="#" onclick="loadFenString('r3k2r/pp1bppbp/1qnp2p1/1N6/3NnPP1/4B3/PPP1B2P/R2QK2R w KQkq - 0 1','308');return false;">Show quiz number 308</td></tr>
+<tr><td><a id="ex309" href="#" onclick="loadFenString('1r3r1k/4QBpp/2p5/1q2b3/8/1pP5/1P4PP/3R1R1K w - - 0 1','309');return false;">Show quiz number 309</td></tr>
+<tr><td><a id="ex310" href="#" onclick="loadFenString('rnb2rk1/ppp2qpp/1n2p3/1N2Pp2/2BP4/5N2/PP3PPP/R1Q1K2R w KQ - 0 1','310');return false;">Show quiz number 310</td></tr>
+<tr><td><a id="ex311" href="#" onclick="loadFenString('r3r1k1/p1p1qppp/1b6/2pp1P2/Q2Pn1P1/4BN2/PP3P1P/2R1R1K1 w - - 0 1','311');return false;">Show quiz number 311</td></tr>
+<tr><td><a id="ex312" href="#" onclick="loadFenString('2r4R/1pkbbp2/1q6/3pP1p1/QP1N4/2P1BP2/5KP1/8 w - - 0 1','312');return false;">Show quiz number 312</td></tr>
+<tr><td><a id="ex313" href="#" onclick="loadFenString('6rk/2p1bp1p/2n2pr1/pp1qpN2/3pN2P/2PP1Q2/PP3PP1/R2R2K1 w - - 0 1','313');return false;">Show quiz number 313</td></tr>
+<tr><td><a id="ex314" href="#" onclick="loadFenString('5r1k/pb3B1p/3r4/6Q1/1p2q3/8/PP3RPP/5R1K w - - 0 1','314');return false;">Show quiz number 314</td></tr>
+<tr><td><a id="ex315" href="#" onclick="loadFenString('rn1q1rk1/pbppbppp/1p2p3/8/2P5/2n2NP1/PPQPPPBP/R1B1R1K1 w - - 0 1','315');return false;">Show quiz number 315</td></tr>
+<tr><td><a id="ex316" href="#" onclick="loadFenString('1n6/1P4p1/6k1/p7/4N3/P6Q/K6b/4q3 w - - 0 1','316');return false;">Show quiz number 316</td></tr>
+<tr><td><a id="ex317" href="#" onclick="loadFenString('1r2k2r/pbppnpp1/1bn4p/4P3/Q1B3q1/2P2NN1/P4PPP/R1B1R1K1 w kq - 0 1','317');return false;">Show quiz number 317</td></tr>
+<tr><td><a id="ex318" href="#" onclick="loadFenString('rnb2rk1/pp2np1p/2p2q1b/8/2BPPN2/2P2Q2/PP4PP/R1B2RK1 w - - 0 1','318');return false;">Show quiz number 318</td></tr>
+<tr><td><a id="ex319" href="#" onclick="loadFenString('r2nk2r/pq2bppp/1p2pn2/6N1/3BN3/5QP1/PPP2PKP/R2R4 w kq - 0 1','319');return false;">Show quiz number 319</td></tr>
+<tr><td><a id="ex320" href="#" onclick="loadFenString('3rkr2/pp2b1pp/2p1Bn2/4q3/8/4B3/P1P1QPPP/1R2R1K1 w - - 0 1','320');return false;">Show quiz number 320</td></tr>
+<tr><td><a id="ex321" href="#" onclick="loadFenString('1r1q3k/1bp1n1pp/3p4/4n3/4Nr2/1P1Q3R/P1P2PPP/5RK1 w - - 0 1','321');return false;">Show quiz number 321</td></tr>
+<tr><td><a id="ex322" href="#" onclick="loadFenString('r4rk1/1p3pbp/pn1pq3/6P1/3P4/1PN1BQ1R/1P5P/R6K w - - 0 1','322');return false;">Show quiz number 322</td></tr>
+<tr><td><a id="ex323" href="#" onclick="loadFenString('rn1qkbnr/ppp2pp1/3p3p/4p3/2B1P1b1/2N2N2/PPPP1PPP/R1BQK2R w KQkq - 0 1','323');return false;">Show quiz number 323</td></tr>
+<tr><td><a id="ex324" href="#" onclick="loadFenString('rn2kb1r/ppp2ppp/4pn2/q4b2/2BP4/2N5/PPPB1PPP/R2QK1NR w KQkq - 0 1','324');return false;">Show quiz number 324</td></tr>
+<tr><td><a id="ex325" href="#" onclick="loadFenString('r1q2rk1/pbpnbppp/1p6/4p3/2P5/1PQ2NP1/PB2PPBP/R2R2K1 w - - 0 1','325');return false;">Show quiz number 325</td></tr>
+<tr><td><a id="ex326" href="#" onclick="loadFenString('5b1k/8/2p2P2/1pp1Q1P1/2P4q/3PKP2/1P6/8 w - - 0 1','326');return false;">Show quiz number 326</td></tr>
+<tr><td><a id="ex327" href="#" onclick="loadFenString('rqb2rk1/1p2pp1p/p5p1/3Nb3/P1B2n2/1Q3N2/1P3PPP/2RR2K1 w - - 0 1','327');return false;">Show quiz number 327</td></tr>
+<tr><td><a id="ex328" href="#" onclick="loadFenString('1r3rk1/5ppp/1q1p4/pnp5/4P3/1PP2P2/PB2QP1P/1K1R2R1 w - - 0 1','328');return false;">Show quiz number 328</td></tr>
+<tr><td><a id="ex329" href="#" onclick="loadFenString('r1bqr2k/1p4bp/2p1n3/p3p1p1/P1P1N1p1/BQ1PP3/5PBP/1R3RK1 w - - 0 1','329');return false;">Show quiz number 329</td></tr>
+<tr><td><a id="ex330" href="#" onclick="loadFenString('r1b1qrk1/1p3ppp/p1p5/3Nb3/5N2/P7/1P4PQ/K1R1R3 w - - 0 1','330');return false;">Show quiz number 330</td></tr>
+<tr><td><a id="ex331" href="#" onclick="loadFenString('Q4b1r/pb1q1ppp/2n3k1/1pN5/8/8/PPP2PPP/RNB2RK1 b - - 0 1','331');return false;">Show quiz number 331</td></tr>
+<tr><td><a id="ex332" href="#" onclick="loadFenString('r2r2k1/pQ3ppp/8/2p1n3/8/P1P1P2P/5PPq/R1B1RK2 b - - 0 1','332');return false;">Show quiz number 332</td></tr>
+<tr><td><a id="ex333" href="#" onclick="loadFenString('4r1k1/1p3pp1/6q1/p1P3bp/NP5n/P1Q4P/2Pr1BP1/R3R1K1 b - - 0 1','333');return false;">Show quiz number 333</td></tr>
+<tr><td><a id="ex334" href="#" onclick="loadFenString('5rk1/1p4pp/5qb1/2pPr3/P1P3R1/P4P2/3QP3/2KR3B b - - 0 1','334');return false;">Show quiz number 334</td></tr>
+<tr><td><a id="ex335" href="#" onclick="loadFenString('r1b2rk1/pp2qppp/4nn2/1Bp1N3/4P3/2P5/P1P2PPP/R1BQR1K1 b - - 0 1','335');return false;">Show quiz number 335</td></tr>
+<tr><td><a id="ex336" href="#" onclick="loadFenString('1r3rk1/5pb1/p2p2p1/Q1n1q2p/1NP1P3/3p1P1B/PP1R3P/1K2R3 b - - 0 1','336');return false;">Show quiz number 336</td></tr>
+<tr><td><a id="ex337" href="#" onclick="loadFenString('r1q1k2r/pp1bppbp/2np1np1/8/3NP3/2N3PP/PPP2PBK/R1BQ1R2 b kq - 0 1','337');return false;">Show quiz number 337</td></tr>
+<tr><td><a id="ex338" href="#" onclick="loadFenString('r1bqkb1r/1p1n1ppp/p1p2n2/2Pp1B2/3Pp3/2N1P3/PP1N1PPP/R1BQK2R b KQkq - 0 1','338');return false;">Show quiz number 338</td></tr>
+<tr><td><a id="ex339" href="#" onclick="loadFenString('2r3k1/2r1ppbp/p5p1/q2pP3/3BbP2/1P5P/PQNR1RPK/8 b - - 0 1','339');return false;">Show quiz number 339</td></tr>
+<tr><td><a id="ex340" href="#" onclick="loadFenString('4r3/2p2b1p/pb3kp1/3n1p2/1N6/1PP2P2/PK4PP/2NR1B2 b - - 0 1','340');return false;">Show quiz number 340</td></tr>
+<tr><td><a id="ex341" href="#" onclick="loadFenString('2kr3r/ppp2ppp/3b4/5b1q/8/2PP1N2/PPQ2PPP/R1B2RK1 b - - 0 1','341');return false;">Show quiz number 341</td></tr>
+<tr><td><a id="ex342" href="#" onclick="loadFenString('r1bqk2r/ppp2ppp/2nb4/8/2P1n3/P4NP1/1P2PP1P/RNBQKB1R b KQkq - 0 1','342');return false;">Show quiz number 342</td></tr>
+<tr><td><a id="ex343" href="#" onclick="loadFenString('5rk1/5p1p/3Q2p1/p3n3/4B3/7P/1qP1R1P1/7K b - - 0 1','343');return false;">Show quiz number 343</td></tr>
+<tr><td><a id="ex344" href="#" onclick="loadFenString('r1b2rk1/ppp2ppp/1b1p1q2/3P4/BPPp4/8/PB1PQPPP/R4RK1 b - - 0 1','344');return false;">Show quiz number 344</td></tr>
+<tr><td><a id="ex345" href="#" onclick="loadFenString('r1b4Q/ppp2kpp/3b4/8/4RP1q/8/PPP3PP/3R2K1 b - - 0 1','345');return false;">Show quiz number 345</td></tr>
+<tr><td><a id="ex346" href="#" onclick="loadFenString('3rr1k1/p4ppp/1p3q2/1P2n3/3Rn3/B3P3/B1Q2PPP/5RK1 b - - 0 1','346');return false;">Show quiz number 346</td></tr>
+<tr><td><a id="ex347" href="#" onclick="loadFenString('1k6/ppp4p/1n2pq2/1N2Rb2/2P2Q2/8/P4KPP/3r1B2 b - - 0 1','347');return false;">Show quiz number 347</td></tr>
+<tr><td><a id="ex348" href="#" onclick="loadFenString('3r2k1/ppp2ppp/6q1/b4n2/3nQB2/2p5/P4PPP/RN3RK1 b - - 0 1','348');return false;">Show quiz number 348</td></tr>
+<tr><td><a id="ex349" href="#" onclick="loadFenString('3rk1r1/pp3p1p/1nb1p3/8/qn2P2Q/3B1N2/PP3PPP/3R1RK1 w - - 0 1','349');return false;">Show quiz number 349</td></tr>
+<tr><td><a id="ex350" href="#" onclick="loadFenString('r1bq1rk1/pp1n1pp1/2p1p3/6b1/2PPBB2/4P3/PPQ2PP1/R3K2R w KQ - 0 1','350');return false;">Show quiz number 350</td></tr>
+<tr><td><a id="ex351" href="#" onclick="loadFenString('r1b1k2r/pp1n3p/2pb3q/3pN1p1/3PpP2/2N1P3/PP4PP/R2QBRK1 w kq - 0 1','351');return false;">Show quiz number 351</td></tr>
+<tr><td><a id="ex352" href="#" onclick="loadFenString('r2Q4/pbR2pkp/1p1Nq1p1/3p4/1n6/3BP3/PP3PPP/6K1 w - - 0 1','352');return false;">Show quiz number 352</td></tr>
+<tr><td><a id="ex353" href="#" onclick="loadFenString('2k4r/1p1r1ppp/pq2pn2/2p5/Q1PP4/5R2/PP2NPPP/2KR4 w - - 0 1','353');return false;">Show quiz number 353</td></tr>
+<tr><td><a id="ex354" href="#" onclick="loadFenString('r2RNknQ/1p1b1rpR/p1p1p3/2P1qp2/8/P3P3/1P3PP1/4K3 w - - 0 1','354');return false;">Show quiz number 354</td></tr>
+<tr><td><a id="ex355" href="#" onclick="loadFenString('2r4r/1k4bp/p5p1/2B1p3/8/8/3R1PPP/2R3K1 w - - 0 1','355');return false;">Show quiz number 355</td></tr>
+<tr><td><a id="ex356" href="#" onclick="loadFenString('8/6pp/4q3/2pp2P1/4pQbk/2P1P3/7K/6R1 w - - 0 1','356');return false;">Show quiz number 356</td></tr>
+<tr><td><a id="ex357" href="#" onclick="loadFenString('6k1/p4R1p/1p5q/5Q2/2Pb4/8/P6P/7K w - - 0 1','357');return false;">Show quiz number 357</td></tr>
+<tr><td><a id="ex358" href="#" onclick="loadFenString('r3rk2/pbp2Bpp/8/4N1n1/5P2/4Q2R/Pq4PP/5RK1 w - - 0 1','358');return false;">Show quiz number 358</td></tr>
+<tr><td><a id="ex359" href="#" onclick="loadFenString('r5rk/pp3n1p/4q3/5pp1/3P4/PP1Q1N1P/1B5K/5R2 w - - 0 1','359');return false;">Show quiz number 359</td></tr>
+<tr><td><a id="ex360" href="#" onclick="loadFenString('r1b1kb1r/p2n2pp/4p3/qp1pNp2/2pP1P1B/2P1P3/PPQnB1PP/R3K2R w KQkq - 0 1','360');return false;">Show quiz number 360</td></tr>
+<tr><td><a id="ex361" href="#" onclick="loadFenString('r3kb1r/2p1nppp/p1Np4/1pnP2B1/B5b1/8/PPP2PPP/RN2R1K1 w kq - 0 1','361');return false;">Show quiz number 361</td></tr>
+<tr><td><a id="ex362" href="#" onclick="loadFenString('3b1r2/3p2pk/bp1P3n/r4PpR/1pB1N1P1/8/PB5P/5RK1 w - - 0 1','362');return false;">Show quiz number 362</td></tr>
+<tr><td><a id="ex363" href="#" onclick="loadFenString('r4r1k/p1q3pp/1pbb4/5p2/1PP5/1BBR3P/PQ4P1/R5K1 w - - 0 1','363');return false;">Show quiz number 363</td></tr>
+<tr><td><a id="ex364" href="#" onclick="loadFenString('rn2kbr1/pp3p1p/2p5/q2Pp3/6b1/1BN2Q2/PPP1NPPP/R3K2R w KQ - 0 1','364');return false;">Show quiz number 364</td></tr>
+<tr><td><a id="ex365" href="#" onclick="loadFenString('2r2nk1/p4q2/bp4p1/3pPp2/6p1/1P2P2R/PB3R1P/3Q2K1 w - - 0 1','365');return false;">Show quiz number 365</td></tr>
+<tr><td><a id="ex366" href="#" onclick="loadFenString('r1b4r/ppp1kppp/q7/8/3pN3/8/PPP2PPP/R2QR1K1 w - - 0 1','366');return false;">Show quiz number 366</td></tr>
+<tr><td><a id="ex367" href="#" onclick="loadFenString('3r4/r7/pp1p1bnk/2pP1RN1/P1P3QP/6P1/1qB2P1K/8 w - - 0 1','367');return false;">Show quiz number 367</td></tr>
+<tr><td><a id="ex368" href="#" onclick="loadFenString('r1b1r1k1/ppq2p1p/3b1ppQ/2n5/8/3B2N1/PPP2PPP/R1B2RK1 w - - 0 1','368');return false;">Show quiz number 368</td></tr>
+<tr><td><a id="ex369" href="#" onclick="loadFenString('r1b2rk1/1pq2p1p/p4Q2/1pP5/5p2/3BR3/P4PPP/5K1R w - - 0 1','369');return false;">Show quiz number 369</td></tr>
+<tr><td><a id="ex370" href="#" onclick="loadFenString('r7/p1b3pk/2N4p/2pb4/8/1P1P4/PBP3PP/4R1K1 w - - 0 1','370');return false;">Show quiz number 370</td></tr>
+<tr><td><a id="ex371" href="#" onclick="loadFenString('r7/2b1qr1k/2p2pRn/p1Pppp2/Pp1P1N1P/5P2/PBBQ4/2K3R1 w - - 0 1','371');return false;">Show quiz number 371</td></tr>
+<tr><td><a id="ex372" href="#" onclick="loadFenString('2k2brr/1ppbqp2/2np4/1B2p1P1/Q3P3/2PPB1p1/P2N1PP1/RR4K1 w - - 0 1','372');return false;">Show quiz number 372</td></tr>
+<tr><td><a id="ex373" href="#" onclick="loadFenString('8/p5pk/1p3q2/2n2P1p/2PQ2p1/2P1Rb2/PK5P/1B6 w - - 0 1','373');return false;">Show quiz number 373</td></tr>
+<tr><td><a id="ex374" href="#" onclick="loadFenString('r1q2r1k/p4b2/1p2pP2/3p3p/1P1B1P2/2PB4/P3Q2P/6RK w - - 0 1','374');return false;">Show quiz number 374</td></tr>
+<tr><td><a id="ex375" href="#" onclick="loadFenString('r4k2/1b2qp1r/pp2p3/3pNPbp/3P4/2N2Q2/PPP4P/1K1RR3 w - - 0 1','375');return false;">Show quiz number 375</td></tr>
+<tr><td><a id="ex376" href="#" onclick="loadFenString('r4r1k/ppb1q2p/2p1Bp2/2P2P2/n1PP4/5K1Q/P2B1P2/R6R w - - 0 1','376');return false;">Show quiz number 376</td></tr>
+<tr><td><a id="ex377" href="#" onclick="loadFenString('1r4kr/p2p1R1p/p2Np1nB/4p3/6PP/7N/P1PK2b1/8 w - - 0 1','377');return false;">Show quiz number 377</td></tr>
+<tr><td><a id="ex378" href="#" onclick="loadFenString('3r3r/pk3ppp/1ppB1q2/4p3/2B1P1n1/Q2R4/1PP1NPPP/6K1 w - - 0 1','378');return false;">Show quiz number 378</td></tr>
+<tr><td><a id="ex379" href="#" onclick="loadFenString('2r1n3/p1q2krR/2bpp1pQ/1p4P1/4PP2/1PP5/2PBB3/2K4R w - - 0 1','379');return false;">Show quiz number 379</td></tr>
+<tr><td><a id="ex380" href="#" onclick="loadFenString('r5r1/p1q2p1k/1p1R2pB/3p4/6bQ/2p5/P1P1NPPP/6K1 w - - 0 1','380');return false;">Show quiz number 380</td></tr>
+<tr><td><a id="ex381" href="#" onclick="loadFenString('2r1q1r1/pb1n1ppk/3pNn1p/2pP1P2/2p4B/P1P4R/3Q2PP/1B3RK1 w - - 0 1','381');return false;">Show quiz number 381</td></tr>
+<tr><td><a id="ex382" href="#" onclick="loadFenString('8/2R2Bk1/p2r3p/np2p2K/4P2P/1P2P3/8/8 w - - 0 1','382');return false;">Show quiz number 382</td></tr>
+<tr><td><a id="ex383" href="#" onclick="loadFenString('r1b2r2/5P1p/ppn3pk/2p1p1Nq/1bP1PQ2/3P4/PB4BP/1R3RK1 w - - 0 1','383');return false;">Show quiz number 383</td></tr>
+<tr><td><a id="ex384" href="#" onclick="loadFenString('r2r2k1/p2nqpp1/2b1p2p/4B1P1/2p4Q/3B4/PPP2P1P/2KR2R1 w - - 0 1','384');return false;">Show quiz number 384</td></tr>
+<tr><td><a id="ex385" href="#" onclick="loadFenString('6k1/pp3p1p/8/3pbR1r/3N4/P3p3/1PB3PP/6K1 b - - 0 1','385');return false;">Show quiz number 385</td></tr>
+<tr><td><a id="ex386" href="#" onclick="loadFenString('2k1r3/1pp2p2/p2p1B1p/3b1Nq1/1P4p1/2QB1pP1/P4R1P/7K b - - 0 1','386');return false;">Show quiz number 386</td></tr>
+<tr><td><a id="ex387" href="#" onclick="loadFenString('7k/6pp/p7/3N4/P7/3n1NPP/2r1n2K/3R4 b - - 0 1','387');return false;">Show quiz number 387</td></tr>
+<tr><td><a id="ex388" href="#" onclick="loadFenString('rn2kb1r/ppp1pppp/8/8/4q3/3P1N1b/PPP1BPnP/RNBQ1K1R b kq - 0 1','388');return false;">Show quiz number 388</td></tr>
+<tr><td><a id="ex389" href="#" onclick="loadFenString('4rrk1/p1p3pp/3b4/1P1P4/4Npnq/3B4/PP2R1PP/5RQK b - - 0 1','389');return false;">Show quiz number 389</td></tr>
+<tr><td><a id="ex390" href="#" onclick="loadFenString('r1bqk3/pppp1pQ1/8/2b1P2r/4nP1p/8/PPP1B1PP/RNB2R1K b - - 0 1','390');return false;">Show quiz number 390</td></tr>
+<tr><td><a id="ex391" href="#" onclick="loadFenString('5r1k/1b4pp/6r1/p1R5/Pp2p2q/1Q2B2P/1P3PPK/4R3 b - - 0 1','391');return false;">Show quiz number 391</td></tr>
+<tr><td><a id="ex392" href="#" onclick="loadFenString('6rk/6np/p6Q/3q4/BP6/3p4/P4PR1/6K1 b - - 0 1','392');return false;">Show quiz number 392</td></tr>
+<tr><td><a id="ex393" href="#" onclick="loadFenString('2Q5/k1p5/pb5p/6p1/3r4/p2q2BP/5PP1/2R3K1 b - - 0 1','393');return false;">Show quiz number 393</td></tr>
+<tr><td><a id="ex394" href="#" onclick="loadFenString('2rq1rk1/1b2bppp/p3p3/4P1P1/1n1NpP1P/2N1B3/1PP2Q2/R4R1K b - - 0 1','394');return false;">Show quiz number 394</td></tr>
+<tr><td><a id="ex395" href="#" onclick="loadFenString('r1b2rk1/ppb1n2p/4pp2/8/3qNPPN/1P2pQ2/P1P3BP/R4RK1 b - - 0 1','395');return false;">Show quiz number 395</td></tr>
+<tr><td><a id="ex396" href="#" onclick="loadFenString('6k1/1b2qpbp/3P2p1/Q7/N3r3/6B1/PP2r1PP/3RR2K b - - 0 1','396');return false;">Show quiz number 396</td></tr>
+<tr><td><a id="ex397" href="#" onclick="loadFenString('r2rn1k1/1bqn1ppp/p7/2bpP1P1/1p1N1Q2/1P3B2/PBP1NR1P/3R2K1 w - - 0 1','397');return false;">Show quiz number 397</td></tr>
+<tr><td><a id="ex398" href="#" onclick="loadFenString('2qrr1n1/3b1kp1/2pBpn1p/1p2PP2/p2P4/1BP5/P3Q1PP/4RRK1 w - - 0 1','398');return false;">Show quiz number 398</td></tr>
+<tr><td><a id="ex399" href="#" onclick="loadFenString('rn2kb1r/pp2pp1p/2p2p2/8/8/3Q1N2/qPPB1PPP/2KR3R w kq - 0 1','399');return false;">Show quiz number 399</td></tr>
+<tr><td><a id="ex400" href="#" onclick="loadFenString('r1b1knr1/pp2bp1p/1q2p3/5p2/3NN3/8/PPPQBPPP/2KRR3 w - - 0 1','400');return false;">Show quiz number 400</td></tr>
+<tr><td><a id="ex401" href="#" onclick="loadFenString('r3kb1r/1pp3p1/p3bp1p/5q2/3QN3/1P6/PBP3P1/3RR1K1 w kq - 0 1','401');return false;">Show quiz number 401</td></tr>
+<tr><td><a id="ex402" href="#" onclick="loadFenString('r2q1rk1/pbp3pp/1p1b4/3N1p2/2B5/P3PPn1/1P3P1P/2RQK2R w K - 0 1','402');return false;">Show quiz number 402</td></tr>
+<tr><td><a id="ex403" href="#" onclick="loadFenString('r1b1k2r/pppn1ppp/2n5/1B1Qpq2/8/B1p2N2/P4PPP/R3R1K1 w kq - 0 1','403');return false;">Show quiz number 403</td></tr>
+<tr><td><a id="ex404" href="#" onclick="loadFenString('q3kb1r/3n1ppp/4p3/1p6/3N4/1B6/1P1BQPbP/5RK1 w kq - 0 1','404');return false;">Show quiz number 404</td></tr>
+<tr><td><a id="ex405" href="#" onclick="loadFenString('rnb1k1r1/ppp2p1p/4p3/8/1b2q2Q/8/PPPB1nPP/2KR1BNR w - - 0 1','405');return false;">Show quiz number 405</td></tr>
+<tr><td><a id="ex406" href="#" onclick="loadFenString('rnb1kb1r/pp3ppp/2p5/4q3/4n3/3Q4/PPPB1PPP/2KR1BNR w kq - 0 1','406');return false;">Show quiz number 406</td></tr>
+<tr><td><a id="ex407" href="#" onclick="loadFenString('1rq5/2k5/2Bp1r1p/2nP1PpQ/1R2p3/P1P1P1RP/P5P1/6K1 w - - 0 1','407');return false;">Show quiz number 407</td></tr>
+<tr><td><a id="ex408" href="#" onclick="loadFenString('r4rk1/1bp3pp/p3Pp2/1pb2P1Q/5B1N/1Pq1p1PK/P6P/R2R4 w - - 0 1','408');return false;">Show quiz number 408</td></tr>
+<tr><td><a id="ex409" href="#" onclick="loadFenString('r1b1k2r/ppp2ppp/2p5/8/3Qn1q1/8/PPPB2PP/2KR1B1R w kq - 0 1','409');return false;">Show quiz number 409</td></tr>
+<tr><td><a id="ex410" href="#" onclick="loadFenString('r4r1k/ppp2pRp/1P1p4/8/1P2P3/3n4/PB3P1P/R6K w - - 0 1','410');return false;">Show quiz number 410</td></tr>
+<tr><td><a id="ex411" href="#" onclick="loadFenString('r3kb1r/ppp2ppp/5q2/3p4/2Bnn1b1/5NP1/PPPN1P1P/R1BQR1K1 w kq - 0 1','411');return false;">Show quiz number 411</td></tr>
+<tr><td><a id="ex412" href="#" onclick="loadFenString('2rr4/p3k1n1/1p3bB1/3qBPp1/1P2Q3/P6R/5P1P/R5K1 w - - 0 1','412');return false;">Show quiz number 412</td></tr>
+<tr><td><a id="ex413" href="#" onclick="loadFenString('k3r2r/p2q2b1/2p5/4N2p/4Q1p1/1R4B1/PP3PPP/6K1 w - - 0 1','413');return false;">Show quiz number 413</td></tr>
+<tr><td><a id="ex414" href="#" onclick="loadFenString('r3kb1r/ppp3p1/4bp1p/5q2/3QN2B/1PP5/P4PPP/3RR1K1 w kq - 0 1','414');return false;">Show quiz number 414</td></tr>
+<tr><td><a id="ex415" href="#" onclick="loadFenString('rn3rk1/p5pp/2p5/3Ppb2/8/1Q6/PPPB2PP/R4KNR b - - 0 1','415');return false;">Show quiz number 415</td></tr>
+<tr><td><a id="ex416" href="#" onclick="loadFenString('r5k1/pQp2qpp/8/4pbN1/3P4/6P1/PPr4P/1K1R3R b - - 0 1','416');return false;">Show quiz number 416</td></tr>
+<tr><td><a id="ex417" href="#" onclick="loadFenString('r1b1k2r/ppp1qppp/5B2/3Pn3/8/8/PPP2PPP/RN1QKB1R b KQkq - 0 1','417');return false;">Show quiz number 417</td></tr>
+<tr><td><a id="ex418" href="#" onclick="loadFenString('7k/1bpp2p1/3bp3/p4B2/2P5/P3BrPq/1PQ2P1P/4RRK1 b - - 0 1','418');return false;">Show quiz number 418</td></tr>
+<tr><td><a id="ex419" href="#" onclick="loadFenString('r2qr1k1/ppp1bppp/5n2/6B1/2PR4/P3P3/1PQ2PPP/4KB1R b K - 0 1','419');return false;">Show quiz number 419</td></tr>
+<tr><td><a id="ex420" href="#" onclick="loadFenString('6k1/pb3pp1/8/7p/2Q5/P2r1P1B/4q2P/1R3N1K b - - 0 1','420');return false;">Show quiz number 420</td></tr>
+<tr><td><a id="ex421" href="#" onclick="loadFenString('3r1rk1/1p4pp/p5N1/4p3/2p5/2Pnp1Pq/PP4QP/R2K1R2 w - - 0 1','421');return false;">Show quiz number 421</td></tr>
+<tr><td><a id="ex422" href="#" onclick="loadFenString('rnb1r1k1/ppp2ppp/5q2/8/5B2/4NQP1/P3RPP1/6KR w - - 0 1','422');return false;">Show quiz number 422</td></tr>
+<tr><td><a id="ex423" href="#" onclick="loadFenString('2r1Rn1k/1p1q2pp/p7/5p2/3P4/1B4P1/P1P1QP1P/6K1 w - - 0 1','423');return false;">Show quiz number 423</td></tr>
+<tr><td><a id="ex424" href="#" onclick="loadFenString('r5nr/pp2q1kp/3R4/1p2n3/4PQ2/2N1P1P1/PPP4P/5RK1 w - - 0 1','424');return false;">Show quiz number 424</td></tr>
+<tr><td><a id="ex425" href="#" onclick="loadFenString('r5k1/ppbrq1p1/4np2/2P4Q/3P3P/1B2B3/PP1K1P2/6RR w - - 0 1','425');return false;">Show quiz number 425</td></tr>
+<tr><td><a id="ex426" href="#" onclick="loadFenString('6kr/1q2r1p1/1p2N1Q1/5p2/1P1p4/6R1/7P/2R3K1 w - - 0 1','426');return false;">Show quiz number 426</td></tr>
+<tr><td><a id="ex427" href="#" onclick="loadFenString('8/2RR4/1r6/1k6/1p1p1nBp/1K2b3/7P/8 w - - 0 1','427');return false;">Show quiz number 427</td></tr>
+<tr><td><a id="ex428" href="#" onclick="loadFenString('4r1k1/1p3p2/p2PqBnr/P1p3R1/8/4P1QP/6RK/8 w - - 0 1','428');return false;">Show quiz number 428</td></tr>
+<tr><td><a id="ex429" href="#" onclick="loadFenString('r4k1r/ppp1n2p/2n2N2/4p1N1/1q1b2Q1/8/P4PPP/R1B1R1K1 w - - 0 1','429');return false;">Show quiz number 429</td></tr>
+<tr><td><a id="ex430" href="#" onclick="loadFenString('r4rk1/p1n2pbp/5Bp1/2pN4/2p3q1/8/PP1Q2B1/R4RK1 w - - 0 1','430');return false;">Show quiz number 430</td></tr>
+<tr><td><a id="ex431" href="#" onclick="loadFenString('2r1r2k/1q3ppp/p2Rp3/2p1P3/6QB/p3P3/bP3PPP/3R2K1 w - - 0 1','431');return false;">Show quiz number 431</td></tr>
+<tr><td><a id="ex432" href="#" onclick="loadFenString('2r1b1k1/5r1p/3p1QpB/q2Pp3/1pp1P3/5R1P/P4PP1/4R1K1 w - - 0 1','432');return false;">Show quiz number 432</td></tr>
+<tr><td><a id="ex433" href="#" onclick="loadFenString('r3kbnr/2p2ppp/p1q5/1p2p3/4P3/1P1Q4/1PP2PPP/RNBR2K1 w kq - 0 1','433');return false;">Show quiz number 433</td></tr>
+<tr><td><a id="ex434" href="#" onclick="loadFenString('6rr/pp2kpRb/4p2p/4P3/3N1P2/4K3/P1P4P/6R1 w - - 0 1','434');return false;">Show quiz number 434</td></tr>
+<tr><td><a id="ex435" href="#" onclick="loadFenString('r2q1r1k/pb3p1p/2n1p2Q/5p2/8/3B2N1/PP3PPP/R3R1K1 w - - 0 1','435');return false;">Show quiz number 435</td></tr>
+<tr><td><a id="ex436" href="#" onclick="loadFenString('1Rb1q1rk/6p1/4p2p/1p1pB3/p2P4/4P2P/P1Q2PP1/6K1 w - - 0 1','436');return false;">Show quiz number 436</td></tr>
+<tr><td><a id="ex437" href="#" onclick="loadFenString('2kr4/pp1r1pp1/4n1p1/4R3/2Pp1qP1/3P2QP/P4PB1/1R4K1 w - - 0 1','437');return false;">Show quiz number 437</td></tr>
+<tr><td><a id="ex438" href="#" onclick="loadFenString('rn1q2rk/pp3p1p/2p4Q/3p4/7P/2NP2R1/PPP3P1/4RK2 w - - 0 1','438');return false;">Show quiz number 438</td></tr>
+<tr><td><a id="ex439" href="#" onclick="loadFenString('r1bqn2k/1p2n1p1/p2bppQ1/2pp2PP/8/PP2P3/1BPP4/2K3RR w - - 0 1','439');return false;">Show quiz number 439</td></tr>
+<tr><td><a id="ex440" href="#" onclick="loadFenString('r6k/3b2rq/4p3/p2pQp2/1p6/3R4/PPP1N2P/2K3R1 w - - 0 1','440');return false;">Show quiz number 440</td></tr>
+<tr><td><a id="ex441" href="#" onclick="loadFenString('4r2k/pppb2pp/2np2q1/3B4/2P2P2/1PB1R1P1/PQ5P/6K1 w - - 0 1','441');return false;">Show quiz number 441</td></tr>
+<tr><td><a id="ex442" href="#" onclick="loadFenString('4r2k/p2qr1pp/1pp2p2/2p1nP1N/4R3/1P1P2RP/1PP2QP1/7K w - - 0 1','442');return false;">Show quiz number 442</td></tr>
+<tr><td><a id="ex443" href="#" onclick="loadFenString('3Q4/qr4R1/k2p1p2/2pPpP2/p1P5/8/PP6/7K w - - 0 1','443');return false;">Show quiz number 443</td></tr>
+<tr><td><a id="ex444" href="#" onclick="loadFenString('r2q1bk1/1pp2ppp/p2p1n2/5NB1/4r3/2Q5/PPP2PPP/R3R1K1 w - - 0 1','444');return false;">Show quiz number 444</td></tr>
+<tr><td><a id="ex445" href="#" onclick="loadFenString('r1b2qk1/pnp4p/3p1BpQ/2pr4/5P2/8/PPP3PP/R3R1K1 w - - 0 1','445');return false;">Show quiz number 445</td></tr>
+<tr><td><a id="ex446" href="#" onclick="loadFenString('rn2r2k/pbq2ppB/2p1p2p/1p1nN3/P1pP4/B1P1P1P1/2Q2P1P/R4RK1 w - - 0 1','446');return false;">Show quiz number 446</td></tr>
+<tr><td><a id="ex447" href="#" onclick="loadFenString('r5k1/1pQ2bpp/p1n1Rp2/3B4/1q6/6BP/PP3PP1/6K1 w - - 0 1','447');return false;">Show quiz number 447</td></tr>
+<tr><td><a id="ex448" href="#" onclick="loadFenString('r1b3kr/pppp1p1p/5n1B/3PR3/4n3/2P2N2/P4PPP/R5K1 w - - 0 1','448');return false;">Show quiz number 448</td></tr>
+<tr><td><a id="ex449" href="#" onclick="loadFenString('r1b2r1k/pp3Rpp/2p5/2q2p2/8/1B6/P3QPPP/1R4K1 w - - 0 1','449');return false;">Show quiz number 449</td></tr>
+<tr><td><a id="ex450" href="#" onclick="loadFenString('r2r2k1/1b2bp1p/p4npQ/1p1Pp1N1/Pnq1P3/R5N1/5PPP/1BBR2K1 w - - 0 1','450');return false;">Show quiz number 450</td></tr>
+<tr><td><a id="ex451" href="#" onclick="loadFenString('2r3r1/1kn1q2n/1p2p1Q1/p2pP3/3P4/P2N1N2/1PR4P/2R4K w - - 0 1','451');return false;">Show quiz number 451</td></tr>
+<tr><td><a id="ex452" href="#" onclick="loadFenString('r4bkr/ppp3pp/8/3qn1N1/2pp2P1/8/PPP2P1P/R1BQR1K1 w - - 0 1','452');return false;">Show quiz number 452</td></tr>
+<tr><td><a id="ex453" href="#" onclick="loadFenString('3rr1k1/ppqbRppp/2p5/8/3Q1n2/2P3N1/PPB2PPP/3R2K1 w - - 0 1','453');return false;">Show quiz number 453</td></tr>
+<tr><td><a id="ex454" href="#" onclick="loadFenString('2rn3k/p2q2bp/1p1p2p1/3B1p2/2P2P2/Q6P/P4BP1/4R1K1 w - - 0 1','454');return false;">Show quiz number 454</td></tr>
+<tr><td><a id="ex455" href="#" onclick="loadFenString('r1bqkb2/ppp1p3/2P4r/6p1/7p/2pBP3/PPP3PP/R2QK1NR w KQ - 0 1','455');return false;">Show quiz number 455</td></tr>
+<tr><td><a id="ex456" href="#" onclick="loadFenString('r1b1r1k1/pp3pBn/1q1p2p1/2pPp1n1/2P1P1P1/2N2P2/PPR1B2Q/4K2R w K - 0 1','456');return false;">Show quiz number 456</td></tr>
+<tr><td><a id="ex457" href="#" onclick="loadFenString('r2r2k1/2p2ppp/p7/1p2P1n1/P6q/5P2/2B1QP1P/R5RK b - - 0 1','457');return false;">Show quiz number 457</td></tr>
+<tr><td><a id="ex458" href="#" onclick="loadFenString('5rk1/1pq3pp/3bNp2/1Q6/4P3/2B5/2PP2PP/r4R1K b - - 0 1','458');return false;">Show quiz number 458</td></tr>
+<tr><td><a id="ex459" href="#" onclick="loadFenString('r2r2k1/pp1bpp1p/6p1/2ppn3/6P1/1PbPPB2/q1PN1P2/1R1QKN1R b K - 0 1','459');return false;">Show quiz number 459</td></tr>
+<tr><td><a id="ex460" href="#" onclick="loadFenString('5r1k/pppq2pp/2n2r2/4p3/4Q3/2P1B2P/PPB3K1/R6R b - - 0 1','460');return false;">Show quiz number 460</td></tr>
+<tr><td><a id="ex461" href="#" onclick="loadFenString('7k/1R3p1p/P2Pp3/4n3/8/8/r5BP/2r2N1K b - - 0 1','461');return false;">Show quiz number 461</td></tr>
+<tr><td><a id="ex462" href="#" onclick="loadFenString('r3r1k1/1p3ppp/2p2b2/p7/8/Q1BP2Pq/PPP4P/4RR1K b - - 0 1','462');return false;">Show quiz number 462</td></tr>
+<tr><td><a id="ex463" href="#" onclick="loadFenString('b3r1k1/p4ppp/1pq5/8/8/1P1P2P1/P1P2QNP/3B2K1 b - - 0 1','463');return false;">Show quiz number 463</td></tr>
+<tr><td><a id="ex464" href="#" onclick="loadFenString('8/8/8/1p5r/p1p1k1pN/P2pBpP1/1P1K1P2/8 b - - 0 1','464');return false;">Show quiz number 464</td></tr>
+<tr><td><a id="ex465" href="#" onclick="loadFenString('3r4/p1r2bk1/5p2/2p1q1pp/8/1PR1P2P/P4QP1/2RB2K1 b - - 0 1','465');return false;">Show quiz number 465</td></tr>
+<tr><td><a id="ex466" href="#" onclick="loadFenString('3r2k1/1p4bp/2p1bnp1/1P2Nq2/5B2/5Q1P/5PN1/4R1K1 b - - 0 1','466');return false;">Show quiz number 466</td></tr>
+<tr><td><a id="ex467" href="#" onclick="loadFenString('6r1/1ppb1k2/p2p1p2/3P4/2P2P1N/4R1nP/PP1K2B1/8 b - - 0 1','467');return false;">Show quiz number 467</td></tr>
+<tr><td><a id="ex468" href="#" onclick="loadFenString('2kr2r1/1bb2pq1/p1p4p/1pP1p3/4Pp2/1PNN1Q1P/1P3PP1/R4RK1 b - - 0 1','468');return false;">Show quiz number 468</td></tr>
+<tr><td><a id="ex469" href="#" onclick="loadFenString('2r3k1/5p1p/p3q1p1/2n3P1/1p1QP2P/1P4N1/PK6/2R5 b - - 0 1','469');return false;">Show quiz number 469</td></tr>
+<tr><td><a id="ex470" href="#" onclick="loadFenString('r1b1r1k1/1p3p2/2pp2pp/pP2b2n/2PNP2q/2N2PP1/P2Q3P/R3RBK1 b - - 0 1','470');return false;">Show quiz number 470</td></tr>
+<tr><td><a id="ex471" href="#" onclick="loadFenString('2r3k1/5pb1/1N2p2p/8/3nBq1p/2r4P/R1p2PP1/2R1Q2K b - - 0 1','471');return false;">Show quiz number 471</td></tr>
+<tr><td><a id="ex472" href="#" onclick="loadFenString('3r4/1p3k1p/p1b1p1p1/4Q1Pn/2B3KP/4pP2/PP2R1N1/6q1 b - - 0 1','472');return false;">Show quiz number 472</td></tr>
+<tr><td><a id="ex473" href="#" onclick="loadFenString('r2r2k1/pp1bpp1p/6p1/q1ppn3/6P1/1PbPPBN1/P1PN1P2/1R1QK2R b K - 0 1','473');return false;">Show quiz number 473</td></tr>
+<tr><td><a id="ex474" href="#" onclick="loadFenString('1r4k1/6pp/4N3/3r4/b7/3R4/K2R2PP/8 b - - 0 1','474');return false;">Show quiz number 474</td></tr>
+<tr><td><a id="ex475" href="#" onclick="loadFenString('r4rk1/2p2pp1/pppb1q1p/4pN2/3PPn2/5Q1P/PPP2PP1/R1B2RK1 b - - 0 1','475');return false;">Show quiz number 475</td></tr>
+<tr><td><a id="ex476" href="#" onclick="loadFenString('4r3/pp1q2kp/1bpn1p2/4p2p/6P1/1BP2Q2/PP3PK1/2B1R3 w - - 0 1','476');return false;">Show quiz number 476</td></tr>
+<tr><td><a id="ex477" href="#" onclick="loadFenString('5nk1/1p4pp/5r2/p2qNb2/2Npn3/P5P1/1P3PBP/2R1Q1K1 w - - 0 1','477');return false;">Show quiz number 477</td></tr>
+<tr><td><a id="ex478" href="#" onclick="loadFenString('r2q1b2/5pk1/pp1p1np1/2pP2B1/6BQ/7P/PPP3P1/4R2K w - - 0 1','478');return false;">Show quiz number 478</td></tr>
+<tr><td><a id="ex479" href="#" onclick="loadFenString('2r1k3/6pr/p1nBP3/1p3p1p/2q5/2P5/P1R4P/K2Q2R1 w - - 0 1','479');return false;">Show quiz number 479</td></tr>
+<tr><td><a id="ex480" href="#" onclick="loadFenString('r2q4/5pk1/p1npr3/1pp1p1p1/4P1P1/1PPP1Q2/1P1B1PK1/R6R w - - 0 1','480');return false;">Show quiz number 480</td></tr>
+<tr><td><a id="ex481" href="#" onclick="loadFenString('r4bkr/1pp3p1/p2qb2p/3n4/2B5/P2P1Q1P/1PP2PP1/R1B1R1K1 w - - 0 1','481');return false;">Show quiz number 481</td></tr>
+<tr><td><a id="ex482" href="#" onclick="loadFenString('r2Nqb1r/pQ1bp1pp/1pn1p3/2kp4/P1p2B2/2P5/1PP2PPP/R3KB1R w KQ - 0 1','482');return false;">Show quiz number 482</td></tr>
+<tr><td><a id="ex483" href="#" onclick="loadFenString('3rn2k/3q1ppp/pp1p4/3Pp1Q1/nP2P3/6P1/5PBP/2R1R1K1 w - - 0 1','483');return false;">Show quiz number 483</td></tr>
+<tr><td><a id="ex484" href="#" onclick="loadFenString('1r4k1/4pp1p/6p1/3PQn2/2R5/7P/1q2NPP1/6K1 w - - 0 1','484');return false;">Show quiz number 484</td></tr>
+<tr><td><a id="ex485" href="#" onclick="loadFenString('r3r2k/6Rp/p2q1Qp1/5n2/P5R1/3Np2P/6B1/7K w - - 0 1','485');return false;">Show quiz number 485</td></tr>
+<tr><td><a id="ex486" href="#" onclick="loadFenString('4r1k1/p1pq1p1p/8/3p4/5Q2/1P3PP1/P1P3KP/4R3 w - - 0 1','486');return false;">Show quiz number 486</td></tr>
+<tr><td><a id="ex487" href="#" onclick="loadFenString('1b1rrnk1/1b2q1pp/pp2p3/3nN3/2P4Q/3B2N1/PB4PP/3R1RK1 w - - 0 1','487');return false;">Show quiz number 487</td></tr>
+<tr><td><a id="ex488" href="#" onclick="loadFenString('r1b2rk1/5ppp/p1R2n2/1p1p4/3P4/3BP1P1/qP1N1PP1/3QK2R w K - 0 1','488');return false;">Show quiz number 488</td></tr>
+<tr><td><a id="ex489" href="#" onclick="loadFenString('R7/6kn/3p1rp1/3B3p/3Q4/2P4P/6PK/4q3 w - - 0 1','489');return false;">Show quiz number 489</td></tr>
+<tr><td><a id="ex490" href="#" onclick="loadFenString('r1b2rk1/ppp2pp1/2np1q1p/1B2p3/Pb2P3/2NP1N2/1PP2PPP/R2Q1RK1 w - - 0 1','490');return false;">Show quiz number 490</td></tr>
+<tr><td><a id="ex491" href="#" onclick="loadFenString('8/8/2R5/1Q4r1/1p2kq2/1P5P/3n2P1/6K1 w - - 0 1','491');return false;">Show quiz number 491</td></tr>
+<tr><td><a id="ex492" href="#" onclick="loadFenString('5Q2/p1r2ppp/4pk2/3pN3/3Pn3/2q1P3/5PPP/5RK1 w - - 0 1','492');return false;">Show quiz number 492</td></tr>
+<tr><td><a id="ex493" href="#" onclick="loadFenString('2r2r2/3bqpk1/p7/1pn1p1pQ/1B2P3/1B3R2/PP3PP1/2R3K1 w - - 0 1','493');return false;">Show quiz number 493</td></tr>
+<tr><td><a id="ex494" href="#" onclick="loadFenString('3rbn1k/p1p2n1p/1p2pNp1/6q1/2BP4/1N3Q1P/PP4P1/5RK1 w - - 0 1','494');return false;">Show quiz number 494</td></tr>
+<tr><td><a id="ex495" href="#" onclick="loadFenString('r1b1r1k1/3q1ppp/p1n5/1pp3B1/3bB3/5N2/PP3PPP/R2QR1K1 w - - 0 1','495');return false;">Show quiz number 495</td></tr>
+<tr><td><a id="ex496" href="#" onclick="loadFenString('rnb2r1k/pp4pp/2p1Pp2/3p1P2/4N2q/1BB5/P3Q2P/6RK w - - 0 1','496');return false;">Show quiz number 496</td></tr>
+<tr><td><a id="ex497" href="#" onclick="loadFenString('r1b5/pp2qpk1/2p1pnp1/4N1Rr/3P3P/P2BP3/1P3P2/3QK2R w K - 0 1','497');return false;">Show quiz number 497</td></tr>
+<tr><td><a id="ex498" href="#" onclick="loadFenString('5k2/pb3p1p/1p1q3n/8/2Q3P1/P3B2P/1P3P2/2R3K1 w - - 0 1','498');return false;">Show quiz number 498</td></tr>
+<tr><td><a id="ex499" href="#" onclick="loadFenString('2kr3r/pp2q1pp/2p1b3/4Pp2/2B2P2/2Q2R2/PP4PP/2R4K w - - 0 1','499');return false;">Show quiz number 499</td></tr>
+<tr><td><a id="ex500" href="#" onclick="loadFenString('r5k1/pp5p/3p1np1/2pP4/8/8/PPP1Q1PP/6K1 w - - 0 1','500');return false;">Show quiz number 500</td></tr>
+<tr><td><a id="ex501" href="#" onclick="loadFenString('r3k3/6b1/1pb1r1p1/3n4/1pQp4/P2P4/2P5/1KBN1R2 w - - 0 1','501');return false;">Show quiz number 501</td></tr>
+<tr><td><a id="ex502" href="#" onclick="loadFenString('rn1qk2r/p2b3p/1p2p1p1/1B5Q/4P3/B1P1n3/P1P3PP/R4RK1 w kq - 0 1','502');return false;">Show quiz number 502</td></tr>
+<tr><td><a id="ex503" href="#" onclick="loadFenString('6k1/pB2pp1p/Pp1rb1p1/8/1P6/4B1Pn/5PKP/2R5 w - - 0 1','503');return false;">Show quiz number 503</td></tr>
+<tr><td><a id="ex504" href="#" onclick="loadFenString('r1b1k1nr/ppp2ppp/1bP2q2/8/2B5/BQ6/P4PpP/RN1R2K1 w kq - 0 1','504');return false;">Show quiz number 504</td></tr>
+<tr><td><a id="ex505" href="#" onclick="loadFenString('rn2kb1r/pp3ppp/8/2nR4/2B1q3/4BQP1/PPP4P/2K4R w kq - 0 1','505');return false;">Show quiz number 505</td></tr>
+<tr><td><a id="ex506" href="#" onclick="loadFenString('r1b1r1k1/pp3p1p/1q2p1pQ/2b1P1B1/8/P2B3P/1P3PP1/2R1R1K1 w - - 0 1','506');return false;">Show quiz number 506</td></tr>
+<tr><td><a id="ex507" href="#" onclick="loadFenString('r5k1/5qnp/p5pB/1ppr4/3p1PP1/3P3P/PP4Q1/R3R1K1 w - - 0 1','507');return false;">Show quiz number 507</td></tr>
+<tr><td><a id="ex508" href="#" onclick="loadFenString('2rnn1k1/p1qrpp2/1p1p2p1/4b1P1/3NP3/P1NRBQ1P/1PP5/5RK1 w - - 0 1','508');return false;">Show quiz number 508</td></tr>
+<tr><td><a id="ex509" href="#" onclick="loadFenString('2r3rk/3q1p1p/5p2/1p1p1b2/2pN3R/P1P1R3/1P3PPP/3Q2K1 w - - 0 1','509');return false;">Show quiz number 509</td></tr>
+<tr><td><a id="ex510" href="#" onclick="loadFenString('rB1R4/2Q3pk/5q1p/4p3/6n1/6P1/5P1P/6K1 w - - 0 1','510');return false;">Show quiz number 510</td></tr>
+<tr><td><a id="ex511" href="#" onclick="loadFenString('r5rk/1pp1n1pp/p1n1b1q1/3p1p2/7R/2QB1N2/PB3PPP/4R1K1 w - - 0 1','511');return false;">Show quiz number 511</td></tr>
+<tr><td><a id="ex512" href="#" onclick="loadFenString('6k1/3bbpp1/1pNq1n1p/4p3/1PP1B3/6B1/4QPPP/6K1 w - - 0 1','512');return false;">Show quiz number 512</td></tr>
+<tr><td><a id="ex513" href="#" onclick="loadFenString('3R4/1p6/2pN3k/p6p/2b2r1P/P4P2/5K2/8 w - - 0 1','513');return false;">Show quiz number 513</td></tr>
+<tr><td><a id="ex514" href="#" onclick="loadFenString('6k1/pp3r2/4b1pp/3RN3/2p3P1/5P2/rPP3P1/4R1K1 w - - 0 1','514');return false;">Show quiz number 514</td></tr>
+<tr><td><a id="ex515" href="#" onclick="loadFenString('r3r3/ppp1qnkp/5pb1/2P3p1/1P2P3/P1Q2P2/1B4PP/2KR1B1R w - - 0 1','515');return false;">Show quiz number 515</td></tr>
+<tr><td><a id="ex516" href="#" onclick="loadFenString('r5b1/pqr3kp/1pn3p1/1Bp2pN1/4p3/2P3QP/PPPR1PP1/3R2K1 w - - 0 1','516');return false;">Show quiz number 516</td></tr>
+<tr><td><a id="ex517" href="#" onclick="loadFenString('rnbk2r1/ppp4p/4p3/1B1P4/5B1q/2N2Qp1/PPP3P1/R5K1 w - - 0 1','517');return false;">Show quiz number 517</td></tr>
+<tr><td><a id="ex518" href="#" onclick="loadFenString('b4rk1/2Rn1pp1/p3qb1p/1p1ppN1N/6P1/PP2B2P/1P1Q4/6K1 w - - 0 1','518');return false;">Show quiz number 518</td></tr>
+<tr><td><a id="ex519" href="#" onclick="loadFenString('4k1r1/2pq2p1/pp1pNn1r/3PnQ1p/2P5/6PP/PP2R1B1/4R1K1 w - - 0 1','519');return false;">Show quiz number 519</td></tr>
+<tr><td><a id="ex520" href="#" onclick="loadFenString('r3r1k1/pb1qbp1p/1pn3pB/3N4/3pQ3/6P1/PP2PPBP/2RR2K1 w - - 0 1','520');return false;">Show quiz number 520</td></tr>
+<tr><td><a id="ex521" href="#" onclick="loadFenString('1r1r2k1/pbq2pb1/1p2p1p1/2p5/4N2R/2PBQ1P1/PPP2P2/1K5R w - - 0 1','521');return false;">Show quiz number 521</td></tr>
+<tr><td><a id="ex522" href="#" onclick="loadFenString('b1r3k1/3N1pp1/2nRp2p/p3P3/1p3P2/5B2/PP3KPP/8 w - - 0 1','522');return false;">Show quiz number 522</td></tr>
+<tr><td><a id="ex523" href="#" onclick="loadFenString('4r3/ppp2k1r/3p2p1/2PP4/5P2/P1B2QPq/1P3R2/6K1 b - - 0 1','523');return false;">Show quiz number 523</td></tr>
+<tr><td><a id="ex524" href="#" onclick="loadFenString('1r2kb2/p4p2/b1p1p3/8/3P4/8/qBKN1PPP/Q6R b - - 0 1','524');return false;">Show quiz number 524</td></tr>
+<tr><td><a id="ex525" href="#" onclick="loadFenString('br4k1/5pp1/4p2p/2N5/8/Q1qP1P2/6PP/R5K1 b - - 0 1','525');return false;">Show quiz number 525</td></tr>
+<tr><td><a id="ex526" href="#" onclick="loadFenString('r4r1k/7p/1p1p1Pq1/2pP4/bPP1Qp1P/p2K4/P3BP2/4R2R b - - 0 1','526');return false;">Show quiz number 526</td></tr>
+<tr><td><a id="ex527" href="#" onclick="loadFenString('5bk1/5pp1/3N2b1/2B4p/6P1/1R4QP/1P2rP1K/5q2 b - - 0 1','527');return false;">Show quiz number 527</td></tr>
+<tr><td><a id="ex528" href="#" onclick="loadFenString('3r2k1/6pp/p1R1P3/P2p4/3P4/1B3Pq1/1P3QPr/6K1 b - - 0 1','528');return false;">Show quiz number 528</td></tr>
+<tr><td><a id="ex529" href="#" onclick="loadFenString('4r1k1/1pp2bbp/p1n3p1/5p2/5N2/2N2P2/PPP1B1PP/1K1R4 b - - 0 1','529');return false;">Show quiz number 529</td></tr>
+<tr><td><a id="ex530" href="#" onclick="loadFenString('2kr4/p4p2/1p2p1n1/2p2p2/2P2P2/2PPK1R1/P4R1r/2B5 b - - 0 1','530');return false;">Show quiz number 530</td></tr>
+<tr><td><a id="ex531" href="#" onclick="loadFenString('8/8/p5p1/1p2p2p/2bp3P/P3k1P1/1KPR1R2/4r3 b - - 0 1','531');return false;">Show quiz number 531</td></tr>
+<tr><td><a id="ex532" href="#" onclick="loadFenString('r3r1k1/ppp2pp1/2nb3p/3n1b2/7B/2PN4/PP1NBPPP/R2K3R b - - 0 1','532');return false;">Show quiz number 532</td></tr>
+<tr><td><a id="ex533" href="#" onclick="loadFenString('3r1r1k/4b1p1/1p5p/2p1Pp2/q1B2P2/4Pb1P/1BR2Q1K/6R1 b - - 0 1','533');return false;">Show quiz number 533</td></tr>
+<tr><td><a id="ex534" href="#" onclick="loadFenString('2r5/3rkpp1/pn1bpn1p/1p6/1P6/P1N1PB1P/1B1R1PP1/3R1K2 b - - 0 1','534');return false;">Show quiz number 534</td></tr>
+<tr><td><a id="ex535" href="#" onclick="loadFenString('r3r1k1/pppq1ppp/8/8/1Q4n1/7P/PPP2PP1/RNB1R1K1 b - - 0 1','535');return false;">Show quiz number 535</td></tr>
+<tr><td><a id="ex536" href="#" onclick="loadFenString('2q3k1/5pb1/p5pp/1p6/3rPP2/P7/NP2Q1PP/3R2K1 b - - 0 1','536');return false;">Show quiz number 536</td></tr>
+<tr><td><a id="ex537" href="#" onclick="loadFenString('r1b1k2r/pp2npbp/3pp1p1/2p5/1q1nPP2/2NPB1P1/P1PQN1BP/1R2K2R b Kkq - 0 1','537');return false;">Show quiz number 537</td></tr>
+<tr><td><a id="ex538" href="#" onclick="loadFenString('r3k1nr/ppp2ppp/8/3Bp3/3nPPb1/2P3P1/PP1PN2q/R1BQKR2 b Qkq - 0 1','538');return false;">Show quiz number 538</td></tr>
+<tr><td><a id="ex539" href="#" onclick="loadFenString('N1br2k1/pp3ppp/2n5/5nq1/4p3/2P1P1P1/PP3K1P/RNQ2B1R b - - 0 1','539');return false;">Show quiz number 539</td></tr>
+<tr><td><a id="ex540" href="#" onclick="loadFenString('2r4k/p3qp2/1pn3rp/5b2/4NQ2/2P1P2P/P5BK/1R3R2 b - - 0 1','540');return false;">Show quiz number 540</td></tr>
+<tr><td><a id="ex541" href="#" onclick="loadFenString('r1b1k2r/ppp1bppp/2nq4/8/2B3n1/2p2N1P/PP2QPP1/RNB2RK1 b kq - 0 1','541');return false;">Show quiz number 541</td></tr>
+<tr><td><a id="ex542" href="#" onclick="loadFenString('r4rk1/5ppp/pq2p3/2b5/3N4/1Q2PPP1/7P/R2R2K1 b - - 0 1','542');return false;">Show quiz number 542</td></tr>
+<tr><td><a id="ex543" href="#" onclick="loadFenString('r3k1nr/p5b1/2qpp2p/1Q2n1p1/3N1p2/2P5/PP4PP/RNB2RK1 b kq - 0 1','543');return false;">Show quiz number 543</td></tr>
+<tr><td><a id="ex544" href="#" onclick="loadFenString('r3k1r1/pp3p1p/4p3/4n3/b1qNP3/4B2P/P4PP1/R1Q3KR b - - 0 1','544');return false;">Show quiz number 544</td></tr>
+<tr><td><a id="ex545" href="#" onclick="loadFenString('1br1r1k1/p2q1ppp/1p6/4p3/1PPp1n1n/P2P1PNP/1B1Q3K/3R2NR b - - 0 1','545');return false;">Show quiz number 545</td></tr>
+<tr><td><a id="ex546" href="#" onclick="loadFenString('5rk1/5pp1/2pp4/p1b4q/Pp2P2P/1B2B3/1PP1QPr1/1R3K2 b - - 0 1','546');return false;">Show quiz number 546</td></tr>
+<tr><td><a id="ex547" href="#" onclick="loadFenString('rn1q1r2/4bpk1/p3p3/1pN1N1np/2pP4/4PpBb/PPQ4P/1B1RK1R1 w - - 0 1','547');return false;">Show quiz number 547</td></tr>
+<tr><td><a id="ex548" href="#" onclick="loadFenString('6k1/1b1q1p1r/pp1p1Q1p/2pPrP1N/4P3/6P1/PP5P/4RRK1 w - - 0 1','548');return false;">Show quiz number 548</td></tr>
+<tr><td><a id="ex549" href="#" onclick="loadFenString('3nR3/r1BP1rpk/2p4p/p1p2p2/8/7P/P4PP1/3R2K1 w - - 0 1','549');return false;">Show quiz number 549</td></tr>
+<tr><td><a id="ex550" href="#" onclick="loadFenString('3r1b2/p4bkp/1p1P1p2/r3p1p1/2q1N3/2N2P2/1P1R2PP/2QR3K w - - 0 1','550');return false;">Show quiz number 550</td></tr>
+<tr><td><a id="ex551" href="#" onclick="loadFenString('r2qkb1r/1b1n1p1p/p2pp3/1p3N2/8/2N3P1/PPP2P1P/R1BQR1K1 w kq - 0 1','551');return false;">Show quiz number 551</td></tr>
+<tr><td><a id="ex552" href="#" onclick="loadFenString('r1b1kb1r/1p3ppp/p1n3q1/8/3B4/5B2/PPPQ1P1P/2KR3R w kq - 0 1','552');return false;">Show quiz number 552</td></tr>
+<tr><td><a id="ex553" href="#" onclick="loadFenString('r3k2r/pp1b1pbn/1qp1n1pp/8/P1Q1PB2/2N3NP/BPP3P1/3R1R1K w kq - 0 1','553');return false;">Show quiz number 553</td></tr>
+<tr><td><a id="ex554" href="#" onclick="loadFenString('2r2rk1/pbpnqp2/1p2pb2/6p1/3PN1P1/2PB1N2/PPQ2P2/1K1R3R w - - 0 1','554');return false;">Show quiz number 554</td></tr>
+<tr><td><a id="ex555" href="#" onclick="loadFenString('r2r4/1q1n1Qpk/p3Pb2/1p1p1N2/1P1p4/8/P5PP/2R1R1K1 w - - 0 1','555');return false;">Show quiz number 555</td></tr>
+<tr><td><a id="ex556" href="#" onclick="loadFenString('2q3r1/4Q1p1/p1kP1p1p/2r1p3/Pp6/6P1/1P3P1P/R2R2K1 w - - 0 1','556');return false;">Show quiz number 556</td></tr>
+<tr><td><a id="ex557" href="#" onclick="loadFenString('r4rk1/p1pb1qp1/3n1p1R/2pPpN2/2P5/P1PB4/4Q1PP/5RK1 w - - 0 1','557');return false;">Show quiz number 557</td></tr>
+<tr><td><a id="ex558" href="#" onclick="loadFenString('2r2bk1/1p4p1/p3N2p/1q6/4Q3/1P5P/P4PP1/4R1K1 w - - 0 1','558');return false;">Show quiz number 558</td></tr>
+<tr><td><a id="ex559" href="#" onclick="loadFenString('2r3rk/3qbppp/8/ppnpPP2/5P2/4BNR1/PP5P/2RQ3K w - - 0 1','559');return false;">Show quiz number 559</td></tr>
+<tr><td><a id="ex560" href="#" onclick="loadFenString('r4rk1/1bn2qnp/3p1B1Q/p2P1pP1/1pp5/5N1P/PPB2P2/2KR3R w - - 0 1','560');return false;">Show quiz number 560</td></tr>
+<tr><td><a id="ex561" href="#" onclick="loadFenString('2r2rk1/pp1b1ppp/1qn1p3/3pP3/3P2n1/2PB1R2/PP1N2PP/R1BQ3K w - - 0 1','561');return false;">Show quiz number 561</td></tr>
+<tr><td><a id="ex562" href="#" onclick="loadFenString('2r2rk1/pp4b1/2nppq2/5b2/2B1pP2/1PN1B3/PP5Q/2K3RR w - - 0 1','562');return false;">Show quiz number 562</td></tr>
+<tr><td><a id="ex563" href="#" onclick="loadFenString('r2q1n1k/1p5p/2p1p1p1/1b6/5BN1/6P1/4r1PK/1RR3Q1 w - - 0 1','563');return false;">Show quiz number 563</td></tr>
+<tr><td><a id="ex564" href="#" onclick="loadFenString('4b1rk/pnq1P1r1/1p3Qp1/1Pp5/2Pp4/3B2N1/P3RPP1/4R1K1 w - - 0 1','564');return false;">Show quiz number 564</td></tr>
+<tr><td><a id="ex565" href="#" onclick="loadFenString('2r3kr/ppp2n1p/7B/5q1N/1bp5/2Pp4/PP2RPPP/R2Q2K1 w - - 0 1','565');return false;">Show quiz number 565</td></tr>
+<tr><td><a id="ex566" href="#" onclick="loadFenString('1r5r/1bq1bpk1/p1p1pNp1/1p2P1P1/1P1P3N/P2Q4/6P1/3R1RK1 w - - 0 1','566');return false;">Show quiz number 566</td></tr>
+<tr><td><a id="ex567" href="#" onclick="loadFenString('2r1nrk1/p4p1p/1p2p1pQ/nPqbRN2/8/P2B4/1BP2PPP/3R2K1 w - - 0 1','567');return false;">Show quiz number 567</td></tr>
+<tr><td><a id="ex568" href="#" onclick="loadFenString('r4rk1/ppp3p1/2bpq3/5pPR/3Qn3/5N2/PPP2PP1/2K4R w - - 0 1','568');return false;">Show quiz number 568</td></tr>
+<tr><td><a id="ex569" href="#" onclick="loadFenString('5r2/5rk1/3p1ppR/p2Np1n1/Pp2P3/5Pq1/1PP1Q3/1K5R w - - 0 1','569');return false;">Show quiz number 569</td></tr>
+<tr><td><a id="ex570" href="#" onclick="loadFenString('6qk/1p2Q2p/pbb3p1/5pN1/1P1p1P2/3P4/P2B2PP/6K1 w - - 0 1','570');return false;">Show quiz number 570</td></tr>
+<tr><td><a id="ex571" href="#" onclick="loadFenString('2n2r1k/1r1qb1pp/2p2p2/ppP3P1/5P1N/1P1N4/KP6/2QR1B2 w - - 0 1','571');return false;">Show quiz number 571</td></tr>
+<tr><td><a id="ex572" href="#" onclick="loadFenString('r1b2k2/pppq1prp/3p1Qp1/8/2B5/2P5/PPP2PPP/R3R1K1 w - - 0 1','572');return false;">Show quiz number 572</td></tr>
+<tr><td><a id="ex573" href="#" onclick="loadFenString('r3rbk1/ppqb1pp1/2p3P1/8/2n3P1/2N5/PPP2P2/1KQR3R w - - 0 1','573');return false;">Show quiz number 573</td></tr>
+<tr><td><a id="ex574" href="#" onclick="loadFenString('r1b4k/ppp2Bb1/6Pp/3pP3/1qnP1p1Q/8/PPP3P1/1K1R3R w - - 0 1','574');return false;">Show quiz number 574</td></tr>
+<tr><td><a id="ex575" href="#" onclick="loadFenString('rn1qkb1r/pp2pppp/3n4/4NQ2/P1pp4/2N5/1P3PPP/R1B1KB1R w KQkq - 0 1','575');return false;">Show quiz number 575</td></tr>
+<tr><td><a id="ex576" href="#" onclick="loadFenString('2kr2nr/ppp2ppp/1b6/1B2q3/8/4BP2/PPQ3PP/3RR2K w - - 0 1','576');return false;">Show quiz number 576</td></tr>
+<tr><td><a id="ex577" href="#" onclick="loadFenString('6k1/p4p1p/3p1p2/2p1r3/2PnrqN1/P6P/1P1Q1PP1/3R1RK1 b - - 0 1','577');return false;">Show quiz number 577</td></tr>
+<tr><td><a id="ex578" href="#" onclick="loadFenString('r4rk1/pp1qn3/3p4/b1pPP1p1/8/2N1PpP1/PP1Q1P1K/R1N1R3 b - - 0 1','578');return false;">Show quiz number 578</td></tr>
+<tr><td><a id="ex579" href="#" onclick="loadFenString('3rr1k1/2p3pR/1p6/p1nPP3/2P5/2Nq1p2/PP6/2K1Q2R b - - 0 1','579');return false;">Show quiz number 579</td></tr>
+<tr><td><a id="ex580" href="#" onclick="loadFenString('2rr1b2/8/ppkq1pP1/3pp3/2p5/2BPPpP1/BQ3P2/1RRN1n1K b - - 0 1','580');return false;">Show quiz number 580</td></tr>
+<tr><td><a id="ex581" href="#" onclick="loadFenString('r3k2r/pp3p1p/2nq4/P3nbp1/1bPpp3/1P4PP/3BPPN1/RN1QKB1R b KQkq - 0 1','581');return false;">Show quiz number 581</td></tr>
+<tr><td><a id="ex582" href="#" onclick="loadFenString('k1q1bbrr/1p3pp1/p7/5n1n/PP2N2p/1NP5/1BB1Q1PP/2R2R1K b - - 0 1','582');return false;">Show quiz number 582</td></tr>
+<tr><td><a id="ex583" href="#" onclick="loadFenString('3r3k/p3Qp1p/4p3/1pR4P/3qr3/P5R1/1P3PP1/6K1 w - - 0 1','583');return false;">Show quiz number 583</td></tr>
+<tr><td><a id="ex584" href="#" onclick="loadFenString('6k1/6pp/2r1q3/4B3/3pn3/1Q6/6PP/5RK1 w - - 0 1','584');return false;">Show quiz number 584</td></tr>
+<tr><td><a id="ex585" href="#" onclick="loadFenString('r1k1r3/ppp1np1p/5N2/8/2BQ2bq/3P4/PPP5/5RK1 w - - 0 1','585');return false;">Show quiz number 585</td></tr>
+<tr><td><a id="ex586" href="#" onclick="loadFenString('rn1qr3/pb5p/1p3b1R/5Pp1/2pp2k1/3B4/PP1B2PP/5RK1 w - - 0 1','586');return false;">Show quiz number 586</td></tr>
+<tr><td><a id="ex587" href="#" onclick="loadFenString('2r2bnr/3b1k1p/p3pP2/1p2q2p/3NN2Q/8/1PP3PP/2BR1RK1 w - - 0 1','587');return false;">Show quiz number 587</td></tr>
+<tr><td><a id="ex588" href="#" onclick="loadFenString('2b1rnk1/r1q2ppp/4pb2/2p1N2Q/2P1B3/1P6/1B3PPP/3R1RK1 w - - 0 1','588');return false;">Show quiz number 588</td></tr>
+<tr><td><a id="ex589" href="#" onclick="loadFenString('4rrk1/ppp2p1p/3q1B2/2bpp3/R7/1PPb1Q2/1P1N1PPP/4R1K1 w - - 0 1','589');return false;">Show quiz number 589</td></tr>
+<tr><td><a id="ex590" href="#" onclick="loadFenString('r1bq2k1/ppp3rp/2n1P3/2Bp2pQ/5p2/2PB4/P1PP2PP/4RRK1 w - - 0 1','590');return false;">Show quiz number 590</td></tr>
+<tr><td><a id="ex591" href="#" onclick="loadFenString('r2k4/pb2np2/1p1p1p1Q/1BP1qPr1/3pPN2/P6R/6PP/R5K1 w - - 0 1','591');return false;">Show quiz number 591</td></tr>
+<tr><td><a id="ex592" href="#" onclick="loadFenString('1rb2rk1/7p/p3p3/2Pp4/3Q1q2/2R5/P1P3BP/K2R4 w - - 0 1','592');return false;">Show quiz number 592</td></tr>
+<tr><td><a id="ex593" href="#" onclick="loadFenString('1rb2rk1/p1p2ppp/2q5/3R4/2P1N3/bP4B1/P1Q2P1P/1K5R w - - 0 1','593');return false;">Show quiz number 593</td></tr>
+<tr><td><a id="ex594" href="#" onclick="loadFenString('2r3r1/3q3p/p6b/Pkp1B3/1p1p1P2/1P1P1Q2/2R3PP/2R3K1 w - - 0 1','594');return false;">Show quiz number 594</td></tr>
+<tr><td><a id="ex595" href="#" onclick="loadFenString('r4rk1/pq4pp/4P3/3p3Q/2pP1P2/4P2P/PbK5/1N4RR w - - 0 1','595');return false;">Show quiz number 595</td></tr>
+<tr><td><a id="ex596" href="#" onclick="loadFenString('r3rnk1/1p5p/p2P2pn/3q4/P3bR2/3Np1PP/1Q4BK/2R5 w - - 0 1','596');return false;">Show quiz number 596</td></tr>
+<tr><td><a id="ex597" href="#" onclick="loadFenString('2r1r2k/1b5p/p2QNq2/3p1P2/3Pp3/8/6RP/6RK w - - 0 1','597');return false;">Show quiz number 597</td></tr>
+<tr><td><a id="ex598" href="#" onclick="loadFenString('r1b1rqk1/5p2/5Pp1/ppp1B1Q1/8/1P1P3R/P5PP/5RK1 w - - 0 1','598');return false;">Show quiz number 598</td></tr>
+<tr><td><a id="ex599" href="#" onclick="loadFenString('Q2b1k2/p4p1r/3PnR2/P3P1q1/1p4p1/6Nr/1P5P/5RBK w - - 0 1','599');return false;">Show quiz number 599</td></tr>
+<tr><td><a id="ex600" href="#" onclick="loadFenString('1r4r1/1p1b1p1k/pq5b/4pP1R/3NP1P1/6K1/PP1Q2B1/3R4 w - - 0 1','600');return false;">Show quiz number 600</td></tr>
+<tr><td><a id="ex601" href="#" onclick="loadFenString('r1r3k1/pb1q1ppp/1p6/P1pp4/3P4/Q1P1PN2/5PPP/RR4K1 w - - 0 1','601');return false;">Show quiz number 601</td></tr>
+<tr><td><a id="ex602" href="#" onclick="loadFenString('r6k/1p2RQ1p/3p4/p1q3r1/8/1P4N1/P1b3PP/5R1K w - - 0 1','602');return false;">Show quiz number 602</td></tr>
+<tr><td><a id="ex603" href="#" onclick="loadFenString('5r1k/6p1/pb3pQB/5P2/2P1K3/3P3R/4q1PP/8 w - - 0 1','603');return false;">Show quiz number 603</td></tr>
+<tr><td><a id="ex604" href="#" onclick="loadFenString('2b2r2/1pn3pk/r7/p3N3/2Q2p1N/7R/Pq4PP/5R1K w - - 0 1','604');return false;">Show quiz number 604</td></tr>
+<tr><td><a id="ex605" href="#" onclick="loadFenString('4r1k1/pp6/1q4p1/2b1pr2/5BQ1/6P1/PP1R1P1P/3R3K w - - 0 1','605');return false;">Show quiz number 605</td></tr>
+<tr><td><a id="ex606" href="#" onclick="loadFenString('1r5k/2q2p1p/p2p3B/5PQ1/n1p5/2b4P/PrB3P1/2R1R1K1 w - - 0 1','606');return false;">Show quiz number 606</td></tr>
+<tr><td><a id="ex607" href="#" onclick="loadFenString('8/3k4/R3pp2/1P6/2P5/1r3p2/2K5/8 b - - 0 1','607');return false;">Show quiz number 607</td></tr>
+<tr><td><a id="ex608" href="#" onclick="loadFenString('6k1/p4p2/1bp3p1/P2p4/1P4qp/2PQ4/4rPP1/2B2RK1 b - - 0 1','608');return false;">Show quiz number 608</td></tr>
+<tr><td><a id="ex609" href="#" onclick="loadFenString('3r3k/p5p1/1p5p/3bpP2/4Bq2/1P5K/P5Q1/6R1 b - - 0 1','609');return false;">Show quiz number 609</td></tr>
+<tr><td><a id="ex610" href="#" onclick="loadFenString('3R4/2B5/8/5k2/1b2b3/4K2p/3p4/8 b - - 0 1','610');return false;">Show quiz number 610</td></tr>
+<tr><td><a id="ex611" href="#" onclick="loadFenString('r3r1k1/1pp2ppp/p2b4/7q/3P4/1Q4Pb/PP3P1P/RNBR2K1 b - - 0 1','611');return false;">Show quiz number 611</td></tr>
+<tr><td><a id="ex612" href="#" onclick="loadFenString('r1r3k1/6p1/3Rp2p/1b3p2/3Q4/1P6/3N2qP/1K4R1 b - - 0 1','612');return false;">Show quiz number 612</td></tr>
+<tr><td><a id="ex613" href="#" onclick="loadFenString('r3r1k1/2p5/1pNp2b1/pQ3pq1/2PPp1R1/P1P1P1n1/6P1/3BR1K1 b - - 0 1','613');return false;">Show quiz number 613</td></tr>
+<tr><td><a id="ex614" href="#" onclick="loadFenString('6k1/2q2rp1/3R2n1/p7/1p1B4/1P2P1QP/P2P1PP1/6K1 b - - 0 1','614');return false;">Show quiz number 614</td></tr>
+<tr><td><a id="ex615" href="#" onclick="loadFenString('3r1rk1/ppp2ppp/7q/8/2B2n2/2Q4P/PP1N1P1K/3R1R2 b - - 0 1','615');return false;">Show quiz number 615</td></tr>
+<tr><td><a id="ex616" href="#" onclick="loadFenString('1br3k1/1p4p1/p3p2r/5pq1/3Nb3/P1B1PpP1/1P1R3P/2R1Q1K1 b - - 0 1','616');return false;">Show quiz number 616</td></tr>
+<tr><td><a id="ex617" href="#" onclick="loadFenString('5rk1/1p4pp/3p4/p1P1n2Q/q2BP3/2P4P/3p2P1/3R2K1 b - - 0 1','617');return false;">Show quiz number 617</td></tr>
+<tr><td><a id="ex618" href="#" onclick="loadFenString('1r4r1/p2kb2p/bq2p3/3p1p2/5P2/2BB3Q/PP4PP/3RKR2 b - - 0 1','618');return false;">Show quiz number 618</td></tr>
+<tr><td><a id="ex619" href="#" onclick="loadFenString('2r2rk1/qp3ppp/pR6/4Pp2/5P2/1Q2PB2/PP1b3P/3R2K1 b - - 0 1','619');return false;">Show quiz number 619</td></tr>
+<tr><td><a id="ex620" href="#" onclick="loadFenString('r1bqr1k1/1p3pb1/2pp2pp/pP2n2n/2PNP3/2N1BP2/P5PP/R2QRBK1 b - - 0 1','620');return false;">Show quiz number 620</td></tr>
+<tr><td><a id="ex621" href="#" onclick="loadFenString('4q1k1/pp5p/6p1/2pBp3/2P3R1/PPQ1P1P1/1B4PK/3r1r2 b - - 0 1','621');return false;">Show quiz number 621</td></tr>
+<tr><td><a id="ex622" href="#" onclick="loadFenString('1k6/p2q2pp/1p3p2/2pn4/3P2PP/Q1P2PK1/P3r3/6RR b - - 0 1','622');return false;">Show quiz number 622</td></tr>
+<tr><td><a id="ex623" href="#" onclick="loadFenString('1r4k1/5r1p/1qPb1Pp1/p1Np2Pn/P3p2P/KP2Q2N/3B1P2/2R5 b - - 0 1','623');return false;">Show quiz number 623</td></tr>
+<tr><td><a id="ex624" href="#" onclick="loadFenString('2r3k1/p3qpbp/b5p1/3P4/N3rB2/8/PP1Q2PP/3RR2K b - - 0 1','624');return false;">Show quiz number 624</td></tr>
+<tr><td><a id="ex625" href="#" onclick="loadFenString('6k1/4P1pp/1p1n4/p7/8/1P3PP1/4B1KP/8 w - - 0 1','625');return false;">Show quiz number 625</td></tr>
+<tr><td><a id="ex626" href="#" onclick="loadFenString('5r1k/6p1/5pPp/2pBpP1P/p2nP3/q7/3Q4/6RK w - - 0 1','626');return false;">Show quiz number 626</td></tr>
+<tr><td><a id="ex627" href="#" onclick="loadFenString('Rr4k1/1P1n1p2/6p1/3p1N1p/1Pn1p3/6PP/6P1/2R3K1 w - - 0 1','627');return false;">Show quiz number 627</td></tr>
+<tr><td><a id="ex628" href="#" onclick="loadFenString('r1b1n2k/1p4pp/p1p5/4r1B1/1b6/1BN5/PP3PPP/R2R3K w - - 0 1','628');return false;">Show quiz number 628</td></tr>
+<tr><td><a id="ex629" href="#" onclick="loadFenString('6k1/p4ppp/Prb5/2QpNq2/5P2/2P1P3/6PP/R5K1 w - - 0 1','629');return false;">Show quiz number 629</td></tr>
+<tr><td><a id="ex630" href="#" onclick="loadFenString('5k2/p2q2pp/1p1Pr3/3QPp2/1B6/P7/1P4PP/6K1 w - - 0 1','630');return false;">Show quiz number 630</td></tr>
+<tr><td><a id="ex631" href="#" onclick="loadFenString('8/4Pk1p/6p1/1r6/8/5N2/2B2PPP/b5K1 w - - 0 1','631');return false;">Show quiz number 631</td></tr>
+<tr><td><a id="ex632" href="#" onclick="loadFenString('8/8/2P1kpp1/1R2p3/1b3PP1/4B1K1/8/1r6 w - - 0 1','632');return false;">Show quiz number 632</td></tr>
+<tr><td><a id="ex633" href="#" onclick="loadFenString('2r1k3/ppP1r1pp/3R4/5R2/8/6P1/P4PP1/6K1 w - - 0 1','633');return false;">Show quiz number 633</td></tr>
+<tr><td><a id="ex634" href="#" onclick="loadFenString('6rk/p6p/1pp1P2r/5P2/3RP1n1/8/PP5P/6RK w - - 0 1','634');return false;">Show quiz number 634</td></tr>
+<tr><td><a id="ex635" href="#" onclick="loadFenString('4k3/p1P3p1/2q1np1p/3N4/8/1Q3PP1/6KP/8 w - - 0 1','635');return false;">Show quiz number 635</td></tr>
+<tr><td><a id="ex636" href="#" onclick="loadFenString('8/1P1R4/1r4kp/p5p1/3p2P1/4PK2/1P3P1P/8 w - - 0 1','636');return false;">Show quiz number 636</td></tr>
+<tr><td><a id="ex637" href="#" onclick="loadFenString('2q3k1/pp2P2p/3p1Q1p/2pP2r1/4P3/6N1/P5PP/7K w - - 0 1','637');return false;">Show quiz number 637</td></tr>
+<tr><td><a id="ex638" href="#" onclick="loadFenString('2r3k1/1p3p2/pn1P2pp/4p3/6Q1/6B1/1q3PPP/5RK1 w - - 0 1','638');return false;">Show quiz number 638</td></tr>
+<tr><td><a id="ex639" href="#" onclick="loadFenString('8/p3k2p/1p2pnPP/5p2/P1PP1N2/5K2/8/8 w - - 0 1','639');return false;">Show quiz number 639</td></tr>
+<tr><td><a id="ex640" href="#" onclick="loadFenString('3qr1k1/pp3Rp1/2ppP2p/8/4N3/1B4P1/PP5P/4R1K1 w - - 0 1','640');return false;">Show quiz number 640</td></tr>
+<tr><td><a id="ex641" href="#" onclick="loadFenString('5k2/p1q2p1p/2Pr2p1/4Q3/P7/6P1/5P1P/2R3K1 w - - 0 1','641');return false;">Show quiz number 641</td></tr>
+<tr><td><a id="ex642" href="#" onclick="loadFenString('5k2/6b1/2p4p/P1pr4/2Q5/1P4P1/2P4P/7K w - - 0 1','642');return false;">Show quiz number 642</td></tr>
+<tr><td><a id="ex643" href="#" onclick="loadFenString('5k2/ppq1r1b1/4P3/3Q2R1/P7/8/1P5P/6RK w - - 0 1','643');return false;">Show quiz number 643</td></tr>
+<tr><td><a id="ex644" href="#" onclick="loadFenString('1r1b2k1/pp3ppp/P2P1n2/3p4/8/6P1/1P3PKP/2R1R3 w - - 0 1','644');return false;">Show quiz number 644</td></tr>
+<tr><td><a id="ex645" href="#" onclick="loadFenString('3Q4/p3b1k1/2p2rPp/2q5/4B3/P2P4/8/6RK w - - 0 1','645');return false;">Show quiz number 645</td></tr>
+<tr><td><a id="ex646" href="#" onclick="loadFenString('1k1r4/pP2q3/8/Q7/8/6bP/6P1/2R4K w - - 0 1','646');return false;">Show quiz number 646</td></tr>
+<tr><td><a id="ex647" href="#" onclick="loadFenString('r3qr2/ppp1ppkP/3p1nb1/6Q1/3P3N/8/PPP1PPP1/R3KB1R w KQ - 0 1','647');return false;">Show quiz number 647</td></tr>
+<tr><td><a id="ex648" href="#" onclick="loadFenString('3rk3/P2np2p/2p3p1/8/4N3/1P2P3/5PP1/3R2K1 w - - 0 1','648');return false;">Show quiz number 648</td></tr>
+<tr><td><a id="ex649" href="#" onclick="loadFenString('8/p1k2p2/5n2/4pP2/1P6/2pB1K2/8/8 b - - 0 1','649');return false;">Show quiz number 649</td></tr>
+<tr><td><a id="ex650" href="#" onclick="loadFenString('r1b1k1nr/ppp2p1p/2nb4/8/Q2N3q/1PP3p1/P2PP1PP/RNBK1B1R b kq - 0 1','650');return false;">Show quiz number 650</td></tr>
+<tr><td><a id="ex651" href="#" onclick="loadFenString('2r3k1/5pb1/3Qp2p/5p2/5P2/R3N3/1pP1q1PP/1K6 b - - 0 1','651');return false;">Show quiz number 651</td></tr>
+<tr><td><a id="ex652" href="#" onclick="loadFenString('6k1/p1pp4/1p2p1p1/2P1r1N1/7P/3Q4/PP3pq1/1K3R2 b - - 0 1','652');return false;">Show quiz number 652</td></tr>
+<tr><td><a id="ex653" href="#" onclick="loadFenString('7r/7P/8/8/2k3K1/8/1p6/7R b - - 0 1','653');return false;">Show quiz number 653</td></tr>
+<tr><td><a id="ex654" href="#" onclick="loadFenString('r1bqkb1r/pppp1p2/2n2P1p/6p1/8/6B1/Pp2QPPP/RN2KBNR b KQkq - 0 1','654');return false;">Show quiz number 654</td></tr>
+<tr><td><a id="ex655" href="#" onclick="loadFenString('r4r1k/4N2p/4n1p1/4Pp2/1p1P1PP1/1q5P/p5R1/3R1QK1 b - - 0 1','655');return false;">Show quiz number 655</td></tr>
+<tr><td><a id="ex656" href="#" onclick="loadFenString('2kr3r/1b5p/p1q1p1p1/2b1P3/P1p5/1B1p2B1/5PPP/2RR1QK1 b - - 0 1','656');return false;">Show quiz number 656</td></tr>
+<tr><td><a id="ex657" href="#" onclick="loadFenString('7k/7p/4rN2/p7/2P5/P2n3P/5pRK/1R2r3 b - - 0 1','657');return false;">Show quiz number 657</td></tr>
+<tr><td><a id="ex658" href="#" onclick="loadFenString('8/8/2p2k2/5p2/6Pp/2K2B2/1N3PP1/r7 b - - 0 1','658');return false;">Show quiz number 658</td></tr>
+<tr><td><a id="ex659" href="#" onclick="loadFenString('7r/1pR5/6k1/3p4/p3n1np/4P3/PPP3PP/5R1K b - - 0 1','659');return false;">Show quiz number 659</td></tr>
+<tr><td><a id="ex660" href="#" onclick="loadFenString('2k1r3/1pp5/p2p4/3P1p2/3N2p1/5PPp/PPPK2n1/6R1 b - - 0 1','660');return false;">Show quiz number 660</td></tr>
+<tr><td><a id="ex661" href="#" onclick="loadFenString('2r4k/3q2bp/4Q3/1pB2p2/1P6/3p4/P4PPP/4R1K1 b - - 0 1','661');return false;">Show quiz number 661</td></tr>
+<tr><td><a id="ex662" href="#" onclick="loadFenString('r1b1kb1r/pp1p1ppp/2n3n1/Q3P3/4P3/1p3NB1/P1P2PPP/RN2KB1R b KQkq - 0 1','662');return false;">Show quiz number 662</td></tr>
+<tr><td><a id="ex663" href="#" onclick="loadFenString('5k2/p4pp1/8/4b3/5PP1/3NP3/P1p5/5K2 b - - 0 1','663');return false;">Show quiz number 663</td></tr>
+<tr><td><a id="ex664" href="#" onclick="loadFenString('2rk4/1b1p3p/pp2p3/5p2/1PPp2rq/P2B2N1/5QpP/3RR1K1 b - - 0 1','664');return false;">Show quiz number 664</td></tr>
+<tr><td><a id="ex665" href="#" onclick="loadFenString('5b2/1k6/1p2bB2/5pK1/1p6/p4P2/P6P/2N5 b - - 0 1','665');return false;">Show quiz number 665</td></tr>
+<tr><td><a id="ex666" href="#" onclick="loadFenString('6r1/5k2/8/3pb3/p1p2p2/P1PnpP1P/1P6/2BR1KN1 b - - 0 1','666');return false;">Show quiz number 666</td></tr>
+<tr><td><a id="ex667" href="#" onclick="loadFenString('3r3k/3P1ppp/p3q3/1pR1P3/2p5/Q5PP/P4P1K/8 w - - 0 1','667');return false;">Show quiz number 667</td></tr>
+<tr><td><a id="ex668" href="#" onclick="loadFenString('1R2rq1k/2p3p1/Q2p1pPp/8/4P3/8/P1r3PP/1R4K1 w - - 0 1','668');return false;">Show quiz number 668</td></tr>
+<tr><td><a id="ex669" href="#" onclick="loadFenString('r5k1/6pp/4q3/pb1pNp2/1n1P4/1Q2P1P1/1B1n1PBP/R5K1 w - - 0 1','669');return false;">Show quiz number 669</td></tr>
+<tr><td><a id="ex670" href="#" onclick="loadFenString('7k/p2r1ppp/1pQ2bq1/3B4/4P3/2BR2Pb/PP3P1P/6K1 w - - 0 1','670');return false;">Show quiz number 670</td></tr>
+<tr><td><a id="ex671" href="#" onclick="loadFenString('5rkr/1p3ppp/8/p7/4R3/Q7/PPPq2PP/4R2K w - - 0 1','671');return false;">Show quiz number 671</td></tr>
+<tr><td><a id="ex672" href="#" onclick="loadFenString('5r1k/3b2p1/p6p/1pRpR3/1P1P4/P4pPq/5Qn1/1B4K1 w - - 0 1','672');return false;">Show quiz number 672</td></tr>
+<tr><td><a id="ex673" href="#" onclick="loadFenString('5rk1/6pp/3P4/2Q2p2/6n1/2P5/P1q3PP/R4RK1 w - - 0 1','673');return false;">Show quiz number 673</td></tr>
+<tr><td><a id="ex674" href="#" onclick="loadFenString('4rrk1/1pp1R1pp/p7/q1P5/8/5P2/PPQ4P/5R1K w - - 0 1','674');return false;">Show quiz number 674</td></tr>
+<tr><td><a id="ex675" href="#" onclick="loadFenString('3R1r1k/6pp/5p2/5B1b/p1p5/q4P2/PrPQ2PP/4R2K w - - 0 1','675');return false;">Show quiz number 675</td></tr>
+<tr><td><a id="ex676" href="#" onclick="loadFenString('6kr/pp4p1/2n5/3qpNNp/2Qp4/2n5/P4PPP/4R1K1 w - - 0 1','676');return false;">Show quiz number 676</td></tr>
+<tr><td><a id="ex677" href="#" onclick="loadFenString('r1b3k1/1p2rppp/3Np3/pB2n3/8/P7/1P3PPP/3R1RK1 w - - 0 1','677');return false;">Show quiz number 677</td></tr>
+<tr><td><a id="ex678" href="#" onclick="loadFenString('5r1k/pp5p/2p2n2/5N2/4qP2/2Q5/1PP4K/3R4 w - - 0 1','678');return false;">Show quiz number 678</td></tr>
+<tr><td><a id="ex679" href="#" onclick="loadFenString('2r1r1k1/1p1q1ppp/3p1b2/p2P4/2Q5/5N2/PP2RPPP/4R1K1 w - - 0 1','679');return false;">Show quiz number 679</td></tr>
+<tr><td><a id="ex680" href="#" onclick="loadFenString('r1b2r1k/ppp3pp/3b4/4Npq1/2B5/8/PPP2PPP/R2QR1K1 w - - 0 1','680');return false;">Show quiz number 680</td></tr>
+<tr><td><a id="ex681" href="#" onclick="loadFenString('2r3k1/Q4Rpp/p1q1n3/P2pP3/8/1pP5/1P4PP/5R1K w - - 0 1','681');return false;">Show quiz number 681</td></tr>
+<tr><td><a id="ex682" href="#" onclick="loadFenString('Rnk5/1p4pp/1Pp2pq1/2B1r3/1P6/7P/3r2PQ/5RK1 w - - 0 1','682');return false;">Show quiz number 682</td></tr>
+<tr><td><a id="ex683" href="#" onclick="loadFenString('5rk1/ppq2ppp/2p5/4bN2/4P3/6Q1/PP3PPP/3R2K1 w - - 0 1','683');return false;">Show quiz number 683</td></tr>
+<tr><td><a id="ex684" href="#" onclick="loadFenString('r3r1k1/3R1ppp/p3p1q1/2p5/2p5/5Q2/PPP3PP/1K1R4 w - - 0 1','684');return false;">Show quiz number 684</td></tr>
+<tr><td><a id="ex685" href="#" onclick="loadFenString('5r1k/1p4p1/2p4p/8/2QPp3/8/PP3qPP/2R4K b - - 0 1','685');return false;">Show quiz number 685</td></tr>
+<tr><td><a id="ex686" href="#" onclick="loadFenString('3r1b1k/pp4p1/2p1Qp2/5N2/PP2Pp2/2Pq4/5PKP/5R2 b - - 0 1','686');return false;">Show quiz number 686</td></tr>
+<tr><td><a id="ex687" href="#" onclick="loadFenString('5rk1/1pp3bp/3p2p1/2PPp3/1P2P3/2Q1B3/4q1PP/R5K1 b - - 0 1','687');return false;">Show quiz number 687</td></tr>
+<tr><td><a id="ex688" href="#" onclick="loadFenString('2r3k1/p3bppp/1p2p3/q2pP3/3P4/1Rr2B2/P1PQ1PPP/2R3K1 b - - 0 1','688');return false;">Show quiz number 688</td></tr>
+<tr><td><a id="ex689" href="#" onclick="loadFenString('2rr2k1/5pp1/pN2pb2/Q7/1R6/P2q4/5PPP/5RK1 b - - 0 1','689');return false;">Show quiz number 689</td></tr>
+<tr><td><a id="ex690" href="#" onclick="loadFenString('1r2r1k1/p2q1pbp/6p1/4n3/5Q2/2N3Pb/PPP2PBP/R1BR2K1 b - - 0 1','690');return false;">Show quiz number 690</td></tr>
+<tr><td><a id="ex691" href="#" onclick="loadFenString('r1r3k1/p2qbppp/4b3/3p2P1/1pnP1P2/3Q2N1/PP1B3P/1K1NRR2 b - - 0 1','691');return false;">Show quiz number 691</td></tr>
+<tr><td><a id="ex692" href="#" onclick="loadFenString('5r1k/ppp3pp/2b1p3/8/2PPP3/P1BQ4/5qPP/4R2K b - - 0 1','692');return false;">Show quiz number 692</td></tr>
+<tr><td><a id="ex693" href="#" onclick="loadFenString('8/pQRq2pk/4p2p/3r1p2/3P4/4P3/PP3PPP/6K1 b - - 0 1','693');return false;">Show quiz number 693</td></tr>
+<tr><td><a id="ex694" href="#" onclick="loadFenString('6k1/1bp2ppp/p2p1b2/7R/Q1P5/P3q3/1r3NPP/5RK1 b - - 0 1','694');return false;">Show quiz number 694</td></tr>
+<tr><td><a id="ex695" href="#" onclick="loadFenString('3r2k1/p4ppp/1q6/8/8/2R1P3/P3QPPP/6K1 b - - 0 1','695');return false;">Show quiz number 695</td></tr>
+<tr><td><a id="ex696" href="#" onclick="loadFenString('3r2k1/1p3p1p/3rq1p1/1Q1n4/2R5/4PB2/5PPP/2R3K1 b - - 0 1','696');return false;">Show quiz number 696</td></tr>
+<tr><td><a id="ex697" href="#" onclick="loadFenString('7Q/1bq1kp2/p3p2p/8/PNp1r3/6P1/1P3P2/3R2K1 b - - 0 1','697');return false;">Show quiz number 697</td></tr>
+<tr><td><a id="ex698" href="#" onclick="loadFenString('4k3/8/2pr1Q2/p2qp3/Pp2N3/1P1P4/2P3PP/7K b - - 0 1','698');return false;">Show quiz number 698</td></tr>
+<tr><td><a id="ex699" href="#" onclick="loadFenString('3rr1k1/p4p1p/1p2p1pB/2n1q3/2P3Q1/1P6/P1R2PPP/3R2K1 b - - 0 1','699');return false;">Show quiz number 699</td></tr>
+<tr><td><a id="ex700" href="#" onclick="loadFenString('3r1rk1/q4ppp/p1Rnp3/8/1p6/1N3P2/PP3QPP/3R2K1 b - - 0 1','700');return false;">Show quiz number 700</td></tr>
+<tr><td><a id="ex701" href="#" onclick="loadFenString('5r1k/1p4pp/8/3Pp1R1/1q6/8/PP4PP/2Q4K b - - 0 1','701');return false;">Show quiz number 701</td></tr>
+<tr><td><a id="ex702" href="#" onclick="loadFenString('1r3rk1/3b2p1/3q1nQp/R7/2p1p3/2N4P/PP2R1P1/1B5K b - - 0 1','702');return false;">Show quiz number 702</td></tr>
+<tr><td><a id="ex703" href="#" onclick="loadFenString('r1b1qrk1/2pp1ppp/pb1n1Bn1/1p6/3PPQN1/1BP5/PP3PPP/RN3RK1 w - - 0 1','703');return false;">Show quiz number 703</td></tr>
+<tr><td><a id="ex704" href="#" onclick="loadFenString('rn1qr2Q/pbppk1p1/1p2pb2/4N3/3P4/2N5/PPP3PP/R4RK1 w - - 0 1','704');return false;">Show quiz number 704</td></tr>
+<tr><td><a id="ex705" href="#" onclick="loadFenString('r1kq1bnr/pp4pp/2nPp3/4N3/2Q2p2/8/PPPP2PP/R1B1KB1R w KQ - 0 1','705');return false;">Show quiz number 705</td></tr>
+<tr><td><a id="ex706" href="#" onclick="loadFenString('6k1/pp5p/2p3q1/6BP/2nPr1Q1/8/PP3R1K/8 w - - 0 1','706');return false;">Show quiz number 706</td></tr>
+<tr><td><a id="ex707" href="#" onclick="loadFenString('r1bqn1rk/1p3pp1/p1nbp2p/2pp3P/5P2/PP1BPN2/1BPP2Q1/2K3RR w - - 0 1','707');return false;">Show quiz number 707</td></tr>
+<tr><td><a id="ex708" href="#" onclick="loadFenString('6rr/ppqb1pkp/2pb1pn1/3p3Q/3P1P1N/3B1RN1/PPP3PP/5RK1 w - - 0 1','708');return false;">Show quiz number 708</td></tr>
+<tr><td><a id="ex709" href="#" onclick="loadFenString('r4rk1/p1R2ppp/1p1bp3/3qB3/3PR3/5Q1P/PP3PP1/6K1 w - - 0 1','709');return false;">Show quiz number 709</td></tr>
+<tr><td><a id="ex710" href="#" onclick="loadFenString('4r1k1/p1qr1p2/2pb1Bp1/1p5p/3P1n1R/1B3P2/PP3PK1/2Q4R w - - 0 1','710');return false;">Show quiz number 710</td></tr>
+<tr><td><a id="ex711" href="#" onclick="loadFenString('2k4r/1pp1q1p1/2n1b3/1Q3p1p/2Pr2n1/6P1/3NPPBP/R4RK1 w - - 0 1','711');return false;">Show quiz number 711</td></tr>
+<tr><td><a id="ex712" href="#" onclick="loadFenString('6k1/1q4p1/1b1p1nP1/3Pp2Q/1pr1B3/1p6/1P6/2B2R1K w - - 0 1','712');return false;">Show quiz number 712</td></tr>
+<tr><td><a id="ex713" href="#" onclick="loadFenString('r3bk1r/1pp2p2/p1p1qNn1/4P1Q1/8/8/PPP2PP1/R1BR2K1 w - - 0 1','713');return false;">Show quiz number 713</td></tr>
+<tr><td><a id="ex714" href="#" onclick="loadFenString('3rrnk1/pp3ppp/q2b4/3R4/4Q1NP/2B5/PP3PP1/4R1K1 w - - 0 1','714');return false;">Show quiz number 714</td></tr>
+<tr><td><a id="ex715" href="#" onclick="loadFenString('2kr3r/pp3pp1/2n5/2P4p/Q1B2Bn1/1NP2pPq/P4PbP/3RR1K1 w - - 0 1','715');return false;">Show quiz number 715</td></tr>
+<tr><td><a id="ex716" href="#" onclick="loadFenString('r1b1k1nr/pp1q1pbp/2pp4/3NP1B1/2Bn4/3P4/PPP2QPP/R4RK1 w kq - 0 1','716');return false;">Show quiz number 716</td></tr>
+<tr><td><a id="ex717" href="#" onclick="loadFenString('r2r3k/p5pp/4R3/2q2p1Q/1nBR4/4P3/1P3PPP/6K1 w - - 0 1','717');return false;">Show quiz number 717</td></tr>
+<tr><td><a id="ex718" href="#" onclick="loadFenString('rnbk1b1r/ppqpnQ1p/4p1p1/2p1N1B1/4N3/8/PPP2PPP/R3KB1R w KQ - 0 1','718');return false;">Show quiz number 718</td></tr>
+<tr><td><a id="ex719" href="#" onclick="loadFenString('b1r3k1/7p/p3R1qB/1pPr2p1/3b2N1/5P2/PQ4P1/3R2K1 w - - 0 1','719');return false;">Show quiz number 719</td></tr>
+<tr><td><a id="ex720" href="#" onclick="loadFenString('r2q4/3rk3/1pRp3p/1P1PpRpP/p3P1P1/PpQ5/8/1K6 w - - 0 1','720');return false;">Show quiz number 720</td></tr>
+<tr><td><a id="ex721" href="#" onclick="loadFenString('r3r2k/p1q3pp/2p3n1/1p2Pp2/5P2/1BP3Q1/P5PP/R4R1K w - - 0 1','721');return false;">Show quiz number 721</td></tr>
+<tr><td><a id="ex722" href="#" onclick="loadFenString('q1r1rkn1/pb2b2p/1p1p2p1/2nP1N2/2P5/1P1BQ3/PB3PPP/2R1R1K1 w - - 0 1','722');return false;">Show quiz number 722</td></tr>
+<tr><td><a id="ex723" href="#" onclick="loadFenString('r6r/1Rp3n1/3k1pq1/3Pp1pp/4P1P1/2B1QP1P/7R/1b4K1 w - - 0 1','723');return false;">Show quiz number 723</td></tr>
+<tr><td><a id="ex724" href="#" onclick="loadFenString('2b5/p3b3/q1p1ppk1/2p3Pp/2P2P1P/1P1NB1K1/P3Q3/8 w - - 0 1','724');return false;">Show quiz number 724</td></tr>
+<tr><td><a id="ex725" href="#" onclick="loadFenString('2Q2n2/2R4p/1p1qpp1k/8/3P3P/3B2P1/5PK1/r7 w - - 0 1','725');return false;">Show quiz number 725</td></tr>
+<tr><td><a id="ex726" href="#" onclick="loadFenString('r1b1qN1k/1pp3p1/p2p3n/4p1B1/8/1BP4Q/PP3KPP/8 w - - 0 1','726');return false;">Show quiz number 726</td></tr>
+<tr><td><a id="ex727" href="#" onclick="loadFenString('r3nrk1/pp3p1p/2b1pBpQ/q1p1P3/6P1/3BP1R1/P3KP1P/q7 w - - 0 1','727');return false;">Show quiz number 727</td></tr>
+<tr><td><a id="ex728" href="#" onclick="loadFenString('2r3k1/pr2qp1p/n3p1p1/B1n1N3/5P2/P3P3/4Q1PP/2RR2K1 w - - 0 1','728');return false;">Show quiz number 728</td></tr>
+<tr><td><a id="ex729" href="#" onclick="loadFenString('rn4kr/ppq1pp1p/5bpB/5R2/2B5/8/PPP3PP/R2Q3K w - - 0 1','729');return false;">Show quiz number 729</td></tr>
+<tr><td><a id="ex730" href="#" onclick="loadFenString('1k5r/Npn2p2/1N1p4/R1pPp3/4P1q1/1P2Pb2/1PPK4/5Q2 w - - 0 1','730');return false;">Show quiz number 730</td></tr>
+<tr><td><a id="ex731" href="#" onclick="loadFenString('r3qb1r/pppbk1p1/2np2np/4p2Q/2BPP3/2P5/PP3PPP/RNB2RK1 w - - 0 1','731');return false;">Show quiz number 731</td></tr>
+<tr><td><a id="ex732" href="#" onclick="loadFenString('2kr3r/R1p3p1/2bp1pq1/2p3np/4PB2/3PQ2P/1P4BK/5R2 w - - 0 1','732');return false;">Show quiz number 732</td></tr>
+<tr><td><a id="ex733" href="#" onclick="loadFenString('b2qr1k1/5ppp/pn6/1p1n1N2/3PR3/P2B4/1B3PPP/2Q3K1 w - - 0 1','733');return false;">Show quiz number 733</td></tr>
+<tr><td><a id="ex734" href="#" onclick="loadFenString('r3kb1r/p1q1pppp/2n2n2/1p6/1PN3b1/P3PN2/1B3PPP/R2QKB1R w KQkq - 0 1','734');return false;">Show quiz number 734</td></tr>
+<tr><td><a id="ex735" href="#" onclick="loadFenString('r1b2rk1/pp1n1ppp/4p3/q2N2b1/1p1P3P/4PN2/P1Q2PP1/R3KB1R w KQ - 0 1','735');return false;">Show quiz number 735</td></tr>
+<tr><td><a id="ex736" href="#" onclick="loadFenString('3qrbk1/ppp1r2n/3pP2p/3P4/2P4P/1P3Q2/PB6/R4R1K w - - 0 1','736');return false;">Show quiz number 736</td></tr>
+<tr><td><a id="ex737" href="#" onclick="loadFenString('r5rk/q1pb3p/1p1p1PpQ/2nPp3/2P1P3/2N2P2/Pp6/1K1R1BR1 w - - 0 1','737');return false;">Show quiz number 737</td></tr>
+<tr><td><a id="ex738" href="#" onclick="loadFenString('r1b2r2/3pNpkp/3pn1p1/2pN3P/2PnP3/q3QP2/4BKP1/1R5R w - - 0 1','738');return false;">Show quiz number 738</td></tr>
+<tr><td><a id="ex739" href="#" onclick="loadFenString('2rqnrk1/pp3ppp/1b1p4/3p2Q1/2n1P3/3B1P2/PB3P1P/R5RK w - - 0 1','739');return false;">Show quiz number 739</td></tr>
+<tr><td><a id="ex740" href="#" onclick="loadFenString('rn1q1r1k/p2pNppp/bp1Q4/2p1PN2/2B5/P1R5/5PPP/5RK1 w - - 0 1','740');return false;">Show quiz number 740</td></tr>
+<tr><td><a id="ex741" href="#" onclick="loadFenString('r3k1nr/pp1n2pp/1bp1N1q1/6B1/2B1p3/8/PPP2RPP/R2Q3K w kq - 0 1','741');return false;">Show quiz number 741</td></tr>
+<tr><td><a id="ex742" href="#" onclick="loadFenString('rn4nr/pppq2bk/7p/5b1P/4NBQ1/3B4/PPP3P1/R3K2R w KQ - 0 1','742');return false;">Show quiz number 742</td></tr>
+<tr><td><a id="ex743" href="#" onclick="loadFenString('rn3rk1/pbppq1pp/1p2pb2/4N2Q/3PN3/3B4/PPP2PPP/R3K2R w KQ - 0 1','743');return false;">Show quiz number 743</td></tr>
+<tr><td><a id="ex744" href="#" onclick="loadFenString('r2r2k1/ppp1q1n1/3p2p1/3P1pP1/3Q1P1R/6N1/PPP5/2K4R w - - 0 1','744');return false;">Show quiz number 744</td></tr>
+<tr><td><a id="ex745" href="#" onclick="loadFenString('2b2r2/rpp2pkp/3pq3/2pR2P1/2n1P1N1/2P2B2/1P3Q1P/1K5R b - - 0 1','745');return false;">Show quiz number 745</td></tr>
+<tr><td><a id="ex746" href="#" onclick="loadFenString('3r2k1/p3R1p1/1pq2pQp/8/8/1P4P1/PB3P1P/3b2K1 b - - 0 1','746');return false;">Show quiz number 746</td></tr>
+<tr><td><a id="ex747" href="#" onclick="loadFenString('1k1r1b1r/Rpp2ppp/4b3/1q2N3/5Q2/1PN5/2nP1PPP/2BKR3 b - - 0 1','747');return false;">Show quiz number 747</td></tr>
+<tr><td><a id="ex748" href="#" onclick="loadFenString('3r3k/Q5pp/4Nq1n/3B1p2/5P2/4B3/Pr2n1PP/3R1K2 b - - 0 1','748');return false;">Show quiz number 748</td></tr>
+<tr><td><a id="ex749" href="#" onclick="loadFenString('7Q/2p1k1pp/1b1p1n2/pP2p2q/P1B1Pn2/B1P2bP1/R2N1P1P/4R1K1 b - - 0 1','749');return false;">Show quiz number 749</td></tr>
+<tr><td><a id="ex750" href="#" onclick="loadFenString('4r1k1/p1pb1ppp/Qbp1r3/8/1P6/2Pq1B2/R2P1PPP/2B2RK1 b - - 0 1','750');return false;">Show quiz number 750</td></tr>
+<tr><td><a id="ex751" href="#" onclick="loadFenString('r4rk1/ppp2pp1/7p/3P4/2P1Nnq1/5bB1/PPP2PPP/RN2QRK1 b - - 0 1','751');return false;">Show quiz number 751</td></tr>
+<tr><td><a id="ex752" href="#" onclick="loadFenString('4R3/4q1kp/6p1/1Q3b2/1P1b1P2/6KP/8/8 b - - 0 1','752');return false;">Show quiz number 752</td></tr>
+<tr><td><a id="ex753" href="#" onclick="loadFenString('7k/1p4pp/P7/2b5/P4n1N/1Q3P1q/R4P1P/4r1RK b - - 0 1','753');return false;">Show quiz number 753</td></tr>
+<tr><td><a id="ex754" href="#" onclick="loadFenString('5rk1/1p2ppbp/p2pb1p1/q7/P1rBPPn1/5B2/1PP1N1PP/R2QR1K1 b - - 0 1','754');return false;">Show quiz number 754</td></tr>
+<tr><td><a id="ex755" href="#" onclick="loadFenString('r3k2r/2p2p2/p2p1n2/1p2p3/4P2p/1PPPPp1q/1P5P/R1N2QRK b kq - 0 1','755');return false;">Show quiz number 755</td></tr>
+<tr><td><a id="ex756" href="#" onclick="loadFenString('5rk1/pp4pp/4p3/2R3Q1/3n4/2q4r/P1P2PPP/5RK1 b - - 0 1','756');return false;">Show quiz number 756</td></tr>
+<tr><td><a id="ex757" href="#" onclick="loadFenString('R7/P3k3/8/8/8/8/7K/r7 w - - 0 1','757');return false;">Show quiz number 757</td></tr>
+<tr><td><a id="ex758" href="#" onclick="loadFenString('r5k1/p7/4Nnp1/3q4/8/4Q2R/PP2KP1P/8 w - - 0 1','758');return false;">Show quiz number 758</td></tr>
+<tr><td><a id="ex759" href="#" onclick="loadFenString('r2q1r2/1ppk1pQp/p2pb3/1P2n3/P7/2P5/4RPPP/1NB1R2K w - - 0 1','759');return false;">Show quiz number 759</td></tr>
+<tr><td><a id="ex760" href="#" onclick="loadFenString('3r3r/pRn2k1B/2p5/4q3/2p3Q1/4B3/P1P4P/7K w - - 0 1','760');return false;">Show quiz number 760</td></tr>
+<tr><td><a id="ex761" href="#" onclick="loadFenString('r1bq1rk1/pp1n2bp/3n2p1/3Npp2/2P5/1P2P1P1/P3N1BP/R1BQ1RK1 w - - 0 1','761');return false;">Show quiz number 761</td></tr>
+<tr><td><a id="ex762" href="#" onclick="loadFenString('8/k5r1/8/2KB4/8/8/8/1R6 w - - 0 1','762');return false;">Show quiz number 762</td></tr>
+<tr><td><a id="ex763" href="#" onclick="loadFenString('3q2Q1/r2k4/1ppr1p1B/p2ppP2/P3P3/1BPP4/1P3PK1/7R w - - 0 1','763');return false;">Show quiz number 763</td></tr>
+<tr><td><a id="ex764" href="#" onclick="loadFenString('3Q4/5knp/1nN3p1/2p5/5P2/1q6/1P4PP/6K1 w - - 0 1','764');return false;">Show quiz number 764</td></tr>
+<tr><td><a id="ex765" href="#" onclick="loadFenString('1n2k2r/rp4pp/pN3p2/2n1p3/4P3/N7/PP2KPPP/R6R w kq - 0 1','765');return false;">Show quiz number 765</td></tr>
+<tr><td><a id="ex766" href="#" onclick="loadFenString('8/b6Q/p3kpn1/1p1q1b2/3PpP2/1P2P3/PB5P/5BK1 w - - 0 1','766');return false;">Show quiz number 766</td></tr>
+<tr><td><a id="ex767" href="#" onclick="loadFenString('1R1Rbrk1/p5pp/2pQ4/2P1p3/5q2/8/P4PPP/6K1 w - - 0 1','767');return false;">Show quiz number 767</td></tr>
+<tr><td><a id="ex768" href="#" onclick="loadFenString('rn3rk1/pbp1qppp/1p2pn2/3p4/1bPP1B2/5NP1/PP2PPBP/RN1Q1RK1 w - - 0 1','768');return false;">Show quiz number 768</td></tr>
+<tr><td><a id="ex769" href="#" onclick="loadFenString('3R4/3R3p/5p1k/6n1/8/1P2QPPq/r7/6K1 w - - 0 1','769');return false;">Show quiz number 769</td></tr>
+<tr><td><a id="ex770" href="#" onclick="loadFenString('r2rbb1Q/3q1k2/6pp/np1p4/8/P3P3/1B3PPP/1BR2RK1 w - - 0 1','770');return false;">Show quiz number 770</td></tr>
+<tr><td><a id="ex771" href="#" onclick="loadFenString('3rr1k1/pp1q1pp1/2b3np/4P3/3B1P2/1P2N1Pn/P1R3BP/Q1R4K w - - 0 1','771');return false;">Show quiz number 771</td></tr>
+<tr><td><a id="ex772" href="#" onclick="loadFenString('r4r2/pp2Q3/5p1p/6k1/7R/8/PPq2PPP/R5K1 w - - 0 1','772');return false;">Show quiz number 772</td></tr>
+<tr><td><a id="ex773" href="#" onclick="loadFenString('r1b1k2r/2q2ppp/p1n1pn2/1pb5/3N4/2N1P3/PP2BPPP/R1BQ1RK1 w kq - 0 1','773');return false;">Show quiz number 773</td></tr>
+<tr><td><a id="ex774" href="#" onclick="loadFenString('8/8/2Q4p/5p1k/P7/5PP1/b6K/q7 w - - 0 1','774');return false;">Show quiz number 774</td></tr>
+<tr><td><a id="ex775" href="#" onclick="loadFenString('3rq2r/2pbn1k1/1p3p2/p1b1p1pp/P1N1P3/1PPB2P1/2N1QPP1/3R1RK1 b - - 0 1','775');return false;">Show quiz number 775</td></tr>
+<tr><td><a id="ex776" href="#" onclick="loadFenString('1k1r3r/1pp3p1/p3R3/7p/1b6/8/PP3PPP/R1Bq1QK1 b - - 0 1','776');return false;">Show quiz number 776</td></tr>
+<tr><td><a id="ex777" href="#" onclick="loadFenString('r1bqk2r/1pp2ppp/pb1p4/4n3/PPB1P3/2P5/R3QPPP/1NB1R1K1 b kq - 0 1','777');return false;">Show quiz number 777</td></tr>
+<tr><td><a id="ex778" href="#" onclick="loadFenString('2k1r3/2p4p/5b2/1NpK4/4p1bN/1P4P1/P4P2/7R b - - 0 1','778');return false;">Show quiz number 778</td></tr>
+<tr><td><a id="ex779" href="#" onclick="loadFenString('1r4k1/prp1ppbp/2b2np1/3P4/2p2B2/2N1PN1P/PP1R1PP1/2K4R b - - 0 1','779');return false;">Show quiz number 779</td></tr>
+<tr><td><a id="ex780" href="#" onclick="loadFenString('r4rk1/1bp3pp/4p3/1p1q4/p2P4/P5P1/1PPQR1NP/2KR4 b - - 0 1','780');return false;">Show quiz number 780</td></tr>
+<tr><td><a id="ex781" href="#" onclick="loadFenString('1k6/1Pb5/K1P4p/B5p1/6P1/5p1P/4p3/8 w - - 0 1','781');return false;">Show quiz number 781</td></tr>
+<tr><td><a id="ex782" href="#" onclick="loadFenString('2r2rk1/pp1q1ppp/3bpn2/3p1P2/1P1Q4/P1N1P3/1BP2P1P/R3K2R w KQ - 0 1','782');return false;">Show quiz number 782</td></tr>
+<tr><td><a id="ex783" href="#" onclick="loadFenString('8/2R4p/6pk/2R2b2/8/5KP1/7r/8 w - - 0 1','783');return false;">Show quiz number 783</td></tr>
+<tr><td><a id="ex784" href="#" onclick="loadFenString('r3k2r/ppp2ppp/1bn1b1q1/6NN/2pp4/8/PPP2PPP/R1BQR1K1 w kq - 0 1','784');return false;">Show quiz number 784</td></tr>
+<tr><td><a id="ex785" href="#" onclick="loadFenString('r1bq1b1r/pppp2kp/2N2np1/3Q4/8/8/PPP2PPP/RNB1K2R w KQ - 0 1','785');return false;">Show quiz number 785</td></tr>
+<tr><td><a id="ex786" href="#" onclick="loadFenString('r1b3kb/2qnrp1p/1ppNn1pB/2P1P3/1P6/2N3PP/3Q1PB1/3RR1K1 w - - 0 1','786');return false;">Show quiz number 786</td></tr>
+<tr><td><a id="ex787" href="#" onclick="loadFenString('8/kp6/4R3/1P2K3/8/3pp3/8/8 w - - 0 1','787');return false;">Show quiz number 787</td></tr>
+<tr><td><a id="ex788" href="#" onclick="loadFenString('2k1r3/2p2pp1/1n6/N1q3Pp/Pn6/4B3/4QP1P/1K1R4 w - - 0 1','788');return false;">Show quiz number 788</td></tr>
+<tr><td><a id="ex789" href="#" onclick="loadFenString('2k4r/pppr2pp/8/3q4/N4n2/Q1R4P/PP3PP1/5RK1 w - - 0 1','789');return false;">Show quiz number 789</td></tr>
+<tr><td><a id="ex790" href="#" onclick="loadFenString('5r2/q3ppkp/3p2p1/3P4/Nr2PPn1/1R3BP1/P3N2P/R2Q2K1 w - - 0 1','790');return false;">Show quiz number 790</td></tr>
+<tr><td><a id="ex791" href="#" onclick="loadFenString('r1b1qrk1/ppp2ppp/2np3n/2b1pPNQ/2B1P3/2NP4/PPP3P1/R1B2K1R w - - 0 1','791');return false;">Show quiz number 791</td></tr>
+<tr><td><a id="ex792" href="#" onclick="loadFenString('r5r1/pppn1p1k/3p1p1p/3PpP1P/q3P3/P1PB4/2PQ1P2/2K3RR w - - 0 1','792');return false;">Show quiz number 792</td></tr>
+<tr><td><a id="ex793" href="#" onclick="loadFenString('r1b1r1k1/pp3pbp/2p3p1/q2n4/3N4/1P2PB2/PBQ2PPP/3R1RK1 w - - 0 1','793');return false;">Show quiz number 793</td></tr>
+<tr><td><a id="ex794" href="#" onclick="loadFenString('r2qr1k1/pb1nb1pp/1p2pn2/2p1Np2/2PP1B2/3B1N2/PP2QPPP/R4RK1 w - - 0 1','794');return false;">Show quiz number 794</td></tr>
+<tr><td><a id="ex795" href="#" onclick="loadFenString('4r1rk/pp1qppbp/3p4/3nnPB1/R3P2R/1P6/1PP1B2P/3Q3K w - - 0 1','795');return false;">Show quiz number 795</td></tr>
+<tr><td><a id="ex796" href="#" onclick="loadFenString('rn1r1k2/ppp1ppbQ/3qb1p1/4N3/3P2P1/2N1P3/PP3P2/R1B1K2R w KQ - 0 1','796');return false;">Show quiz number 796</td></tr>
+<tr><td><a id="ex797" href="#" onclick="loadFenString('r1bqr1k1/pppnbppp/2np4/8/2BNP3/2N4P/PPP2PP1/R1BQR1K1 w - - 0 1','797');return false;">Show quiz number 797</td></tr>
+<tr><td><a id="ex798" href="#" onclick="loadFenString('6k1/6p1/p3br2/1p1pQ3/5r2/1P1B2R1/1P3qPP/2R4K w - - 0 1','798');return false;">Show quiz number 798</td></tr>
+<tr><td><a id="ex799" href="#" onclick="loadFenString('r1b1k3/1pq2pQ1/p3p1p1/4n3/3NN1pr/8/PPP5/2KR1R2 w - - 0 1','799');return false;">Show quiz number 799</td></tr>
+<tr><td><a id="ex800" href="#" onclick="loadFenString('2r5/1R2pk2/3pN1p1/3Pp1Pp/4P3/rR6/5PKP/2b5 w - - 0 1','800');return false;">Show quiz number 800</td></tr>
+<tr><td><a id="ex801" href="#" onclick="loadFenString('r2q1r2/pp1n1pk1/2pb1pp1/8/2BP2Pp/5Q2/PPP2PK1/R1B4R w - - 0 1','801');return false;">Show quiz number 801</td></tr>
+<tr><td><a id="ex802" href="#" onclick="loadFenString('rk5r/ppp1bq1p/2n5/2N3B1/6Q1/8/PPP2PPP/R5K1 w - - 0 1','802');return false;">Show quiz number 802</td></tr>
+<tr><td><a id="ex803" href="#" onclick="loadFenString('rnb1rqk1/pp3ppp/1n6/2p1pN2/2PPP3/2PB4/P4QPP/R1B2RK1 w - - 0 1','803');return false;">Show quiz number 803</td></tr>
+<tr><td><a id="ex804" href="#" onclick="loadFenString('r6r/pp3Bb1/2n1PkNp/1qpP4/5Bp1/2P3Nb/PP3K1P/R7 w - - 0 1','804');return false;">Show quiz number 804</td></tr>
+<tr><td><a id="ex805" href="#" onclick="loadFenString('5rk1/Q4p2/1Rr1p1b1/2P4p/3P1qn1/P5pP/3R2P1/2B2BK1 b - - 0 1','805');return false;">Show quiz number 805</td></tr>
+<tr><td><a id="ex806" href="#" onclick="loadFenString('8/8/pQ2pppk/2p5/5P2/KPn5/2P2P2/1r6 b - - 0 1','806');return false;">Show quiz number 806</td></tr>
+<tr><td><a id="ex807" href="#" onclick="loadFenString('3rr2k/p5p1/1p1bpq1p/1Q6/2R5/1P4N1/P5PP/5R1K b - - 0 1','807');return false;">Show quiz number 807</td></tr>
+<tr><td><a id="ex808" href="#" onclick="loadFenString('4r1k1/pb3pbp/6p1/q2p4/N2NnPn1/1P1Q2P1/PB5P/2R2BK1 b - - 0 1','808');return false;">Show quiz number 808</td></tr>
+<tr><td><a id="ex809" href="#" onclick="loadFenString('2r4r/kp6/p7/3P4/2R5/1P2p3/P4PP1/4R1K1 b - - 0 1','809');return false;">Show quiz number 809</td></tr>
+<tr><td><a id="ex810" href="#" onclick="loadFenString('2r1r1k1/p2n1p1p/5pp1/qQ1P1b2/N7/5N2/PP3RPP/3K1B1R b - - 0 1','810');return false;">Show quiz number 810</td></tr>
+<tr><td><a id="ex811" href="#" onclick="loadFenString('r2qk2r/ppp2pp1/2np1n2/2b1p1B1/2B1P3/3P1Np1/PPP2PP1/RN1Q1RK1 b kq - 0 1','811');return false;">Show quiz number 811</td></tr>
+<tr><td><a id="ex812" href="#" onclick="loadFenString('7Q/p1pk1ppp/5n2/3pq3/3n4/2NP2P1/PPPKbP1P/R6R b - - 0 1','812');return false;">Show quiz number 812</td></tr>
+<tr><td><a id="ex813" href="#" onclick="loadFenString('8/p1pk2Bp/8/1p3R2/4r2p/KP1n2P1/P1b4P/5R2 b - - 0 1','813');return false;">Show quiz number 813</td></tr>
+<tr><td><a id="ex814" href="#" onclick="loadFenString('r1b1qrk1/pppnb1pp/4p3/2PpNp2/3PnP2/6P1/PP1NP1BP/R1BQ1RK1 b - - 0 1','814');return false;">Show quiz number 814</td></tr>
+<tr><td><a id="ex815" href="#" onclick="loadFenString('1k1r3r/1Pp2ppp/8/1Bb2bn1/3P1pq1/2P2N2/PP4PP/R1BQ2KR b - - 0 1','815');return false;">Show quiz number 815</td></tr>
+<tr><td><a id="ex816" href="#" onclick="loadFenString('5rk1/p2p2bp/1pq1p1p1/8/2P2Bn1/1PNQ2P1/P4P1P/3R2K1 b - - 0 1','816');return false;">Show quiz number 816</td></tr>
+<tr><td><a id="ex817" href="#" onclick="loadFenString('6k1/1R3p2/p1p5/2P3b1/1P2P1p1/5p1p/5P2/6K1 b - - 0 1','817');return false;">Show quiz number 817</td></tr>
+<tr><td><a id="ex818" href="#" onclick="loadFenString('5rk1/pb3pp1/5n1p/1p2n3/1P1qp3/2N5/P2PQPPP/R1B2RK1 b - - 0 1','818');return false;">Show quiz number 818</td></tr>
+<tr><td><a id="ex819" href="#" onclick="loadFenString('2rr2k1/5pp1/p3p2p/3b4/P2RPB2/5P2/1p3KPP/3R4 b - - 0 1','819');return false;">Show quiz number 819</td></tr>
+<tr><td><a id="ex820" href="#" onclick="loadFenString('1k1r1b1r/p1p1q3/2p1p3/4Ppp1/4nP2/P2BQ3/1PP3PB/2KR3R b - - 0 1','820');return false;">Show quiz number 820</td></tr>
+<tr><td><a id="ex821" href="#" onclick="loadFenString('7k/2p1b1pp/8/1p2P3/1P3r2/2P3Q1/1P5P/R4qBK b - - 0 1','821');return false;">Show quiz number 821</td></tr>
+<tr><td><a id="ex822" href="#" onclick="loadFenString('1r3b1k/p4rpp/4pp2/3q4/2ppbPPQ/6RK/PP5P/2B1NR2 b - - 0 1','822');return false;">Show quiz number 822</td></tr>
+<tr><td><a id="ex823" href="#" onclick="loadFenString('rn3rk1/ppq3pp/2pb1p2/4N3/3PR3/6Q1/PPP2PPP/R1B3K1 w - - 0 1','823');return false;">Show quiz number 823</td></tr>
+<tr><td><a id="ex824" href="#" onclick="loadFenString('rnb1kb1r/pp3p2/2p4p/7q/3PN2P/1B4p1/PPP2KP1/R1BQN2R w kq - 0 1','824');return false;">Show quiz number 824</td></tr>
+<tr><td><a id="ex825" href="#" onclick="loadFenString('6k1/p4p1p/2p2npQ/q1n1pP2/1pBrP3/8/PPP3P1/1NK4R w - - 0 1','825');return false;">Show quiz number 825</td></tr>
+<tr><td><a id="ex826" href="#" onclick="loadFenString('1kr4b/p1p5/p1B5/6nP/8/1P6/K1Q5/5qNR w - - 0 1','826');return false;">Show quiz number 826</td></tr>
+<tr><td><a id="ex827" href="#" onclick="loadFenString('2kr4/pppb1p1p/2n1ppr1/3P4/2PN4/6Pq/P1P1BP1P/R2Q1RK1 w - - 0 1','827');return false;">Show quiz number 827</td></tr>
+<tr><td><a id="ex828" href="#" onclick="loadFenString('Q7/7p/1R4p1/3P4/4Pp1P/1b3P1K/3k1q2/2R5 w - - 0 1','828');return false;">Show quiz number 828</td></tr>
+<tr><td><a id="ex829" href="#" onclick="loadFenString('2rq1r1k/3b1pp1/p3pb1p/1p6/1PN1B3/4PN2/2Q2PPP/3R1RK1 w - - 0 1','829');return false;">Show quiz number 829</td></tr>
+<tr><td><a id="ex830" href="#" onclick="loadFenString('1nkr4/1pp2p1R/1P6/2b3P1/3q1P2/8/1P2Q3/R1B2K2 w - - 0 1','830');return false;">Show quiz number 830</td></tr>
+<tr><td><a id="ex831" href="#" onclick="loadFenString('6k1/5pb1/1p1N3p/p5p1/5q2/Q6P/PPr5/3RR2K w - - 0 1','831');return false;">Show quiz number 831</td></tr>
+<tr><td><a id="ex832" href="#" onclick="loadFenString('r7/b1q1kPp1/p2p3p/1p1P4/2NR2P1/PPQ2P2/6K1/8 w - - 0 1','832');return false;">Show quiz number 832</td></tr>
+<tr><td><a id="ex833" href="#" onclick="loadFenString('1r3r2/p5kp/3p1pp1/qnp1pP2/1p2P2N/3P4/PPPQ1P1P/1K1R2R1 w - - 0 1','833');return false;">Show quiz number 833</td></tr>
+<tr><td><a id="ex834" href="#" onclick="loadFenString('k7/2p1rp1P/KpP2R2/7r/1P6/8/8/8 w - - 0 1','834');return false;">Show quiz number 834</td></tr>
+<tr><td><a id="ex835" href="#" onclick="loadFenString('1k6/1p2p3/3p4/Qp1P1p2/2P2Pp1/P3Rn2/KP1q4/6r1 w - - 0 1','835');return false;">Show quiz number 835</td></tr>
+<tr><td><a id="ex836" href="#" onclick="loadFenString('8/kp6/p7/P4Q2/6pp/4q3/8/7K w - - 0 1','836');return false;">Show quiz number 836</td></tr>
+<tr><td><a id="ex837" href="#" onclick="loadFenString('7Q/3b1Np1/4p1kp/p1ppP3/8/P7/1rq3PP/5RK1 w - - 0 1','837');return false;">Show quiz number 837</td></tr>
+<tr><td><a id="ex838" href="#" onclick="loadFenString('1rb1r1k1/2q1pp1p/p2p2pB/2pP4/1pP2Q2/1P1n4/P4PPP/2R1R1K1 w - - 0 1','838');return false;">Show quiz number 838</td></tr>
+<tr><td><a id="ex839" href="#" onclick="loadFenString('Q7/5p1k/5qp1/7p/4Q3/2r3NK/6PP/4q3 w - - 0 1','839');return false;">Show quiz number 839</td></tr>
+<tr><td><a id="ex840" href="#" onclick="loadFenString('k5r1/p5Qp/8/3q4/8/8/P4NPP/1R4K1 w - - 0 1','840');return false;">Show quiz number 840</td></tr>
+<tr><td><a id="ex841" href="#" onclick="loadFenString('7k/6p1/3R3p/1PpQ4/2P1Rr1q/1P1PKP2/1B6/8 b - - 0 1','841');return false;">Show quiz number 841</td></tr>
+<tr><td><a id="ex842" href="#" onclick="loadFenString('3rk2r/1p1b1pp1/p1n5/2RQP1Bp/1P6/8/1P2qPPP/3R2K1 b kq - 0 1','842');return false;">Show quiz number 842</td></tr>
+<tr><td><a id="ex843" href="#" onclick="loadFenString('4rrk1/ppp2ppp/2nb3q/3N3b/2BP4/P2QpN1P/1PP3P1/4RRK1 b - - 0 1','843');return false;">Show quiz number 843</td></tr>
+<tr><td><a id="ex844" href="#" onclick="loadFenString('r4rk1/5p2/4p1p1/1pqpP1NP/1pn2P2/7Q/PPP4P/1K1RR3 b - - 0 1','844');return false;">Show quiz number 844</td></tr>
+<tr><td><a id="ex845" href="#" onclick="loadFenString('5rk1/pb3ppp/3qp3/1p1n4/3PB1nQ/6P1/P1r2P1P/R1B2RK1 b - - 0 1','845');return false;">Show quiz number 845</td></tr>
+<tr><td><a id="ex846" href="#" onclick="loadFenString('4qk2/8/Q4P2/1p2p3/1P2P2B/P2r3P/5P1K/8 b - - 0 1','846');return false;">Show quiz number 846</td></tr>
+<tr><td><a id="ex847" href="#" onclick="loadFenString('r1b2rk1/pp3pp1/2p2nnp/8/4P3/P1N2NP1/1q2BPP1/R2Q1RK1 w - - 0 1','847');return false;">Show quiz number 847</td></tr>
+<tr><td><a id="ex848" href="#" onclick="loadFenString('r3kb1r/pp1n1pp1/2p1pn2/6Bp/3P3P/2PQ2N1/PP2NPq1/R3K2R w KQkq - 0 1','848');return false;">Show quiz number 848</td></tr>
+<tr><td><a id="ex849" href="#" onclick="loadFenString('5bk1/3b1r2/2pp1p2/1p3Pp1/1PqNP1N1/2PR2Q1/r5PP/3R3K w - - 0 1','849');return false;">Show quiz number 849</td></tr>
+<tr><td><a id="ex850" href="#" onclick="loadFenString('r1b1r1k1/1p1n1p1p/2ppnqp1/8/p1P1P3/5P2/PbNQNBPP/1R2RBK1 w - - 0 1','850');return false;">Show quiz number 850</td></tr>
+<tr><td><a id="ex851" href="#" onclick="loadFenString('r1b1rnk1/1p4pp/p1p2p2/3pN2n/3P1PPq/2NBPR1P/PPQ5/2R3K1 w - - 0 1','851');return false;">Show quiz number 851</td></tr>
+<tr><td><a id="ex852" href="#" onclick="loadFenString('rn2kb1r/pp3ppp/2b1pq2/8/3P4/3B1N2/PP3PPP/R1BQK2R w KQkq - 0 1','852');return false;">Show quiz number 852</td></tr>
+<tr><td><a id="ex853" href="#" onclick="loadFenString('2k1r3/ppp5/6n1/1q1p3p/3Prp2/P1P2QnP/1P1B1RP1/K2N2R1 b - - 0 1','853');return false;">Show quiz number 853</td></tr>
+<tr><td><a id="ex854" href="#" onclick="loadFenString('r1bqk2r/2p1bppp/p2p1n2/1p6/3QP3/1B6/PPP2PPP/RNB1R1K1 b kq - 0 1','854');return false;">Show quiz number 854</td></tr>
+<tr><td><a id="ex855" href="#" onclick="loadFenString('r2qk3/p2n1p1p/1p2pnr1/2p5/3PpQ2/P1P1B1P1/2P1KPBP/R6R b - - 0 1','855');return false;">Show quiz number 855</td></tr>
+<tr><td><a id="ex856" href="#" onclick="loadFenString('r1bb1rk1/ppp3pp/2np1n2/4p2q/2P1Pp2/1PNP1NP1/PB1Q1PBP/4RR1K b - - 0 1','856');return false;">Show quiz number 856</td></tr>
+<tr><td><a id="ex857" href="#" onclick="loadFenString('5rk1/2pq1rbp/ppn1bpp1/4p3/4P1NB/1P1PN2P/1PP2RP1/4QRK1 b - - 0 1','857');return false;">Show quiz number 857</td></tr>
+<tr><td><a id="ex858" href="#" onclick="loadFenString('r2qk2r/pbpn1ppp/1p1ppb2/8/2PP1B2/P3PN2/1P1QBPPP/R3K2R b KQkq - 0 1','858');return false;">Show quiz number 858</td></tr>
+<tr><td><a id="ex859" href="#" onclick="loadFenString('1rb2k2/4n3/pp1Np1p1/4Pp1p/1P3P2/2R2B2/P4KPP/8 w - - 0 1','859');return false;">Show quiz number 859</td></tr>
+<tr><td><a id="ex860" href="#" onclick="loadFenString('2rk4/p1rqn1p1/P1n1p2p/3pPp2/BP1P1P2/2R2N2/2R3PP/2Q3K1 w - - 0 1','860');return false;">Show quiz number 860</td></tr>
+<tr><td><a id="ex861" href="#" onclick="loadFenString('7k/5R1p/3p3q/pp1Pp3/4P2P/1PP3RK/1P6/8 w - - 0 1','861');return false;">Show quiz number 861</td></tr>
+<tr><td><a id="ex862" href="#" onclick="loadFenString('8/7Q/6p1/7p/6qk/8/7K/8 w - - 0 1','862');return false;">Show quiz number 862</td></tr>
+<tr><td><a id="ex863" href="#" onclick="loadFenString('8/1p3pkp/p2r1rp1/8/8/2B5/PP5P/5RK1 w - - 0 1','863');return false;">Show quiz number 863</td></tr>
+<tr><td><a id="ex864" href="#" onclick="loadFenString('8/8/8/6pp/6pk/1R6/6KP/8 w - - 0 1','864');return false;">Show quiz number 864</td></tr>
+<tr><td><a id="ex865" href="#" onclick="loadFenString('8/5p2/4p1kp/3pP3/3P1K2/b4NPP/8/8 b - - 0 1','865');return false;">Show quiz number 865</td></tr>
+<tr><td><a id="ex866" href="#" onclick="loadFenString('8/6pp/1p1k4/1P2p3/2K3P1/5P2/8/2b2N2 b - - 0 1','866');return false;">Show quiz number 866</td></tr>
+<tr><td><a id="ex867" href="#" onclick="loadFenString('8/8/3p4/3P2p1/3kBp2/5P1b/3r3P/6RK b - - 0 1','867');return false;">Show quiz number 867</td></tr>
+<tr><td><a id="ex868" href="#" onclick="loadFenString('4r3/1kp5/1pb5/p2q1PB1/P1pP3p/2P4P/3Q3K/5R2 b - - 0 1','868');return false;">Show quiz number 868</td></tr>
+<tr><td><a id="ex869" href="#" onclick="loadFenString('2b3k1/8/2p5/2Pp2p1/3P1bP1/P1P1p2K/2q1B3/4R2Q b - - 0 1','869');return false;">Show quiz number 869</td></tr>
+<tr><td><a id="ex870" href="#" onclick="loadFenString('6k1/3q2pp/p2bp3/3p1r2/1p1Pp3/3bQ1PP/PP1B1rB1/1N2R1RK b - - 0 1','870');return false;">Show quiz number 870</td></tr>
+<tr><td><a id="ex871" href="#" onclick="loadFenString('1n5r/R5pp/2rNpp2/2k5/8/4P3/1P2P1KP/3R4 w - - 0 1','871');return false;">Show quiz number 871</td></tr>
+<tr><td><a id="ex872" href="#" onclick="loadFenString('3rkb1r/pp3p1p/1q4p1/4nN2/4N3/8/PP2QPPP/R4RK1 w kq - 0 1','872');return false;">Show quiz number 872</td></tr>
+<tr><td><a id="ex873" href="#" onclick="loadFenString('r4b1r/ppp3pp/4Q3/4p3/2Pqk3/8/PP1P1PPP/2B1K2R w K - 0 1','873');return false;">Show quiz number 873</td></tr>
+<tr><td><a id="ex874" href="#" onclick="loadFenString('r3k2r/pppqnppp/3p4/3P1bN1/2B1R3/5Q2/PP3PPP/R5K1 w kq - 0 1','874');return false;">Show quiz number 874</td></tr>
+<tr><td><a id="ex875" href="#" onclick="loadFenString('rnb3kr/1p1nqppp/p3p3/2ppP3/3P1N2/2NB1Q2/PPP2PP1/R3K2R w KQ - 0 1','875');return false;">Show quiz number 875</td></tr>
+<tr><td><a id="ex876" href="#" onclick="loadFenString('3q4/p2nbk1p/2R1p1pB/1p1rPp2/8/5N1P/PPQ2PP1/7K w - - 0 1','876');return false;">Show quiz number 876</td></tr>
+<tr><td><a id="ex877" href="#" onclick="loadFenString('1r5r/4kp1p/pq3pn1/b2B3Q/1p2P3/2PP4/PP4PP/R1B2R1K w - - 0 1','877');return false;">Show quiz number 877</td></tr>
+<tr><td><a id="ex878" href="#" onclick="loadFenString('6rr/1pp1k3/3p2p1/3P4/2P1PRQN/2q5/2n1K3/7R w - - 0 1','878');return false;">Show quiz number 878</td></tr>
+<tr><td><a id="ex879" href="#" onclick="loadFenString('qn1kr2r/1pRbb3/pP5p/P2pP1pP/3N1pQ1/3B4/3B1PP1/R5K1 w - - 0 1','879');return false;">Show quiz number 879</td></tr>
+<tr><td><a id="ex880" href="#" onclick="loadFenString('2r4r/1pq1kpp1/p3pn1p/8/2P2bPP/2B5/PPB1Q3/1K1R1R2 w - - 0 1','880');return false;">Show quiz number 880</td></tr>
+<tr><td><a id="ex881" href="#" onclick="loadFenString('r1bqk2r/pppn1pp1/5n1p/2B5/2B1p3/2N5/PPP1Q1PP/R4RK1 w kq - 0 1','881');return false;">Show quiz number 881</td></tr>
+<tr><td><a id="ex882" href="#" onclick="loadFenString('r6r/pp2kp2/1qpbpppQ/8/3N4/3R3P/PPP2PP1/4R1K1 w - - 0 1','882');return false;">Show quiz number 882</td></tr>
+<tr><td><a id="ex883" href="#" onclick="loadFenString('8/p5Q1/2ppq2p/3n1ppk/3B4/2P2P1P/P5P1/6K1 w - - 0 1','883');return false;">Show quiz number 883</td></tr>
+<tr><td><a id="ex884" href="#" onclick="loadFenString('3r3r/p2k2pp/2p1bp2/q7/4B3/B7/PQ3PPP/1R4K1 w - - 0 1','884');return false;">Show quiz number 884</td></tr>
+<tr><td><a id="ex885" href="#" onclick="loadFenString('4bk1r/rQ3p1q/p4p2/3P1p1p/2Pb3N/6P1/PP4BP/R3R2K w - - 0 1','885');return false;">Show quiz number 885</td></tr>
+<tr><td><a id="ex886" href="#" onclick="loadFenString('r2qk1r1/pp2bpp1/2p1p1bp/8/2BP1B1P/6R1/PPP1QPP1/2KR4 w - - 0 1','886');return false;">Show quiz number 886</td></tr>
+<tr><td><a id="ex887" href="#" onclick="loadFenString('r2q3r/pp1nbkpp/4p3/3p3P/b1p2B2/2P2N1R/PP1RQPP1/1BK5 w - - 0 1','887');return false;">Show quiz number 887</td></tr>
+<tr><td><a id="ex888" href="#" onclick="loadFenString('r3kb1r/1bq1nppp/p7/1pp5/4Q3/1B3N2/PP3PPP/R1BR2K1 w kq - 0 1','888');return false;">Show quiz number 888</td></tr>
+<tr><td><a id="ex889" href="#" onclick="loadFenString('r3kb1r/p1p1p1pp/qp1p4/n2PN1B1/4Q3/8/PPP3PP/R3K2R w KQkq - 0 1','889');return false;">Show quiz number 889</td></tr>
+<tr><td><a id="ex890" href="#" onclick="loadFenString('rnb1qknr/ppp1b2p/8/5p1Q/2BPP3/7p/PPP3PP/RNB1K2R w KQ - 0 1','890');return false;">Show quiz number 890</td></tr>
+<tr><td><a id="ex891" href="#" onclick="loadFenString('rnbq2nr/ppp3pp/3p4/8/4P1Q1/2N1k1b1/PPP4p/R4R1K w - - 0 1','891');return false;">Show quiz number 891</td></tr>
+<tr><td><a id="ex892" href="#" onclick="loadFenString('rq2kb1r/1b1n1ppp/p1n5/1p1Np3/4P3/1B1RBN2/PP2QPPP/R5K1 w kq - 0 1','892');return false;">Show quiz number 892</td></tr>
+<tr><td><a id="ex893" href="#" onclick="loadFenString('r1bq1b1r/pppknBp1/2np4/4pPNp/6Q1/8/PPPP1PPP/RNB2RK1 w - - 0 1','893');return false;">Show quiz number 893</td></tr>
+<tr><td><a id="ex894" href="#" onclick="loadFenString('2r1kr2/2qnbp1R/2p1p3/1pP1N1p1/p2PQ3/P7/1P1B1P2/2KR4 w - - 0 1','894');return false;">Show quiz number 894</td></tr>
+<tr><td><a id="ex895" href="#" onclick="loadFenString('rn2k2r/pp1b1ppp/q3pB2/8/3NP3/8/P4PPP/2RQ2KR w kq - 0 1','895');return false;">Show quiz number 895</td></tr>
+<tr><td><a id="ex896" href="#" onclick="loadFenString('r1b1k2r/2qn1p1p/1p2p1p1/p3P1B1/2pP2Q1/2P5/PPB3PP/R4RK1 w kq - 0 1','896');return false;">Show quiz number 896</td></tr>
+<tr><td><a id="ex897" href="#" onclick="loadFenString('rnbq2kr/ppp3pp/4P2n/3p2NQ/4p3/B1P5/P1P2PPP/R3KB1R w KQ - 0 1','897');return false;">Show quiz number 897</td></tr>
+<tr><td><a id="ex898" href="#" onclick="loadFenString('2rn1knr/pp4p1/2q4p/2bN1pN1/5B2/1Q6/PP4PP/3RR2K w - - 0 1','898');return false;">Show quiz number 898</td></tr>
+<tr><td><a id="ex899" href="#" onclick="loadFenString('4r3/5r1p/R1p2pp1/1p1bk3/4pNPP/2P1K3/2P2P2/3R4 w - - 0 1','899');return false;">Show quiz number 899</td></tr>
+<tr><td><a id="ex900" href="#" onclick="loadFenString('r1k1q3/pp1b2R1/5Q2/3NPp2/3P1p2/5P2/PP5P/2K5 w - - 0 1','900');return false;">Show quiz number 900</td></tr>
+<tr><td><a id="ex901" href="#" onclick="loadFenString('1r4k1/p4ppp/8/1B6/3rP2K/8/PPP3q1/R1BQ1R2 b - - 0 1','901');return false;">Show quiz number 901</td></tr>
+<tr><td><a id="ex902" href="#" onclick="loadFenString('N1b2rk1/pp3ppp/8/8/1P6/Kn1pQ3/P1q2PPP/3R3R b - - 0 1','902');return false;">Show quiz number 902</td></tr>
+<tr><td><a id="ex903" href="#" onclick="loadFenString('3rr1k1/pp3ppp/6q1/2b2b2/5P2/3P1Q1P/PPPB2P1/R2K2NR b - - 0 1','903');return false;">Show quiz number 903</td></tr>
+<tr><td><a id="ex904" href="#" onclick="loadFenString('7r/ppNkn1pp/2n1p3/8/1b3B2/8/PPb1KPPP/R4B1R b - - 0 1','904');return false;">Show quiz number 904</td></tr>
+<tr><td><a id="ex905" href="#" onclick="loadFenString('r3kbnr/ppp3pp/2n1P3/4p3/2Ppq3/P4N2/1P1K2PP/RNBQ1B1R b kq - 0 1','905');return false;">Show quiz number 905</td></tr>
+<tr><td><a id="ex906" href="#" onclick="loadFenString('K7/P1k3p1/7p/2n1p3/3nP3/4B1PP/8/3B4 b - - 0 1','906');return false;">Show quiz number 906</td></tr>
+<tr><td><a id="ex907" href="#" onclick="loadFenString('3r1rk1/p1q2ppp/3bb3/3pB3/1p6/2P2Q1P/PPB2PP1/3RR1K1 w - - 0 1','907');return false;">Show quiz number 907</td></tr>
+<tr><td><a id="ex908" href="#" onclick="loadFenString('r1bqnrk1/pp2bp1p/2p3p1/3pR2Q/8/1PNB4/PBPP1PPP/R5K1 w - - 0 1','908');return false;">Show quiz number 908</td></tr>
+<tr><td><a id="ex909" href="#" onclick="loadFenString('5k2/5r2/1p3bRp/2p1p3/p1P1Pp1q/3N1P2/PP6/1K4Q1 w - - 0 1','909');return false;">Show quiz number 909</td></tr>
+<tr><td><a id="ex910" href="#" onclick="loadFenString('2rq4/1p2pk2/p1rp1ppQ/3Nn3/4P3/7R/PPP3PP/5R1K w - - 0 1','910');return false;">Show quiz number 910</td></tr>
+<tr><td><a id="ex911" href="#" onclick="loadFenString('r1b1r1k1/pppqnpbp/3p4/3N2B1/4B3/2P5/PP4PP/R2Q1RK1 w - - 0 1','911');return false;">Show quiz number 911</td></tr>
+<tr><td><a id="ex912" href="#" onclick="loadFenString('r2q1rk1/1b2bp2/ppn1p1p1/3P2Np/2P4Q/P2B4/1B3PPP/R4RK1 w - - 0 1','912');return false;">Show quiz number 912</td></tr>
+<tr><td><a id="ex913" href="#" onclick="loadFenString('r5k1/1ppq1pb1/p2p1n1p/3P2p1/7Q/1P1B2RP/PBP2PP1/6K1 w - - 0 1','913');return false;">Show quiz number 913</td></tr>
+<tr><td><a id="ex914" href="#" onclick="loadFenString('2r2r2/3qbpkp/p3n1p1/2ppP3/6Q1/1P1B3R/PBP3PP/5R1K w - - 0 1','914');return false;">Show quiz number 914</td></tr>
+<tr><td><a id="ex915" href="#" onclick="loadFenString('2rnr1k1/ppq2p1p/5Qp1/2N5/4b3/2P1B1b1/PP2B1P1/3R1R1K w - - 0 1','915');return false;">Show quiz number 915</td></tr>
+<tr><td><a id="ex916" href="#" onclick="loadFenString('1q1r1r1k/p1nbbpp1/1p3n1p/2p5/4NP2/PPNPPB1P/1B2Q3/2R3RK w - - 0 1','916');return false;">Show quiz number 916</td></tr>
+<tr><td><a id="ex917" href="#" onclick="loadFenString('r2b1rk1/2q2p1p/p3b2Q/1pn3B1/4Pp2/P1NB4/1PP3PP/R6K w - - 0 1','917');return false;">Show quiz number 917</td></tr>
+<tr><td><a id="ex918" href="#" onclick="loadFenString('r2q1rk1/4b1pp/p3b1n1/1p1pP3/2pP4/7R/PPB2PPP/R1BQ1NK1 w - - 0 1','918');return false;">Show quiz number 918</td></tr>
+<tr><td><a id="ex919" href="#" onclick="loadFenString('7k/1p1bbn2/1q2p2p/p2pP1p1/1PpP1rNP/P1P3Q1/1B2B3/6RK w - - 0 1','919');return false;">Show quiz number 919</td></tr>
+<tr><td><a id="ex920" href="#" onclick="loadFenString('2kr3r/pp2bppp/2p1bq2/8/4QB2/2PB4/PPP2PPP/3RR1K1 w - - 0 1','920');return false;">Show quiz number 920</td></tr>
+<tr><td><a id="ex921" href="#" onclick="loadFenString('2kr3r/pp2bppp/4bn2/1Nppq3/7Q/3B4/PPPB1PPP/1K1R4 w - - 0 1','921');return false;">Show quiz number 921</td></tr>
+<tr><td><a id="ex922" href="#" onclick="loadFenString('5rk1/1b3p1p/pp3p2/3n1N2/1P6/P1qB1PP1/3Q3P/4R1K1 w - - 0 1','922');return false;">Show quiz number 922</td></tr>
+<tr><td><a id="ex923" href="#" onclick="loadFenString('6r1/3rnpk1/p3q1pR/1pp1P1P1/3pQ3/1P4K1/1PPR1P1N/8 w - - 0 1','923');return false;">Show quiz number 923</td></tr>
+<tr><td><a id="ex924" href="#" onclick="loadFenString('r1bqnrk1/ppp2p2/2np1bpp/3NN3/3PQ3/3B4/PPP2PPP/R1B1R1K1 w - - 0 1','924');return false;">Show quiz number 924</td></tr>
+<tr><td><a id="ex925" href="#" onclick="loadFenString('r1q2r1k/3bb1Np/p1p5/3pp2Q/6R1/2P1R3/1P3PPP/2B3K1 w - - 0 1','925');return false;">Show quiz number 925</td></tr>
+<tr><td><a id="ex926" href="#" onclick="loadFenString('2r2rk1/1p1b1ppp/p4b2/3Bp3/4P3/B3Q3/2qP2PP/4RR1K w - - 0 1','926');return false;">Show quiz number 926</td></tr>
+<tr><td><a id="ex927" href="#" onclick="loadFenString('6rk/r3npbp/p3qp2/1ppNpR1Q/4P3/2P3RP/PPB2PP1/6K1 w - - 0 1','927');return false;">Show quiz number 927</td></tr>
+<tr><td><a id="ex928" href="#" onclick="loadFenString('2rq1rk1/pp3ppp/3p4/6P1/b3pP2/1N4Q1/PPP3P1/2KR3R w - - 0 1','928');return false;">Show quiz number 928</td></tr>
+<tr><td><a id="ex929" href="#" onclick="loadFenString('4rr1k/1ppb3p/2q3p1/p7/3n4/1BP1B3/PP3PP1/2K2Q1R w - - 0 1','929');return false;">Show quiz number 929</td></tr>
+<tr><td><a id="ex930" href="#" onclick="loadFenString('r2q1r2/pb3pk1/1ppbp1pp/7n/2PP4/1P1Q1N2/P1B2PPP/2B1RRK1 w - - 0 1','930');return false;">Show quiz number 930</td></tr>
+<tr><td><a id="ex931" href="#" onclick="loadFenString('2rb3k/5prp/p2p1N2/1pq1p3/4P2Q/1PP3R1/P5PP/R6K w - - 0 1','931');return false;">Show quiz number 931</td></tr>
+<tr><td><a id="ex932" href="#" onclick="loadFenString('4r3/p2qppkp/3p2b1/1p1N4/2r1P1RQ/2P4P/PP4P1/5RK1 w - - 0 1','932');return false;">Show quiz number 932</td></tr>
+<tr><td><a id="ex933" href="#" onclick="loadFenString('1n1r1rn1/1p1qb1kp/p2p1pp1/2pPp1P1/4P2N/2P3P1/PPB2PK1/R1BQ3R w - - 0 1','933');return false;">Show quiz number 933</td></tr>
+<tr><td><a id="ex934" href="#" onclick="loadFenString('3rr1k1/pb3p1p/qp2p1pB/2p4n/3pN3/2P2B1Q/PP5P/R2R3K w - - 0 1','934');return false;">Show quiz number 934</td></tr>
+<tr><td><a id="ex935" href="#" onclick="loadFenString('r2qr3/1bpn1pk1/pp2p1p1/4P3/4N3/3B1Q2/PPP2PP1/1K1R3R w - - 0 1','935');return false;">Show quiz number 935</td></tr>
+<tr><td><a id="ex936" href="#" onclick="loadFenString('r1b1qrk1/pp1p1ppp/8/n3p1BQ/2B1P3/8/P1P2PPP/3R1RK1 w - - 0 1','936');return false;">Show quiz number 936</td></tr>
+<tr><td><a id="ex937" href="#" onclick="loadFenString('r3nrk1/2p1Q1pp/p1b1Pp2/np4B1/6q1/1B3N2/PP3PPP/R3R1K1 w - - 0 1','937');return false;">Show quiz number 937</td></tr>
+<tr><td><a id="ex938" href="#" onclick="loadFenString('3rr2k/1ppq1p1p/pbn5/3pPP2/3P4/1B1RBQ2/PP3PK1/7R w - - 0 1','938');return false;">Show quiz number 938</td></tr>
+<tr><td><a id="ex939" href="#" onclick="loadFenString('r4r2/1q3pkp/p1b1p1n1/1p4QP/4P3/1BP3P1/P4P2/R2R2K1 w - - 0 1','939');return false;">Show quiz number 939</td></tr>
+<tr><td><a id="ex940" href="#" onclick="loadFenString('1k5r/1r1B2pp/1PQ5/4pp2/R7/3q3P/5PP1/6K1 w - - 0 1','940');return false;">Show quiz number 940</td></tr>
+<tr><td><a id="ex941" href="#" onclick="loadFenString('r3r1k1/pp3ppp/3b4/3q4/1n1B1P2/3B1P2/PP2Q2P/1K1R2R1 w - - 0 1','941');return false;">Show quiz number 941</td></tr>
+<tr><td><a id="ex942" href="#" onclick="loadFenString('2r1n1k1/2q1prbp/p2p2p1/1p1P2Q1/3B2P1/3B1P2/PPP5/2KR3R w - - 0 1','942');return false;">Show quiz number 942</td></tr>
+<tr><td><a id="ex943" href="#" onclick="loadFenString('r4rb1/pp2q1bk/1np2npp/2N1Np2/3P1P2/4P1PB/PPQB3P/R4RK1 w - - 0 1','943');return false;">Show quiz number 943</td></tr>
+<tr><td><a id="ex944" href="#" onclick="loadFenString('r1b1qrk1/2p4p/pb1ppp2/1p2pN2/3PP3/2P5/PP2QPPP/RN1R2K1 w - - 0 1','944');return false;">Show quiz number 944</td></tr>
+<tr><td><a id="ex945" href="#" onclick="loadFenString('r4rk1/ppqbppb1/2np2p1/2p5/2PP3N/2PQB1P1/P3P1BP/R4RK1 w - - 0 1','945');return false;">Show quiz number 945</td></tr>
+<tr><td><a id="ex946" href="#" onclick="loadFenString('r5k1/pp5p/4r3/n2q4/3B4/3B4/P5PP/Q4RK1 w - - 0 1','946');return false;">Show quiz number 946</td></tr>
+<tr><td><a id="ex947" href="#" onclick="loadFenString('5rrk/1q2ppb1/p6p/1pnPP2Q/2p2P2/2N4P/PP2B1R1/6RK w - - 0 1','947');return false;">Show quiz number 947</td></tr>
+<tr><td><a id="ex948" href="#" onclick="loadFenString('r3r1k1/1p1n1p1p/pq3p2/3P3N/4P3/P2b4/1B1Q2PP/R6K w - - 0 1','948');return false;">Show quiz number 948</td></tr>
+<tr><td><a id="ex949" href="#" onclick="loadFenString('r1bq2k1/n1p4p/p5N1/8/1pP2Qn1/1P6/PB3PP1/2K2B1R w - - 0 1','949');return false;">Show quiz number 949</td></tr>
+<tr><td><a id="ex950" href="#" onclick="loadFenString('r2N1n1k/4R1bp/1p1B2p1/p7/2B5/8/PP3PbP/4K3 w - - 0 1','950');return false;">Show quiz number 950</td></tr>
+<tr><td><a id="ex951" href="#" onclick="loadFenString('r1b2r2/1p1nq1bk/1np1p1pp/p7/3PN2N/1P2B3/P1Q1BPPP/2RR2K1 w - - 0 1','951');return false;">Show quiz number 951</td></tr>
+<tr><td><a id="ex952" href="#" onclick="loadFenString('3n1rk1/2qb2rp/pn2p1p1/1p1pP1P1/1P1N1PQR/P2BB3/2P3K1/7R w - - 0 1','952');return false;">Show quiz number 952</td></tr>
+<tr><td><a id="ex953" href="#" onclick="loadFenString('1r3rk1/1p5p/1qppb1p1/p7/2P1N3/1P4P1/PQ2PP2/2KR3R w - - 0 1','953');return false;">Show quiz number 953</td></tr>
+<tr><td><a id="ex954" href="#" onclick="loadFenString('r1b4k/ppp1Q1Rp/1n1q1np1/8/2BP4/P7/1PP2PPP/R1B3K1 w - - 0 1','954');return false;">Show quiz number 954</td></tr>
+<tr><td><a id="ex955" href="#" onclick="loadFenString('2k4r/ppprq1pp/4p3/2PnP3/2BP1R1P/1Q6/PP4P1/5RK1 w - - 0 1','955');return false;">Show quiz number 955</td></tr>
+<tr><td><a id="ex956" href="#" onclick="loadFenString('3r4/4bpk1/p2qpnp1/1p1bN1Bp/3P1Q2/P1P4R/5PPP/1B4K1 w - - 0 1','956');return false;">Show quiz number 956</td></tr>
+<tr><td><a id="ex957" href="#" onclick="loadFenString('rnbq1rk1/pppp1ppp/8/8/2B5/2B5/P4PPP/R2Q1RK1 w - - 0 1','957');return false;">Show quiz number 957</td></tr>
+<tr><td><a id="ex958" href="#" onclick="loadFenString('r1bqr1k1/pp1nbppp/2n1p3/2ppP3/3P1N1P/2PB1N2/PP2QPP1/R1B1K2R w KQ - 0 1','958');return false;">Show quiz number 958</td></tr>
+<tr><td><a id="ex959" href="#" onclick="loadFenString('8/pp2rkp1/2p2r2/3p1PR1/3P4/3qP2R/PP3Q1K/8 w - - 0 1','959');return false;">Show quiz number 959</td></tr>
+<tr><td><a id="ex960" href="#" onclick="loadFenString('4q2r/pb3pk1/1pN1pn1p/2b3p1/1P5P/2P2QB1/P1B2PP1/3R2K1 w - - 0 1','960');return false;">Show quiz number 960</td></tr>
+<tr><td><a id="ex961" href="#" onclick="loadFenString('2kr2nr/ppp1q1pp/2npbp2/3B4/4P3/B1Q2N2/P4PPP/1R2R1K1 w - - 0 1','961');return false;">Show quiz number 961</td></tr>
+<tr><td><a id="ex962" href="#" onclick="loadFenString('1kb3rr/1p2n2q/1Np2p2/1p6/1P1N1P1p/8/2P1RQPP/R6K w - - 0 1','962');return false;">Show quiz number 962</td></tr>
+<tr><td><a id="ex963" href="#" onclick="loadFenString('2r4k/rR2b2p/5p1B/3Bp3/q1Pn2b1/P5P1/7P/2Q1NR1K w - - 0 1','963');return false;">Show quiz number 963</td></tr>
+<tr><td><a id="ex964" href="#" onclick="loadFenString('r2q1rk1/2pbbpp1/p4B1p/1n1pP1NQ/2p5/2P5/P1B2PPP/R4RK1 w - - 0 1','964');return false;">Show quiz number 964</td></tr>
+<tr><td><a id="ex965" href="#" onclick="loadFenString('rn1qr1k1/pbp2pb1/1p4p1/3p4/3P4/2NBPN2/PPQ2PP1/R3K2R w KQ - 0 1','965');return false;">Show quiz number 965</td></tr>
+<tr><td><a id="ex966" href="#" onclick="loadFenString('rnbq1rk1/pppp1ppp/1b1P2n1/6N1/2B1P3/2N5/PP3PPP/R1BQK2R w KQ - 0 1','966');return false;">Show quiz number 966</td></tr>
+<tr><td><a id="ex967" href="#" onclick="loadFenString('r4rk1/pbq1bp2/1p2p1p1/6Np/2P3n1/2B4Q/PPB2PPP/3R1RK1 w - - 0 1','967');return false;">Show quiz number 967</td></tr>
+<tr><td><a id="ex968" href="#" onclick="loadFenString('rn1q1rk1/pp2bppb/4p2p/3p3N/3P1N2/8/PPP1QPPP/R1B1R1K1 w - - 0 1','968');return false;">Show quiz number 968</td></tr>
+<tr><td><a id="ex969" href="#" onclick="loadFenString('1q3r2/p5pk/1ppN1bpp/4p2n/2P1Q3/1P4PB/P2RPP1P/6K1 w - - 0 1','969');return false;">Show quiz number 969</td></tr>
+<tr><td><a id="ex970" href="#" onclick="loadFenString('4rr2/p1q2p1k/1p1RbQp1/4Pp1p/2P4R/5N1P/PP4P1/7K w - - 0 1','970');return false;">Show quiz number 970</td></tr>
+<tr><td><a id="ex971" href="#" onclick="loadFenString('2kr3r/pp1b3p/2p1pqp1/3p4/5B1b/3Q2N1/P1P3PP/1R3R1K w - - 0 1','971');return false;">Show quiz number 971</td></tr>
+<tr><td><a id="ex972" href="#" onclick="loadFenString('rq4k1/pp1nrppp/4bn2/6R1/3QP3/P4PN1/4B1PP/2B2RK1 w - - 0 1','972');return false;">Show quiz number 972</td></tr>
+<tr><td><a id="ex973" href="#" onclick="loadFenString('rnb2k2/ppqpRr2/2p3p1/8/3Q4/8/P4PPP/R5K1 w - - 0 1','973');return false;">Show quiz number 973</td></tr>
+<tr><td><a id="ex974" href="#" onclick="loadFenString('r1bq1rk1/ppppnpp1/1b5p/1Bn1P1B1/2Q5/2P2N2/PP3PPP/RN3RK1 w - - 0 1','974');return false;">Show quiz number 974</td></tr>
+<tr><td><a id="ex975" href="#" onclick="loadFenString('kr3b1r/pp2q2p/n2p1ppn/N1pPp3/P3P3/1R4N1/1PPBQPPP/5RK1 w - - 0 1','975');return false;">Show quiz number 975</td></tr>
+<tr><td><a id="ex976" href="#" onclick="loadFenString('r2r2k1/1p2bp1p/p2p2p1/1b1Pp3/4B3/1Pq1B2Q/P1P2RPP/2R3K1 w - - 0 1','976');return false;">Show quiz number 976</td></tr>
+<tr><td><a id="ex977" href="#" onclick="loadFenString('5r2/1p4k1/p1pbP2p/3p1rpq/2P2P2/6RN/PP1Q3P/6RK w - - 0 1','977');return false;">Show quiz number 977</td></tr>
+<tr><td><a id="ex978" href="#" onclick="loadFenString('3r3k/b3n1p1/p4pQp/1p6/2qp3R/P4N1P/1PPB1PP1/6K1 w - - 0 1','978');return false;">Show quiz number 978</td></tr>
+<tr><td><a id="ex979" href="#" onclick="loadFenString('r1bq1rk1/ppp3p1/7p/3P2n1/2PQ1p2/1N5P/PPP2PPK/R1B2R2 b - - 0 1','979');return false;">Show quiz number 979</td></tr>
+<tr><td><a id="ex980" href="#" onclick="loadFenString('r1b1r1k1/pp3ppp/2pb3q/3p4/3P2nP/1PN2BP1/PB2PP2/R2QR1K1 b - - 0 1','980');return false;">Show quiz number 980</td></tr>
+<tr><td><a id="ex981" href="#" onclick="loadFenString('8/p7/2p1p2p/4P1pQ/P4b2/5Pkb/1P1r4/4R1K1 b - - 0 1','981');return false;">Show quiz number 981</td></tr>
+<tr><td><a id="ex982" href="#" onclick="loadFenString('6k1/2p3bp/p1p3p1/3pnr2/7r/B4PqP/PP1NQRP1/3R2K1 b - - 0 1','982');return false;">Show quiz number 982</td></tr>
+<tr><td><a id="ex983" href="#" onclick="loadFenString('2k2r2/2p5/1pq5/p1p1n3/P1P2n1B/1R4Pp/2QR4/6K1 b - - 0 1','983');return false;">Show quiz number 983</td></tr>
+<tr><td><a id="ex984" href="#" onclick="loadFenString('r1b3k1/pp3pp1/5q1p/3pr3/1Q1n4/P1NB4/1P3PPP/R4RK1 b - - 0 1','984');return false;">Show quiz number 984</td></tr>
+<tr><td><a id="ex985" href="#" onclick="loadFenString('r1b3k1/pp3pp1/5q1p/3pr3/1Q1n4/P1NB4/1P3PPP/R4RK1 b - - 0 1','985');return false;">Show quiz number 985</td></tr>
+<tr><td><a id="ex986" href="#" onclick="loadFenString('3r2k1/Q4p2/Bp2p1pp/3r4/1P1n3q/P7/1P3PPP/2R1R1K1 b - - 0 1','986');return false;">Show quiz number 986</td></tr>
+<tr><td><a id="ex987" href="#" onclick="loadFenString('5nk1/5rpp/p3pr2/P1Q1p2q/4Pn2/2P1N3/1P3PPP/R3N1RK b - - 0 1','987');return false;">Show quiz number 987</td></tr>
+<tr><td><a id="ex988" href="#" onclick="loadFenString('rr4k1/4pp1p/p2p1bp1/q2P3P/1p4P1/P4P2/1PPQ4/2KR1B1R b - - 0 1','988');return false;">Show quiz number 988</td></tr>
+<tr><td><a id="ex989" href="#" onclick="loadFenString('3q2k1/1bR2ppp/p3p3/4Q3/5N2/P4PPK/1P1r3P/8 b - - 0 1','989');return false;">Show quiz number 989</td></tr>
+<tr><td><a id="ex990" href="#" onclick="loadFenString('1r4k1/p4p1p/3p1QpP/2nPP1P1/8/7q/PrBR4/K5R1 b - - 0 1','990');return false;">Show quiz number 990</td></tr>
+<tr><td><a id="ex991" href="#" onclick="loadFenString('6rk/pp2pp1p/3q2rb/3P1b2/3P1P2/1P3Q1P/PB1N1R1K/2R5 b - - 0 1','991');return false;">Show quiz number 991</td></tr>
+<tr><td><a id="ex992" href="#" onclick="loadFenString('8/3R2pp/5k2/5P2/5BP1/7K/4q2P/8 b - - 0 1','992');return false;">Show quiz number 992</td></tr>
+<tr><td><a id="ex993" href="#" onclick="loadFenString('3r2k1/pbq2p1p/1p2pnp1/3r4/1PN5/2PB1P2/P1Q3PP/3RR2K b - - 0 1','993');return false;">Show quiz number 993</td></tr>
+<tr><td><a id="ex994" href="#" onclick="loadFenString('6k1/5p2/4p1p1/p2bP1Pp/3P2qP/PP6/2Q4K/2B5 b - - 0 1','994');return false;">Show quiz number 994</td></tr>
+<tr><td><a id="ex995" href="#" onclick="loadFenString('r6k/p1Q5/2p1b1rq/4p3/B3P3/4P3/PPP3P1/4RRK1 b - - 0 1','995');return false;">Show quiz number 995</td></tr>
+<tr><td><a id="ex996" href="#" onclick="loadFenString('3r2k1/2p1bppp/4b3/p2pP3/qr1N1B1P/8/1PPQ1PP1/1K1RR3 b - - 0 1','996');return false;">Show quiz number 996</td></tr>
+<tr><td><a id="ex997" href="#" onclick="loadFenString('1k1r2r1/p1p3q1/2p2p2/3pn3/1P1b2bB/1QN5/P4PPP/1R2RBK1 b - - 0 1','997');return false;">Show quiz number 997</td></tr>
+<tr><td><a id="ex998" href="#" onclick="loadFenString('3q1rk1/pb3ppp/1p2p3/2r1n3/8/P1N1P3/1PQ2PPP/R1B2RK1 b - - 0 1','998');return false;">Show quiz number 998</td></tr>
+<tr><td><a id="ex999" href="#" onclick="loadFenString('2k5/1pp2ppp/4p3/1P5q/5n2/P1N2r1P/1PQ3PK/3R4 b - - 0 1','999');return false;">Show quiz number 999</td></tr>
+<tr><td><a id="ex1000" href="#" onclick="loadFenString('r3k2r/1p3ppp/pb1p4/4PQ2/2B2Pn1/N3q3/PP4PP/R4R1K b kq - 0 1','1000');return false;">Show quiz number 1000</td></tr>
+<tr><td><a id="ex1001" href="#" onclick="loadFenString('r2q1rk1/ppp2ppp/3b2n1/1N1P4/2BBP3/P4pP1/1PQ2PbP/R3R1K1 b - - 0 1','1001');return false;">Show quiz number 1001</td></tr>
+<tr><td><a id="ex1002" href="#" onclick="loadFenString('7k/p4q1p/1pb5/2p5/4B2Q/2P1B3/P6P/7K b - - 0 1','1002');return false;">Show quiz number 1002</td></tr>
+		</table>
+	</div>
+	<div style="clear:both">
+		<table>
+			<tr>
+				<td>Different pieces:</td>
+				<td><select onchange="switchPieceType(this.options[this.selectedIndex].value)">
+					<option value="alpha">alpha</option>
+					<option value="merida">merida</option>
+					<option value="motif">motif</option>
+					<option value="smart">smart</option>
+					<option value="cases">cases</option>
+					
+				</select>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<script type="text/javascript">
+var chessObj = new DHTMLGoodies.ChessFen( { pieceType:'alpha',squareSize:60 } );
+loadFenString('3r2k1/1p5p/6p1/p2q1p2/P1Q5/1P5P/1P6/5RK1 w - - 0 1','1');
+</script>
+
+</html>
+

@@ -1,0 +1,9 @@
+{
+	"folders":
+	[
+		{
+			"path": "/var/www/cfjquery/demo/chess",
+			"file_exclude_patterns": ["*.*~", "*.jpg", "*.png"]
+		}
+	]
+}

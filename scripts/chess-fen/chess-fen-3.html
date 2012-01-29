@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head>
+	<title>Chess Fen Viewer - demo 3</title>
+
+	<link rel="stylesheet" type="text/css" media="screen" href="css/chess.css"></link>
+	<script type="text/javascript" src="js/ChessFen.js"></script>
+	<style type="text/css" media="screen">
+	body{
+		font-family:"Trebuchet MS";
+		font-size:0.9em;
+		margin:0px;
+	}
+
+	#boardContainer{
+		width:760px;
+
+		padding:5px;
+	}
+	pre{
+		font-family:Courier New, Courier New, Courier, monospace;
+		color: #000;	
+		font-size:0.75em;
+		border:1px solid #317082;
+		border-left:5px solid #317082;		
+		padding:2px;
+	}
+	img{
+		border:0px;
+	}
+	input{
+		font-size:11px;
+	}
+
+	</style>
+	<script type="text/javascript">
+	
+	function displayFen(fenString)
+	{
+		try{
+			chessObj.loadFen(fenString,'boardDiv');
+			document.getElementById('fenInput').value = fenString;
+			document.getElementById('fenString').innerHTML = fenString;
+		}catch(e){
+			alert('Invalid FEN');	
+		}
+	}
+	
+	
+	</script>
+</head>
+<body>
+<div id="mainContainer">
+	<div id="header">
+		<a href="http://www.dhtmlgoodies.com"><img src="/images/heading3.gif"></a>
+	</div>
+	<div id="boardContainer">
+		<p><b>My own FEN </b> ( <span id="fenString" style="font-size:0.9em;font-style:italic"></span> )</p>
+		<div><table><tr><td>Type FEN in the field below:</td></tr>
+		<tr><td><input type="text" id="fenInput" style="width:360px" onchange="displayFen(this.value)"></td></tr></table></div>
+		<div id="boardDiv"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+var chessObj = new DHTMLGoodies.ChessFen( { pieceType:'alpha',squareSize:60 });
+displayFen('r1bq4/1p4kp/3p1n2/5pB1/p1pQ4/8/1P4PP/4RRK1 w - - 0 1');
+
+
+
+
+</script>
+
+</body>
+</html>
+
